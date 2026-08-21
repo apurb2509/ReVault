@@ -1,35 +1,83 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { LayoutDashboard, Search, FileText, MessageSquare, Phone, Settings, Activity } from 'lucide-react';
+import {
+  Zap, Info, LayoutDashboard, Brain, BarChart3,
+  FileText, CalendarCheck, Mic, Settings, ChevronLeft,
+} from 'lucide-react';
+import { useAppSelector } from '../../hooks/useStore';
 
-export const Sidebar: React.FC = () => {
+const NAV_ITEMS = [
+  { to: '/about',    icon: Info,           label: 'About ReVault',    badge: null },
+  { to: '/',         icon: LayoutDashboard, label: 'Command Center',   badge: null },
+  { to: '/traces',   icon: Brain,           label: 'Agent Traces',     badge: null },
+  { to: '/batch',    icon: BarChart3,       label: 'Batch Report',     badge: null },
+  { to: '/invoices', icon: FileText,        label: 'B2B Invoices',     badge: 3    },
+  { to: '/ptp',      icon: CalendarCheck,   label: 'PTP Tracker',      badge: 2    },
+  { to: '/voice',    icon: Mic,             label: 'Voice Replay',     badge: null },
+  { to: '/audit',    icon: FileText,        label: 'Audit Trail',      badge: null },
+  { to: '/settings', icon: Settings,        label: 'Configuration',    badge: null },
+] as const;
+
+interface SidebarProps {
+  collapsed: boolean;
+  onToggle: () => void;
+}
+
+export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
+  const recovered = useAppSelector(state => state.metrics.recoveredAmount);
+
   return (
-    <aside className="sidebar">
-      <div className="logo">
-        <Activity color="#3b82f6" size={28} />
-        <div>ReVault<span>.</span></div>
-      </div>
-      
-      <div className="nav-links">
-        <NavLink to="/" className={({isActive}) => `nav-link ${isActive ? 'active' : ''}`}>
-          <LayoutDashboard size={20} /> Dashboard
-        </NavLink>
-        <NavLink to="/invoices" className={({isActive}) => `nav-link ${isActive ? 'active' : ''}`}>
-          <FileText size={20} /> B2B Invoices
-        </NavLink>
-        <NavLink to="/audit" className={({isActive}) => `nav-link ${isActive ? 'active' : ''}`}>
-          <Search size={20} /> Audit Trail
-        </NavLink>
-        <NavLink to="/ptp" className={({isActive}) => `nav-link ${isActive ? 'active' : ''}`}>
-          <MessageSquare size={20} /> PTP Tracker
-        </NavLink>
-        <NavLink to="/voice" className={({isActive}) => `nav-link ${isActive ? 'active' : ''}`}>
-          <Phone size={20} /> Voice Replay
-        </NavLink>
-        <NavLink to="/settings" className={({isActive}) => `nav-link ${isActive ? 'active' : ''}`}>
-          <Settings size={20} /> Configuration
-        </NavLink>
-      </div>
-    </aside>
+    <>
+      {/* Sidebar panel */}
+      <aside className={`sidebar${collapsed ? ' collapsed' : ''}`}>
+        <div className="sidebar-logo">
+          <div className="logo-mark">
+            <div className="logo-icon">
+              <Zap size={16} color="white" />
+            </div>
+            <div>
+              <div className="logo-text">Re<span>Vault</span></div>
+            </div>
+          </div>
+          <div className="logo-tagline">AI Revenue Recovery · Powered by Gemini</div>
+        </div>
+
+        <nav className="sidebar-nav">
+          <div className="nav-section-label">Navigation</div>
+          {NAV_ITEMS.map(({ to, icon: Icon, label, badge }) => (
+            <NavLink
+              key={to}
+              to={to}
+              end={to === '/'}
+              className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}
+            >
+              <Icon size={15} className="nav-icon" />
+              {label}
+              {badge !== null && <span className="nav-badge">{badge}</span>}
+            </NavLink>
+          ))}
+        </nav>
+
+        <div className="sidebar-footer">
+          <div className="recovery-ticker">
+            <div className="recovery-ticker-label">↑ Recovered</div>
+            <div className="recovery-ticker-value">
+              ₹{(recovered / 100).toLocaleString('en-IN')}
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      {/* Toggle tab always pinned to left edge */}
+      <button
+        id="sidebar-toggle-btn"
+        className={`sidebar-toggle${collapsed ? '' : ' open'}`}
+        onClick={onToggle}
+        aria-label={collapsed ? 'Open sidebar' : 'Close sidebar'}
+        title={collapsed ? 'Open sidebar' : 'Close sidebar'}
+      >
+        <ChevronLeft size={14} color="white" />
+      </button>
+    </>
   );
 };

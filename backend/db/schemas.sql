@@ -152,6 +152,21 @@ CREATE TABLE IF NOT EXISTS merchant_config (
     updated_at              TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
+-- ── Batch Runs ───────────────────────────────────────────────
+CREATE TABLE IF NOT EXISTS batch_runs (
+    id                      UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    started_at              TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    completed_at            TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    total_records           INTEGER NOT NULL,
+    total_at_risk           INTEGER DEFAULT 0,
+    total_recovered         INTEGER DEFAULT 0,
+    recovery_rate           FLOAT DEFAULT 0,
+    classifier_accuracy     FLOAT DEFAULT 0,
+    compliance_violations   INTEGER NOT NULL,
+    escalations_correct     INTEGER NOT NULL,
+    escalations_total       INTEGER NOT NULL
+);
+
 -- Seed a default config row so the system works out of the box
 INSERT INTO merchant_config (merchant_id) VALUES ('default')
     ON CONFLICT (merchant_id) DO NOTHING;

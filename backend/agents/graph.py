@@ -70,21 +70,42 @@ def build_graph() -> StateGraph:
     # Import agent nodes here to avoid circular imports at module load time
     from agents.degradation_watchdog import run as degradation_node
     from agents.abandonment_hunter import run as abandonment_node
-    from agents.subscription_rescue import run as subscription_node
-    from agents.receivables_pursuit import run as receivables_node
-    from agents.mandate_sequencer import run as mandate_node
-    from agents.voice_agent import run as voice_node
+    from agents.subscription_mandate_engine import SubscriptionMandateEngine
+    from agents.b2b_chaser import B2BReceivablesChaser
+    from agents.voice_agent import VoiceAgent
     from agents.ptp_tracker import run as ptp_node
 
     graph = StateGraph(AgentState)
 
+    # We need to wrap class methods into LangGraph node functions
+    async def sub_node_wrapper(state: AgentState):
+        from db.database import async_session
+        import redis.asyncio as aioredis
+        from config import get_settings
+        
+        async with async_session() as db:
+            redis_client = aioredis.from_url(get_settings().redis_url)
+            engine = SubscriptionMandateEngine(db, redis_client)
+            res = await engine.process_failure(str(state["event"].id), state["event"].failure_cause, state["customer_id"], state["event"].amount)
+            return {"recovery_actions_taken": [res["action"].__dict__] if res.get("action") else []}
+
+    async def b2b_node_wrapper(state: AgentState):
+        from db.database import async_session
+        from agents.b2b_chaser import InvoiceState
+        
+        async with async_session() as db:
+            engine = B2BReceivablesChaser(db)
+            # Create a mock InvoiceState from the event for the pipeline
+            istate = InvoiceState(invoice_id=str(state["event"].id), days_outstanding=30, amount=state["event"].amount, company=state["customer_id"])
+            action = await engine.process_invoice(str(state["event"].id), istate)
+            return {"recovery_actions_taken": [action.__dict__]}
+
     graph.add_node("router", lambda state: {**state, "active_modules": _route_event(state)})
     graph.add_node("degradation_watchdog", degradation_node)
     graph.add_node("abandonment_hunter", abandonment_node)
-    graph.add_node("subscription_rescue", subscription_node)
-    graph.add_node("receivables_pursuit", receivables_node)
-    graph.add_node("mandate_sequencer", mandate_node)
-    graph.add_node("voice_agent", voice_node)
+    graph.add_node("subscription_rescue", sub_node_wrapper)
+    graph.add_node("receivables_pursuit", b2b_node_wrapper)
+    graph.add_node("mandate_sequencer", sub_node_wrapper)
     graph.add_node("ptp_tracker", ptp_node)
 
     graph.set_entry_point("router")
@@ -102,13 +123,11 @@ def build_graph() -> StateGraph:
         "subscription_rescue",
         "receivables_pursuit",
         "mandate_sequencer",
-        "voice_agent",
         "ptp_tracker",
     ]:
         graph.add_edge(node, END)
 
     return graph.compile()
-
 
 # Module-level compiled graph — instantiated once at startup
 compiled_graph = build_graph()
