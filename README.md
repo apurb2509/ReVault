@@ -70,14 +70,13 @@ The ingestion layer is a **Go** service — high-throughput, signature-validated
 ### Backend
 | Technology | Role |
 |---|---|
-| Python 3.12 + FastAPI | API server, webhook handler, AI/agent service |
-| Go (Golang) | High-throughput event ingestion service |
-| LangGraph 0.2+ | Multi-agent orchestration |
+| Go (Golang) 1.25.0 | Microservices Core (API gateway, webhook handler, fast ingress) |
+| Python 3.12 + FastAPI | Agent Orchestration Server |
+| LangGraph 0.2+ | Multi-agent orchestration for Gemini LLM logic |
 | Node.js | WhatsApp & notification workers |
 | Apache Kafka (Upstash free tier) | Primary event bus |
 | Redis (Upstash free tier) | Retry state machine, dedup, rate limiting |
 | PostgreSQL (Supabase free tier) | Transactional DB, audit trail |
-| APScheduler | Background polling jobs |
 
 ### AI / LLM
 | Technology | Role |

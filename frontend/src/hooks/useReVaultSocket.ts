@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { io } from 'socket.io-client';
 import { useAppDispatch } from './useStore';
 import { addEvent } from '../store/slices/feedSlice';
 
@@ -8,14 +7,16 @@ export const useReVaultSocket = () => {
 
   useEffect(() => {
     // Determine WebSocket URL based on environment
-    const wsUrl = import.meta.env.VITE_WS_URL || 'http://localhost:8000';
-    const socket = io(wsUrl, { path: '/ws' });
+    // Use ws:// for Go backend on port 8080
+    const wsUrl = import.meta.env.VITE_WS_URL || 'ws://localhost:8080/ws';
+    const socket = new WebSocket(wsUrl);
     
-    socket.on('connect', () => {
-      console.log('Connected to ReVault WebSocket backend');
-    });
+    socket.onopen = () => {
+      console.log('Connected to ReVault Go WebSocket backend');
+    };
 
-    socket.on('message', (data: string) => {
+    socket.onmessage = (event: MessageEvent) => {
+      const data = event.data;
       try {
         const parsed = JSON.parse(data);
         
@@ -41,10 +42,10 @@ export const useReVaultSocket = () => {
       } catch (e) {
         console.error('Failed to parse WebSocket message', e);
       }
-    });
+    };
 
     return () => {
-      socket.disconnect();
+      socket.close();
     };
   }, [dispatch]);
 };

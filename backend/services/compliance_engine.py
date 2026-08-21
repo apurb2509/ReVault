@@ -50,6 +50,7 @@ class ComplianceEngine:
             await self._check_cooling_period(customer_id),
             await self._check_fraud_flag(action.event_id),
             await self._check_dispute_flag(action.event_id),
+            await self._check_chargeback(action.event_id),
             await self._check_daily_contact_limit(customer_id),
         ]
 
@@ -128,6 +129,15 @@ class ComplianceEngine:
             return CheckResult(
                 passed=False,
                 reason=f"Active dispute on event {event_id} — all recovery actions frozen",
+            )
+        return CheckResult(passed=True)
+
+    async def _check_chargeback(self, event_id: uuid.UUID) -> CheckResult:
+        key = f"revault:chargeback:{event_id}"
+        if await self._redis.exists(key):
+            return CheckResult(
+                passed=False,
+                reason=f"Chargeback initiated on event {event_id} — compliance hold, no further contact",
             )
         return CheckResult(passed=True)
 

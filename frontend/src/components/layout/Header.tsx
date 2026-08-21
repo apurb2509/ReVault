@@ -1,17 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-export const Header: React.FC<{ title: string; subtitle: string }> = ({ title, subtitle }) => {
+interface HeaderProps {
+  title: string;
+  subtitle?: string;
+}
+
+export const Header: React.FC<HeaderProps> = ({ title, subtitle }) => {
+  const [time, setTime] = useState(new Date());
+
+  useEffect(() => {
+    const id = setInterval(() => setTime(new Date()), 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  const istTime = time.toLocaleTimeString('en-IN', {
+    timeZone: 'Asia/Kolkata',
+    hour12: false,
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+  });
+
   return (
-    <div className="dashboard-header">
+    <div className="page-header">
       <div>
-        <h1 className="header-title">{title}</h1>
-        <div className="header-subtitle">{subtitle}</div>
+        <h1 className="page-title">{title}</h1>
+        {subtitle && <div className="page-subtitle">{subtitle}</div>}
       </div>
-      <div>
-        <span className="badge badge-success" style={{ padding: '8px 12px', fontSize: '14px' }}>
-          <span className="status-dot active" style={{ display: 'inline-block', marginRight: '8px' }}></span>
-          System Active
-        </span>
+      <div style={{ fontSize: '11px', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>
+        {istTime} IST
       </div>
     </div>
   );

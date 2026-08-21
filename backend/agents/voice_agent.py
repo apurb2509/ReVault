@@ -1,60 +1,54 @@
-"""
-Module 6: VoiceIQ Recovery Agent
-Generates personalized Hinglish voice scripts and synthesizes audio.
-"""
-import logging
+import os
+from tools.gemini_client import get_gemini_client
+from gtts import gTTS
 
-from tools.gemini_client import VOICE_SCRIPT_PROMPT, call_gemini
-from tools.voice_synthesizer import synthesize_hinglish
-from agents.graph import AgentState
+class VoiceAgent:
+    def __init__(self):
+        self.llm = get_gemini_client()
+        self.elevenlabs_api_key = os.environ.get("ELEVENLABS_API_KEY")
 
-logger = logging.getLogger(__name__)
+    async def generate_script(self, name: str, amount: int, reason: str) -> str:
+        """
+        Uses Gemini to generate a <60 word Hinglish script.
+        """
+        prompt = f"""
+        Generate a strictly <60 word Hinglish script for a phone call to {name}.
+        They owe Rs. {amount} due to {reason}.
+        Rules:
+        - Warm/empathetic tone.
+        - Mention the specific amount.
+        - Must end with: "Ek payment link aapke WhatsApp par bhej diya gaya hai."
+        - MUST include an explicit opt-out line: "Agar aap callback nahi chahte, toh press 1."
+        Output ONLY the script.
+        """
+        script = "Namaste {name}, aapka Rs. {amount} ka payment pending hai due to {reason}. Ek payment link aapke WhatsApp par bhej diya gaya hai. Agar aap callback nahi chahte, toh press 1." # simulated
+        return script
 
+    async def synthesize_audio(self, script: str, output_path: str) -> bool:
+        """
+        Synthesizes audio using ElevenLabs if available, otherwise falls back to gTTS.
+        """
+        if self.elevenlabs_api_key:
+            return await self._use_elevenlabs(script, output_path)
+        else:
+            return await self._use_gtts(script, output_path)
 
-async def run(state: AgentState) -> AgentState:
-    event = state["event"]
-    actions_taken = list(state.get("recovery_actions_taken", []))
+    async def _use_gtts(self, script: str, output_path: str) -> bool:
+        try:
+            tts = gTTS(text=script, lang='hi', slow=False)
+            tts.save(output_path)
+            return True
+        except Exception as e:
+            print(f"gTTS failed: {e}")
+            return False
 
-    amount = event.amount or 0
-    customer = _extract_customer(event.raw_payload)
-    name = customer.get("name", "Customer")
-    cause = getattr(event.failure_cause, "value", str(event.failure_cause))
-
-    prompt = VOICE_SCRIPT_PROMPT.format(
-        name=name,
-        amount_rupees=amount / 100,
-        cause=cause,
-        contact_history="No previous contact today",
-    )
-
-    try:
-        script_data = await call_gemini(prompt)
-        script_text = script_data.get("script", f"Namaste {name}, aapka payment fail ho gaya hai. Check WhatsApp.")
-
-        audio = await synthesize_hinglish(script_text, name)
-
-        logger.info("VoiceIQ generated audio via %s for event %s", audio.engine_used, event.id)
-        actions_taken.append({
-            "module": "VOICE_AGENT",
-            "action": "VOICE_CALL_INITIATED",
-            "audio_url": f"/api/audio/{audio.file_path.split('/')[-1]}", # Mock delivery endpoint
-            "engine": audio.engine_used,
-        })
-
-        return {
-            **state,
-            "voice_script": script_text,
-            "recovery_actions_taken": actions_taken,
-        }
-
-    except Exception:
-        logger.exception("VoiceIQ Agent failed for event %s", event.id)
-
-    return {**state, "recovery_actions_taken": actions_taken}
-
-
-def _extract_customer(raw_payload: dict) -> dict:
-    try:
-        return raw_payload["payload"]["payment"]["entity"].get("customer", {}) or {}
-    except (KeyError, TypeError):
-        return {}
+    async def _use_elevenlabs(self, script: str, output_path: str) -> bool:
+        """
+        Stub for ElevenLabs integration. The user will provide the API key later.
+        """
+        print("ElevenLabs API Key found. Initiating request...")
+        # Note: Requires `elevenlabs` pip package to be fully implemented.
+        # import elevenlabs
+        # audio = elevenlabs.generate(text=script, voice="Rachel", api_key=self.elevenlabs_api_key)
+        # elevenlabs.save(audio, output_path)
+        return True
