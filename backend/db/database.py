@@ -20,6 +20,9 @@ AsyncSessionLocal = async_sessionmaker(
     expire_on_commit=False,
 )
 
+# Alias used by batch_runner.py and graph.py node wrappers
+async_session = AsyncSessionLocal
+
 
 class Base(DeclarativeBase):
     pass

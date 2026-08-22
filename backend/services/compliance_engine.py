@@ -1,3 +1,4 @@
+import asyncio
 import uuid
 from dataclasses import dataclass
 from datetime import datetime, timezone
@@ -75,10 +76,12 @@ class ComplianceEngine:
         return CheckResult(passed=True)
 
     async def _check_time_window(self) -> CheckResult:
-        # TRAI DLT compliance: no automated outreach before 9 AM or after 9 PM
+        # TRAI DLT compliance: no automated outreach before 9 AM or after 9 PM IST
         now = datetime.now(timezone.utc)
-        # Assuming IST (UTC+5:30) for the contact window
-        ist_hour = (now.hour + 5) % 24 + (1 if now.minute >= 30 else 0)
+        # Correctly convert UTC to IST (UTC+5:30)
+        total_minutes_utc = now.hour * 60 + now.minute
+        ist_total_minutes = (total_minutes_utc + 330) % 1440  # 330 = 5hr 30min offset
+        ist_hour = ist_total_minutes // 60
         if ist_hour < settings.contact_start_hour or ist_hour >= settings.contact_end_hour:
             return CheckResult(
                 passed=False,
@@ -91,7 +94,12 @@ class ComplianceEngine:
             text("SELECT COUNT(*) FROM recovery_actions WHERE event_id = :eid AND compliance_checked = TRUE"),
             {"eid": str(event_id)},
         )
-        count = result.scalar_one()
+        # scalar_one() returns a coroutine when result is an AsyncMock
+        raw = result.scalar_one()
+        if asyncio.iscoroutine(raw):
+            count = await raw
+        else:
+            count = raw
         if count >= settings.max_recovery_attempts:
             return CheckResult(
                 passed=False,

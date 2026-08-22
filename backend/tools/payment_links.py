@@ -72,3 +72,35 @@ async def fetch_link_status(link_id: str) -> dict[str, Any]:
     except Exception:
         logger.exception("Failed to fetch payment link %s", link_id)
         raise
+
+
+class PaymentLinkGenerator:
+    """
+    OOP wrapper for payment link creation.
+    Used by subscription_mandate_engine.py and other class-based agents.
+    Delegates to the module-level create_recovery_link() function.
+    """
+
+    async def create(
+        self,
+        order_id: str,
+        amount: int,
+        customer_name: str,
+        customer_email: str,
+        customer_phone: str,
+        description: str,
+        expiry_hours: int = 24,
+    ) -> CreatedPaymentLink:
+        return await create_recovery_link(
+            order_id=order_id,
+            amount=amount,
+            customer_name=customer_name,
+            customer_email=customer_email,
+            customer_phone=customer_phone,
+            description=description,
+            expiry_hours=expiry_hours,
+        )
+
+    async def fetch_status(self, link_id: str) -> dict[str, Any]:
+        return await fetch_link_status(link_id)
+

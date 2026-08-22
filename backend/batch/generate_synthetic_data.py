@@ -79,4 +79,7 @@ def generate_batch_data(output_path: str):
     print(f"Generated {len(events)} synthetic events at {output_path}")
 
 if __name__ == "__main__":
-    generate_batch_data(r"e:\ReVault\simulation\sample_data\batch_events.json")
+    from pathlib import Path
+    # Relative to this file: two levels up → repo root → simulation/sample_data
+    _out = Path(__file__).parent.parent.parent / "simulation" / "sample_data" / "batch_events.json"
+    generate_batch_data(str(_out))
