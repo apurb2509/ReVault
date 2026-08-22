@@ -53,7 +53,7 @@ class AuditLogger:
             decision_log={"blocked": True, "reason": reason},
             compliance_log={"allowed": False, "reason": reason},
             event_id=action.event_id,
-            action_id=action.id,
+            action_id=None,  # Blocked actions are never persisted to DB, so FK would fail
         )
 
     async def _insert(self, entry: AuditEntry) -> None:
@@ -65,7 +65,7 @@ class AuditLogger:
                     (id, timestamp, module, action_id, event_id, actor, decision_log, compliance_log)
                 VALUES
                     (:id, :timestamp, :module, :action_id, :event_id, :actor,
-                     :decision_log::jsonb, :compliance_log::jsonb)
+                     CAST(:decision_log AS JSONB), CAST(:compliance_log AS JSONB))
                 """
             ),
             {

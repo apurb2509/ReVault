@@ -12,13 +12,43 @@ settings = get_settings()
 genai.configure(api_key=settings.gemini_api_key)
 
 # Flash for speed-sensitive tasks; Pro for complex reasoning
-_FLASH = genai.GenerativeModel("gemini-1.5-flash")
-_PRO = genai.GenerativeModel("gemini-1.5-pro")
+_FLASH = genai.GenerativeModel("gemini-2.0-flash")
+_PRO = genai.GenerativeModel("gemini-2.0-flash")  # Use Flash for both — Pro is deprecated in v0.8
 
 _JSON_CONFIG = genai.GenerationConfig(
     response_mime_type="application/json",
     temperature=0.1,    # Low temperature for structured, deterministic outputs
 )
+
+
+class GeminiClient:
+    """
+    OOP wrapper returned by get_gemini_client().
+    Agents that hold a self.llm reference use this.
+    All calls go through the same underlying call_gemini() function.
+    """
+
+    async def generate(self, prompt: str, use_pro: bool = False) -> dict[str, Any]:
+        """Async structured JSON generation."""
+        return await call_gemini(prompt, use_pro=use_pro)
+
+    async def generate_text(self, prompt: str) -> str:
+        """Returns raw text for cases where structured JSON is not needed."""
+        model = _FLASH
+        try:
+            response = model.generate_content(prompt)
+            return response.text
+        except Exception:
+            logger.exception("Gemini text generation failed")
+            raise
+
+
+def get_gemini_client() -> GeminiClient:
+    """
+    Returns a GeminiClient instance.
+    Imported by voice_agent, b2b_chaser, subscription_mandate_engine.
+    """
+    return GeminiClient()
 
 
 async def call_gemini(prompt: str, use_pro: bool = False) -> dict[str, Any]:
@@ -35,7 +65,7 @@ async def call_gemini(prompt: str, use_pro: bool = False) -> dict[str, Any]:
     except json.JSONDecodeError as exc:
         logger.error("Gemini returned non-JSON output: %s", response.text[:500])
         raise ValueError(f"Gemini output was not valid JSON: {exc}") from exc
-    except Exception as exc:
+    except Exception:
         logger.exception("Gemini API call failed")
         raise
 

@@ -42,7 +42,7 @@ export const VoicePlayer: React.FC = () => {
             <strong>Trigger:</strong> B2B Invoice Aging (ORANGE Tier)
           </div>
           <div style={{ fontSize: '13px', color: 'var(--text-secondary)', marginBottom: '16px' }}>
-            <strong>Agent Reasoning:</strong> "Invoice > 60 days outstanding. Tone selected: Firm but polite. Escalate if unanswered."
+            <strong>Agent Reasoning:</strong> "Invoice &gt; 60 days outstanding. Tone selected: Firm but polite. Escalate if unanswered."
           </div>
           
           <div style={{ padding: '12px', borderLeft: '3px solid var(--accent)', background: 'rgba(0,0,0,0.3)', fontSize: '13px', fontStyle: 'italic', marginBottom: '16px' }}>

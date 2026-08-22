@@ -5,12 +5,15 @@ Each module is a node in the graph. The router decides which node(s) to
 activate based on the incoming event type and failure cause. All nodes
 share the same AgentState typed dict and write their outputs back into it.
 """
+import logging
 import uuid
-from typing import Annotated, Any, TypedDict
+from typing import Any, TypedDict
 
 from langgraph.graph import END, StateGraph
 
 from models.payment_event import EventType, FailureCause, PaymentEvent
+
+logger = logging.getLogger(__name__)
 
 
 class AgentState(TypedDict):
@@ -66,47 +69,58 @@ def _route_event(state: AgentState) -> list[str]:
     return modules
 
 
+async def _human_escalation_node(state: AgentState) -> AgentState:
+    """
+    Hard stop for fraud-suspected payments.
+    Logs the escalation and flags the state — no automated action is taken.
+    """
+    event = state["event"]
+    logger.warning(
+        "HUMAN ESCALATION required for event %s (cause: %s) — zero auto-action",
+        event.id,
+        event.failure_cause,
+    )
+    actions = list(state.get("recovery_actions_taken", []))
+    actions.append({
+        "module": "COMPLIANCE_ENGINE",
+        "action": "HUMAN_ESCALATION",
+        "reason": f"Fraud-suspected payment {event.id} — routed to human review queue",
+        "payment_id": event.payment_id,
+        "amount": event.amount,
+    })
+    return {
+        **state,
+        "escalated": True,
+        "recovery_actions_taken": actions,
+    }
+
+
 def build_graph() -> StateGraph:
     # Import agent nodes here to avoid circular imports at module load time
     from agents.degradation_watchdog import run as degradation_node
     from agents.abandonment_hunter import run as abandonment_node
+    from agents.subscription_rescue import run as subscription_rescue_node
+    from agents.mandate_sequencer import run as mandate_node
+    from agents.receivables_pursuit import run as receivables_node
+    from agents.ptp_tracker import run as ptp_node
+
+    # Class-based engines — used as wrappers for mandate_sequencer route
     from agents.subscription_mandate_engine import SubscriptionMandateEngine
     from agents.b2b_chaser import B2BReceivablesChaser
-    from agents.voice_agent import VoiceAgent
-    from agents.ptp_tracker import run as ptp_node
 
     graph = StateGraph(AgentState)
 
-    # We need to wrap class methods into LangGraph node functions
-    async def sub_node_wrapper(state: AgentState):
-        from db.database import async_session
-        import redis.asyncio as aioredis
-        from config import get_settings
-        
-        async with async_session() as db:
-            redis_client = aioredis.from_url(get_settings().redis_url)
-            engine = SubscriptionMandateEngine(db, redis_client)
-            res = await engine.process_failure(str(state["event"].id), state["event"].failure_cause, state["customer_id"], state["event"].amount)
-            return {"recovery_actions_taken": [res["action"].__dict__] if res.get("action") else []}
-
-    async def b2b_node_wrapper(state: AgentState):
-        from db.database import async_session
-        from agents.b2b_chaser import InvoiceState
-        
-        async with async_session() as db:
-            engine = B2BReceivablesChaser(db)
-            # Create a mock InvoiceState from the event for the pipeline
-            istate = InvoiceState(invoice_id=str(state["event"].id), days_outstanding=30, amount=state["event"].amount, company=state["customer_id"])
-            action = await engine.process_invoice(str(state["event"].id), istate)
-            return {"recovery_actions_taken": [action.__dict__]}
+    # ── Subscription node: uses dedicated subscription_rescue module ──
+    # (Class-based SME is used internally by subscription_rescue.py)
 
     graph.add_node("router", lambda state: {**state, "active_modules": _route_event(state)})
     graph.add_node("degradation_watchdog", degradation_node)
     graph.add_node("abandonment_hunter", abandonment_node)
-    graph.add_node("subscription_rescue", sub_node_wrapper)
-    graph.add_node("receivables_pursuit", b2b_node_wrapper)
-    graph.add_node("mandate_sequencer", sub_node_wrapper)
+    graph.add_node("subscription_rescue", subscription_rescue_node)
+    graph.add_node("receivables_pursuit", receivables_node)
+    graph.add_node("mandate_sequencer", mandate_node)
     graph.add_node("ptp_tracker", ptp_node)
+    graph.add_node("human_escalation", _human_escalation_node)
 
     graph.set_entry_point("router")
 
@@ -124,10 +138,12 @@ def build_graph() -> StateGraph:
         "receivables_pursuit",
         "mandate_sequencer",
         "ptp_tracker",
+        "human_escalation",
     ]:
         graph.add_edge(node, END)
 
     return graph.compile()
+
 
 # Module-level compiled graph — instantiated once at startup
 compiled_graph = build_graph()

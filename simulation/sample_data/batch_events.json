@@ -1,0 +1,6312 @@
+[
+  {
+    "id": "af045257-6c71-40fe-985a-929d02c8a12f",
+    "event_type": "payment.failed",
+    "failure_cause": "AUTH_FAILURE",
+    "customer_id": "cust_9372",
+    "amount": 4030400,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "cd2e0c63-1a5c-4ed1-a43d-97ef5e08febe",
+    "event_type": "payment.failed",
+    "failure_cause": "AUTH_FAILURE",
+    "customer_id": "cust_4978",
+    "amount": 2411300,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "7b6987a4-5a39-4195-88cd-a09d0a068c09",
+    "event_type": "payment.failed",
+    "failure_cause": "AUTH_FAILURE",
+    "customer_id": "cust_3859",
+    "amount": 1633800,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "3ff56081-f2a3-4862-a1f1-77e15ac868ab",
+    "event_type": "payment.failed",
+    "failure_cause": "INSUFFICIENT_FUNDS",
+    "customer_id": "cust_2115",
+    "amount": 222200,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "b4b1e853-530c-4690-904d-b7e8bf906d88",
+    "event_type": "payment.failed",
+    "failure_cause": "AUTH_FAILURE",
+    "customer_id": "cust_9481",
+    "amount": 363200,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "e9a64705-6cfa-47d6-933a-ee4a93fed7a6",
+    "event_type": "payment.failed",
+    "failure_cause": "AUTH_FAILURE",
+    "customer_id": "cust_3080",
+    "amount": 2938300,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "d1bcf530-7c58-4549-bb61-53ce2b0f352b",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "cust_9108",
+    "amount": 1293200,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "138cfb33-a5dc-49e7-bdd1-5be96a75eb04",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "cust_7208",
+    "amount": 4573000,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "444ac8e7-0cbc-4cb2-8dfc-0df7b7aec0b2",
+    "event_type": "payment.failed",
+    "failure_cause": "CARD_EXPIRED",
+    "customer_id": "cust_3702",
+    "amount": 2123000,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "5507576e-6caf-4264-8c04-a979b5c410d4",
+    "event_type": "payment.failed",
+    "failure_cause": "UPI_LIMIT_EXCEEDED",
+    "customer_id": "cust_2611",
+    "amount": 1813900,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "14a25a97-1e0d-488f-aa00-ccf568ae8969",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "cust_8258",
+    "amount": 569100,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "dc6e0ca5-edc1-4a3d-bbad-021b972cae3c",
+    "event_type": "payment.failed",
+    "failure_cause": "UPI_LIMIT_EXCEEDED",
+    "customer_id": "cust_4443",
+    "amount": 1256400,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "3a8c8c48-d2a7-45c7-a9e9-ce5f2dd32719",
+    "event_type": "payment.failed",
+    "failure_cause": "UPI_LIMIT_EXCEEDED",
+    "customer_id": "cust_9951",
+    "amount": 4173700,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "04ec24fc-4a45-4063-bd53-0f7d736cf47a",
+    "event_type": "payment.failed",
+    "failure_cause": "CARD_EXPIRED",
+    "customer_id": "cust_5224",
+    "amount": 4679200,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "cf1541a7-401e-40c0-ab43-f1bc92f49b73",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "cust_2047",
+    "amount": 1401500,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "44c78891-a336-46da-9974-dee732a4a2f9",
+    "event_type": "payment.failed",
+    "failure_cause": "AUTH_FAILURE",
+    "customer_id": "cust_5572",
+    "amount": 717800,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "d28e93c8-9949-4f23-9218-eaeea76d4d6b",
+    "event_type": "payment.failed",
+    "failure_cause": "INSUFFICIENT_FUNDS",
+    "customer_id": "cust_3343",
+    "amount": 2382100,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "ae4ae6ab-adf0-4f7c-a32e-37630bef3d1e",
+    "event_type": "payment.failed",
+    "failure_cause": "UPI_LIMIT_EXCEEDED",
+    "customer_id": "cust_1600",
+    "amount": 1467900,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "b74a7889-5213-4897-b116-9da7725cca66",
+    "event_type": "payment.failed",
+    "failure_cause": "INSUFFICIENT_FUNDS",
+    "customer_id": "cust_3592",
+    "amount": 2121200,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "b92962e4-1917-4724-b0a4-07f27510cf38",
+    "event_type": "payment.failed",
+    "failure_cause": "UPI_LIMIT_EXCEEDED",
+    "customer_id": "cust_2768",
+    "amount": 2269800,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "a46810ae-1c9e-4ada-bc88-659c75121dd4",
+    "event_type": "payment.failed",
+    "failure_cause": "AUTH_FAILURE",
+    "customer_id": "cust_8790",
+    "amount": 1162600,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "d10be27f-1f67-48b9-851a-70902ef7a938",
+    "event_type": "payment.failed",
+    "failure_cause": "INSUFFICIENT_FUNDS",
+    "customer_id": "cust_7536",
+    "amount": 682300,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "e76d9ff6-8be0-4233-b025-b9e174fa061c",
+    "event_type": "payment.failed",
+    "failure_cause": "CARD_EXPIRED",
+    "customer_id": "cust_3844",
+    "amount": 3749400,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "ceb96356-ed49-48c7-afb8-6cb73a7e2a12",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "cust_9250",
+    "amount": 3565900,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "4f5d9a27-ffb6-46f5-aacb-7155af595641",
+    "event_type": "payment.failed",
+    "failure_cause": "AUTH_FAILURE",
+    "customer_id": "cust_6886",
+    "amount": 3328900,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "d82fc2b0-f3d1-48df-829c-bf1d1bad49bf",
+    "event_type": "payment.failed",
+    "failure_cause": "UPI_LIMIT_EXCEEDED",
+    "customer_id": "cust_1630",
+    "amount": 790900,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "a7be4e75-dacb-4fb7-9d53-7291a6a3afde",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "cust_9244",
+    "amount": 3119400,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "03ad1a33-9e09-48d3-86e2-8563b7c8aee9",
+    "event_type": "payment.failed",
+    "failure_cause": "CARD_EXPIRED",
+    "customer_id": "cust_3070",
+    "amount": 1327700,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "6e8fc6f0-c799-4b2b-ae4b-04e74c2d50a0",
+    "event_type": "payment.failed",
+    "failure_cause": "CARD_EXPIRED",
+    "customer_id": "cust_7489",
+    "amount": 3423200,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "8d4d4506-3d9e-4145-bbad-64c1ad2ff97a",
+    "event_type": "payment.failed",
+    "failure_cause": "AUTH_FAILURE",
+    "customer_id": "cust_3783",
+    "amount": 3989300,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "e4e093bf-b33d-40cd-94de-9b97386eaee5",
+    "event_type": "payment.failed",
+    "failure_cause": "UPI_LIMIT_EXCEEDED",
+    "customer_id": "cust_4437",
+    "amount": 1953900,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "9a952c3e-36e8-488f-a2c5-a21b35e27720",
+    "event_type": "payment.failed",
+    "failure_cause": "CARD_EXPIRED",
+    "customer_id": "cust_7001",
+    "amount": 111500,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "f1b6b0c6-a01c-4213-a317-b07d1b6fe816",
+    "event_type": "payment.failed",
+    "failure_cause": "UPI_LIMIT_EXCEEDED",
+    "customer_id": "cust_7515",
+    "amount": 2512300,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "70e21c02-7b9e-4962-8576-e2d221ed17be",
+    "event_type": "payment.failed",
+    "failure_cause": "INSUFFICIENT_FUNDS",
+    "customer_id": "cust_8002",
+    "amount": 1645900,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "60c4c4c5-d53d-4d6c-b884-c687a127e189",
+    "event_type": "payment.failed",
+    "failure_cause": "UPI_LIMIT_EXCEEDED",
+    "customer_id": "cust_2836",
+    "amount": 4556200,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "eb4e09f2-36b6-4b23-be41-7414f782e834",
+    "event_type": "payment.failed",
+    "failure_cause": "AUTH_FAILURE",
+    "customer_id": "cust_4826",
+    "amount": 435300,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "72ddc21f-0bb7-4292-baf9-5c1f627e9c84",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "cust_6625",
+    "amount": 2280600,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "13cd2c49-e1a9-4043-84a2-3cda7d6cde50",
+    "event_type": "payment.failed",
+    "failure_cause": "INSUFFICIENT_FUNDS",
+    "customer_id": "cust_6017",
+    "amount": 4286500,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "3bdda240-6f87-4d14-a766-f7db32cfdb5d",
+    "event_type": "payment.failed",
+    "failure_cause": "INSUFFICIENT_FUNDS",
+    "customer_id": "cust_3667",
+    "amount": 3680700,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "084da137-12d4-42e5-8c4a-e9897c22147e",
+    "event_type": "payment.failed",
+    "failure_cause": "UPI_LIMIT_EXCEEDED",
+    "customer_id": "cust_5124",
+    "amount": 844800,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "d2ef54c4-1e28-4a71-8afa-2e076c0054eb",
+    "event_type": "payment.failed",
+    "failure_cause": "AUTH_FAILURE",
+    "customer_id": "cust_4108",
+    "amount": 959000,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "c370a669-91f7-4ed7-941d-ac063a6536da",
+    "event_type": "payment.failed",
+    "failure_cause": "INSUFFICIENT_FUNDS",
+    "customer_id": "cust_8362",
+    "amount": 4370800,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "0c3514aa-6646-4f2d-acd6-b2a788fd0c5a",
+    "event_type": "payment.failed",
+    "failure_cause": "UPI_LIMIT_EXCEEDED",
+    "customer_id": "cust_9677",
+    "amount": 2831300,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "12d2d9b1-b660-47f9-979f-7e5572014a04",
+    "event_type": "payment.failed",
+    "failure_cause": "UPI_LIMIT_EXCEEDED",
+    "customer_id": "cust_5099",
+    "amount": 1500300,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "42567e32-4db8-4558-88e5-18cc26ed3a7e",
+    "event_type": "payment.failed",
+    "failure_cause": "CARD_EXPIRED",
+    "customer_id": "cust_5145",
+    "amount": 1110400,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "613a99e5-72c6-4625-b836-ae1668e40bb4",
+    "event_type": "payment.failed",
+    "failure_cause": "INSUFFICIENT_FUNDS",
+    "customer_id": "cust_4820",
+    "amount": 996500,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "4efc14c7-d61b-472f-a66d-6999bd892a04",
+    "event_type": "payment.failed",
+    "failure_cause": "INSUFFICIENT_FUNDS",
+    "customer_id": "cust_8438",
+    "amount": 3783900,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "d3119f3a-332b-4f3b-9d67-c3ab09746b10",
+    "event_type": "payment.failed",
+    "failure_cause": "INSUFFICIENT_FUNDS",
+    "customer_id": "cust_2640",
+    "amount": 3413100,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "b053574f-c758-4386-b9fe-21f6c7db4e44",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "cust_2325",
+    "amount": 1960400,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "40c6e8a8-bf68-466d-88ce-b72f3ce41b4a",
+    "event_type": "payment.failed",
+    "failure_cause": "AUTH_FAILURE",
+    "customer_id": "cust_5916",
+    "amount": 1994700,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "dda2e089-f576-4e0e-b35f-b582e8c27e79",
+    "event_type": "payment.failed",
+    "failure_cause": "AUTH_FAILURE",
+    "customer_id": "cust_3777",
+    "amount": 1943600,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "9a58a79a-5f6b-45ec-b819-46fa71b480a2",
+    "event_type": "payment.failed",
+    "failure_cause": "UPI_LIMIT_EXCEEDED",
+    "customer_id": "cust_4361",
+    "amount": 126400,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "ebefcba1-6da2-4dce-b67a-f67e743d2e61",
+    "event_type": "payment.failed",
+    "failure_cause": "INSUFFICIENT_FUNDS",
+    "customer_id": "cust_6661",
+    "amount": 2722100,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "088ffd9d-9dcc-4c26-83ba-41502dade605",
+    "event_type": "payment.failed",
+    "failure_cause": "INSUFFICIENT_FUNDS",
+    "customer_id": "cust_7762",
+    "amount": 1022400,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "634482d4-c0d2-4cef-88ef-46ea4dc9a816",
+    "event_type": "payment.failed",
+    "failure_cause": "CARD_EXPIRED",
+    "customer_id": "cust_9437",
+    "amount": 242300,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "daa30d36-5678-4f89-931a-155dbaae578c",
+    "event_type": "payment.failed",
+    "failure_cause": "AUTH_FAILURE",
+    "customer_id": "cust_8816",
+    "amount": 2354300,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "051beb13-13c1-4585-b3ba-197a0a16c9f0",
+    "event_type": "payment.failed",
+    "failure_cause": "INSUFFICIENT_FUNDS",
+    "customer_id": "cust_4714",
+    "amount": 4874300,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "8eece60d-a6f5-4989-8c40-c45cafd2d157",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "cust_3128",
+    "amount": 321100,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "91bd5f06-6597-4d3e-b331-f37800018a09",
+    "event_type": "payment.failed",
+    "failure_cause": "UPI_LIMIT_EXCEEDED",
+    "customer_id": "cust_5983",
+    "amount": 4056800,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "9da8c3eb-3a80-44a5-bb27-5de681ea1fa1",
+    "event_type": "payment.failed",
+    "failure_cause": "AUTH_FAILURE",
+    "customer_id": "cust_1406",
+    "amount": 4403900,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "be3b359a-ab2a-47ae-af41-02ca65dbd55f",
+    "event_type": "payment.failed",
+    "failure_cause": "UPI_LIMIT_EXCEEDED",
+    "customer_id": "cust_2530",
+    "amount": 545800,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "2c93c7f9-3489-4b2a-bfc8-6b24fb859c9c",
+    "event_type": "payment.failed",
+    "failure_cause": "AUTH_FAILURE",
+    "customer_id": "cust_9868",
+    "amount": 254500,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "1b52f5b7-7f27-4301-a61f-de292b8b66ae",
+    "event_type": "payment.failed",
+    "failure_cause": "AUTH_FAILURE",
+    "customer_id": "cust_2480",
+    "amount": 4766600,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "c0721ab3-3497-4895-85b5-6ab8a7eda6aa",
+    "event_type": "payment.failed",
+    "failure_cause": "INSUFFICIENT_FUNDS",
+    "customer_id": "cust_8659",
+    "amount": 1506400,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "824a100c-af24-41bf-a5c9-bcf0c6839989",
+    "event_type": "payment.failed",
+    "failure_cause": "INSUFFICIENT_FUNDS",
+    "customer_id": "cust_7276",
+    "amount": 4596300,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "da2cc66c-1dad-4c5f-8bb2-0b3d85e47ad2",
+    "event_type": "payment.failed",
+    "failure_cause": "INSUFFICIENT_FUNDS",
+    "customer_id": "cust_3153",
+    "amount": 102700,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "533957cb-a38e-44d9-b74b-20558326f143",
+    "event_type": "payment.failed",
+    "failure_cause": "INSUFFICIENT_FUNDS",
+    "customer_id": "cust_5938",
+    "amount": 3271000,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "8b4744d9-f0a8-4511-a09b-86c3d56eae98",
+    "event_type": "payment.failed",
+    "failure_cause": "AUTH_FAILURE",
+    "customer_id": "cust_3378",
+    "amount": 1202400,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "e9ce8cc7-65ce-4153-9c79-2ed6a85c049d",
+    "event_type": "payment.failed",
+    "failure_cause": "INSUFFICIENT_FUNDS",
+    "customer_id": "cust_9684",
+    "amount": 2051100,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "bc34bb5b-1c37-4362-b1c1-4ee63f26bc3d",
+    "event_type": "payment.failed",
+    "failure_cause": "UPI_LIMIT_EXCEEDED",
+    "customer_id": "cust_5106",
+    "amount": 3144800,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "1d035a78-49e8-4f8b-ba1c-c63589cfb7af",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "cust_5548",
+    "amount": 214200,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "fcba6427-681b-498d-a8af-aa34f071700a",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "cust_6156",
+    "amount": 1207600,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "78e8018c-fc9e-4681-ae1f-030bd9582982",
+    "event_type": "payment.failed",
+    "failure_cause": "AUTH_FAILURE",
+    "customer_id": "cust_3970",
+    "amount": 3860800,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "1bf9bb16-151a-44c4-9afa-cadfedea3913",
+    "event_type": "payment.failed",
+    "failure_cause": "AUTH_FAILURE",
+    "customer_id": "cust_5015",
+    "amount": 2426500,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "99bdc7e8-40c6-4937-85f1-258576294348",
+    "event_type": "payment.failed",
+    "failure_cause": "UPI_LIMIT_EXCEEDED",
+    "customer_id": "cust_6810",
+    "amount": 4553200,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "96efcaf8-c89b-4b98-9fc5-1083fee7fdb0",
+    "event_type": "payment.failed",
+    "failure_cause": "UPI_LIMIT_EXCEEDED",
+    "customer_id": "cust_3212",
+    "amount": 2615100,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "dcbf7761-0c1e-4b07-b8c4-c3faa49d1d7a",
+    "event_type": "payment.failed",
+    "failure_cause": "CARD_EXPIRED",
+    "customer_id": "cust_2474",
+    "amount": 3664400,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "84fafd7e-3be6-4785-bb8e-20fafd6458d6",
+    "event_type": "payment.failed",
+    "failure_cause": "INSUFFICIENT_FUNDS",
+    "customer_id": "cust_5297",
+    "amount": 656000,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "b6ea33a6-da7a-4105-b81d-444f156e0eab",
+    "event_type": "payment.failed",
+    "failure_cause": "AUTH_FAILURE",
+    "customer_id": "cust_4523",
+    "amount": 1272800,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "f0fcf003-bfc1-4332-a450-e41503216c70",
+    "event_type": "payment.failed",
+    "failure_cause": "UPI_LIMIT_EXCEEDED",
+    "customer_id": "cust_4407",
+    "amount": 4006100,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "36c2aa29-30d9-4df6-9302-4e1036a60de1",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "cust_3156",
+    "amount": 2490700,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "5ed73fba-256b-4211-85c0-fdd403809fb8",
+    "event_type": "payment.failed",
+    "failure_cause": "UPI_LIMIT_EXCEEDED",
+    "customer_id": "cust_6583",
+    "amount": 1166500,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "ce507461-ba04-451e-a57c-91e644f01cfd",
+    "event_type": "payment.failed",
+    "failure_cause": "AUTH_FAILURE",
+    "customer_id": "cust_9103",
+    "amount": 2060400,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "28a9e413-b32b-49ef-b93a-e85a5d07ce62",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "cust_4473",
+    "amount": 890300,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "599d567d-5352-4895-9d7e-1eae65dd8df6",
+    "event_type": "payment.failed",
+    "failure_cause": "UPI_LIMIT_EXCEEDED",
+    "customer_id": "cust_6464",
+    "amount": 4698300,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "898dc0d2-a68d-4976-9f00-19ffbdd7898e",
+    "event_type": "payment.failed",
+    "failure_cause": "CARD_EXPIRED",
+    "customer_id": "cust_6810",
+    "amount": 4877200,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "c040788e-72b1-48bd-9cc9-7ef712d09114",
+    "event_type": "payment.failed",
+    "failure_cause": "CARD_EXPIRED",
+    "customer_id": "cust_8536",
+    "amount": 960300,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "ae3373c1-823b-42a0-b919-1d4737d951c2",
+    "event_type": "payment.failed",
+    "failure_cause": "AUTH_FAILURE",
+    "customer_id": "cust_5890",
+    "amount": 2743400,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "f8632d28-339a-4640-995a-b0e5e8178dbe",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "cust_2005",
+    "amount": 4118700,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "83affb09-6394-47aa-8a58-dbcf621baef0",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "cust_5819",
+    "amount": 1908700,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "e1b24309-c2e0-4932-b18c-5a6074a57137",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "cust_5053",
+    "amount": 3521000,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "71a1e662-5b82-451b-a052-7270b6d14678",
+    "event_type": "payment.failed",
+    "failure_cause": "INSUFFICIENT_FUNDS",
+    "customer_id": "cust_4351",
+    "amount": 4230300,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "565674cd-8d64-497c-85aa-1e25c0603755",
+    "event_type": "payment.failed",
+    "failure_cause": "CARD_EXPIRED",
+    "customer_id": "cust_6686",
+    "amount": 4570500,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "ae4c4e2f-2f37-45e4-aea6-3a59e89e37df",
+    "event_type": "payment.failed",
+    "failure_cause": "CARD_EXPIRED",
+    "customer_id": "cust_4370",
+    "amount": 1566500,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "d58ddf6a-8ed0-461f-965f-f1dfc7b79693",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "cust_2947",
+    "amount": 983400,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "6fa13ea1-710b-4d41-962f-149d2a1d0bf1",
+    "event_type": "payment.failed",
+    "failure_cause": "AUTH_FAILURE",
+    "customer_id": "cust_6785",
+    "amount": 2652800,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "1f14d1d4-7a13-493a-8528-800d1745a68a",
+    "event_type": "payment.failed",
+    "failure_cause": "UPI_LIMIT_EXCEEDED",
+    "customer_id": "cust_4996",
+    "amount": 3699700,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "6cce2f38-ea20-40db-a521-e26becef8ae3",
+    "event_type": "payment.failed",
+    "failure_cause": "CARD_EXPIRED",
+    "customer_id": "cust_3749",
+    "amount": 4491300,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "2cf103d8-4918-472a-bd19-19ad26829a99",
+    "event_type": "payment.failed",
+    "failure_cause": "UPI_LIMIT_EXCEEDED",
+    "customer_id": "cust_1894",
+    "amount": 681000,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "5d329686-539b-4821-ab92-0740a23ad21b",
+    "event_type": "payment.failed",
+    "failure_cause": "CARD_EXPIRED",
+    "customer_id": "cust_4654",
+    "amount": 167400,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "7c13a1b5-8087-4e03-b9b3-003f118df7cc",
+    "event_type": "payment.failed",
+    "failure_cause": "AUTH_FAILURE",
+    "customer_id": "cust_1068",
+    "amount": 139000,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "ea9eb72c-c100-4321-92b0-670b9f7e3d22",
+    "event_type": "payment.failed",
+    "failure_cause": "AUTH_FAILURE",
+    "customer_id": "cust_2500",
+    "amount": 1588900,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "79f66cfa-b739-40b9-8449-e19596838621",
+    "event_type": "payment.failed",
+    "failure_cause": "UPI_LIMIT_EXCEEDED",
+    "customer_id": "cust_4648",
+    "amount": 842300,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "06135cc8-44ae-452e-aaa9-ecf108cb9f06",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "cust_8415",
+    "amount": 2828600,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "145ca00a-15d8-4327-ba40-c1a073c52dd5",
+    "event_type": "payment.failed",
+    "failure_cause": "CARD_EXPIRED",
+    "customer_id": "cust_6643",
+    "amount": 1031500,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "f4f83c29-1b51-426c-8bd5-778e452b61a8",
+    "event_type": "payment.failed",
+    "failure_cause": "INSUFFICIENT_FUNDS",
+    "customer_id": "cust_4480",
+    "amount": 4471700,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "f43d54a0-c72a-4c57-a3f8-8c4d3dffc142",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "cust_6947",
+    "amount": 4718400,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "dc87b811-bc2e-44fa-9e84-428c36031eac",
+    "event_type": "payment.failed",
+    "failure_cause": "INSUFFICIENT_FUNDS",
+    "customer_id": "cust_9529",
+    "amount": 657300,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "9b88f9fa-c114-4905-b0f3-e687eec68123",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "cust_8579",
+    "amount": 4743300,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "f106a5dd-a1f4-4579-87bf-5cc218ff6a54",
+    "event_type": "payment.failed",
+    "failure_cause": "INSUFFICIENT_FUNDS",
+    "customer_id": "cust_4286",
+    "amount": 2409400,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "db330be4-ba6f-4e92-98be-3389ea700a11",
+    "event_type": "payment.failed",
+    "failure_cause": "INSUFFICIENT_FUNDS",
+    "customer_id": "cust_1087",
+    "amount": 2633700,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "1a776e7e-0365-4f1d-a1a1-753bc9c49eca",
+    "event_type": "payment.failed",
+    "failure_cause": "INSUFFICIENT_FUNDS",
+    "customer_id": "cust_2456",
+    "amount": 843800,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "a769cde2-b44d-4957-896e-a485904568e0",
+    "event_type": "payment.failed",
+    "failure_cause": "UPI_LIMIT_EXCEEDED",
+    "customer_id": "cust_9195",
+    "amount": 3024800,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "c415d8ae-3434-46d7-853b-844384469c33",
+    "event_type": "payment.failed",
+    "failure_cause": "UPI_LIMIT_EXCEEDED",
+    "customer_id": "cust_6699",
+    "amount": 1355600,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "ebeba2be-1454-4cc3-a1e7-08258bab9eeb",
+    "event_type": "payment.failed",
+    "failure_cause": "CARD_EXPIRED",
+    "customer_id": "cust_6804",
+    "amount": 2063300,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.076237+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "ef044788-c9b6-4ebe-9325-ab256f2c6140",
+    "event_type": "payment.failed",
+    "failure_cause": "INSUFFICIENT_FUNDS",
+    "customer_id": "cust_5637",
+    "amount": 368300,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "dff62bec-28f9-46f4-9e82-433a299f158b",
+    "event_type": "payment.failed",
+    "failure_cause": "UPI_LIMIT_EXCEEDED",
+    "customer_id": "cust_9601",
+    "amount": 4412300,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "840500fe-523e-4827-abe6-9b3fd532ec3c",
+    "event_type": "payment.failed",
+    "failure_cause": "UPI_LIMIT_EXCEEDED",
+    "customer_id": "cust_6370",
+    "amount": 3814000,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "496bd360-d7d9-446c-b3ed-84e02f100c12",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "cust_7578",
+    "amount": 3780100,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "eeb2492d-c918-4b7f-9786-972b02104012",
+    "event_type": "payment.failed",
+    "failure_cause": "INSUFFICIENT_FUNDS",
+    "customer_id": "cust_8838",
+    "amount": 3783400,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "0e60a602-7073-4c34-8a34-f98a56219408",
+    "event_type": "payment.failed",
+    "failure_cause": "AUTH_FAILURE",
+    "customer_id": "cust_4911",
+    "amount": 1929400,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "378d47e3-cb60-415b-ab70-3c138a7d6191",
+    "event_type": "payment.failed",
+    "failure_cause": "AUTH_FAILURE",
+    "customer_id": "cust_5040",
+    "amount": 602800,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "def7ed1e-55a7-402c-abce-450e4cb563b2",
+    "event_type": "payment.failed",
+    "failure_cause": "CARD_EXPIRED",
+    "customer_id": "cust_1819",
+    "amount": 1108600,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "68a8e9b0-1a97-4d5b-8d56-d04597ee032f",
+    "event_type": "payment.failed",
+    "failure_cause": "AUTH_FAILURE",
+    "customer_id": "cust_5529",
+    "amount": 4089400,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "43ad7879-4e10-48c5-866a-bce927323e6c",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "cust_2001",
+    "amount": 4947000,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "62b1d859-9dc7-4f68-a453-1ddc80ba4e92",
+    "event_type": "payment.failed",
+    "failure_cause": "UPI_LIMIT_EXCEEDED",
+    "customer_id": "cust_2377",
+    "amount": 4460800,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "144a18a4-4225-4495-9fe4-3deab5e75e51",
+    "event_type": "payment.failed",
+    "failure_cause": "INSUFFICIENT_FUNDS",
+    "customer_id": "cust_8463",
+    "amount": 3522900,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "f1c5d788-6097-459a-860e-7def64e6d8ab",
+    "event_type": "payment.failed",
+    "failure_cause": "CARD_EXPIRED",
+    "customer_id": "cust_1167",
+    "amount": 2138700,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "430dbb27-dae8-4df8-9b2e-e7ee25a6a0f8",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "cust_5003",
+    "amount": 4484500,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "3b5604df-7adc-4ec0-88bb-64d7eb1f91e0",
+    "event_type": "payment.failed",
+    "failure_cause": "UPI_LIMIT_EXCEEDED",
+    "customer_id": "cust_4348",
+    "amount": 519000,
+    "payload": {
+      "method": "upi"
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "51818ac8-b7a9-400a-9082-47ca291f0949",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_4295",
+    "amount": 2094700,
+    "payload": {
+      "cart_value": 1010300
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "2ffdd3c4-1c9f-4641-996b-8909d9db8dc6",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_4901",
+    "amount": 1924500,
+    "payload": {
+      "cart_value": 825700
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "ab0c917d-f625-455b-bfd2-18d6e1d8cf83",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_7207",
+    "amount": 4404900,
+    "payload": {
+      "cart_value": 79400
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "72821024-9c29-4f59-818e-ddab8f17e1bd",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_9879",
+    "amount": 430100,
+    "payload": {
+      "cart_value": 1441900
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "7bac0339-0982-49fb-991a-daf9a32a222d",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_5196",
+    "amount": 3882000,
+    "payload": {
+      "cart_value": 939000
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "ebdede80-73c4-4974-962f-c6c42b1c56ff",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_6686",
+    "amount": 1508800,
+    "payload": {
+      "cart_value": 1487800
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "9773c1f4-2b47-4a31-abb5-dc1b1c3ef727",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_8548",
+    "amount": 3438500,
+    "payload": {
+      "cart_value": 725800
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "3412de2a-ffa5-4f67-803d-7e329fdb3bcc",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_5803",
+    "amount": 169000,
+    "payload": {
+      "cart_value": 1304900
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "27b73b46-a9b8-4c6d-b45d-a5ffd5b4daac",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_3774",
+    "amount": 977700,
+    "payload": {
+      "cart_value": 228700
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "abfa312e-f21a-461c-a547-251464d05949",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_1810",
+    "amount": 164000,
+    "payload": {
+      "cart_value": 1659700
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "d206fe6b-9d1c-4578-a6e7-e54f527384dd",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_6392",
+    "amount": 3797700,
+    "payload": {
+      "cart_value": 1482900
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "23918c5d-575b-4cab-8a8f-e3dc4cf406ed",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_6826",
+    "amount": 3494000,
+    "payload": {
+      "cart_value": 803900
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "b024f5b4-90a1-4874-a258-41e5184fb1a3",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_2024",
+    "amount": 609300,
+    "payload": {
+      "cart_value": 1017600
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "ae82ff01-799c-482b-8bce-3416f386f3cf",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_1937",
+    "amount": 3869100,
+    "payload": {
+      "cart_value": 1636200
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "3196b13a-d2ef-4b21-8c97-02580851715c",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_8180",
+    "amount": 1405600,
+    "payload": {
+      "cart_value": 1135500
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "6b6b10f8-bc2e-402c-afad-08409155ce90",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_8305",
+    "amount": 4645700,
+    "payload": {
+      "cart_value": 239400
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "d105779a-f736-435f-b6be-dcbac48d00d9",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_3058",
+    "amount": 4911400,
+    "payload": {
+      "cart_value": 1601600
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "6da0d0d0-dacc-48e7-83fe-0b2424325d79",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_8852",
+    "amount": 4853100,
+    "payload": {
+      "cart_value": 1225400
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "8dadc8dd-78e0-4857-bb39-01ed0f690bee",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_6350",
+    "amount": 611700,
+    "payload": {
+      "cart_value": 254200
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "dd4a7cd6-be8b-4110-ab31-c97d43751b4c",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_6651",
+    "amount": 316100,
+    "payload": {
+      "cart_value": 713000
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "2df42552-cf14-4468-828b-d7ac3ba53b7b",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_4838",
+    "amount": 2635900,
+    "payload": {
+      "cart_value": 1282000
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "b290c5cf-2422-4109-9161-1fe310cddb09",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_1885",
+    "amount": 991500,
+    "payload": {
+      "cart_value": 1027600
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "1e4c10e5-a4a5-4557-be43-5e4b4c8123b0",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_3308",
+    "amount": 3855400,
+    "payload": {
+      "cart_value": 1095200
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "233eb617-5f86-461f-a528-e15a7abfe11e",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_7760",
+    "amount": 2972300,
+    "payload": {
+      "cart_value": 632900
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "859822cf-1957-440e-ae44-61c99fe422b1",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_1073",
+    "amount": 440200,
+    "payload": {
+      "cart_value": 1475600
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "d6df421d-04f9-41a9-9d32-33ee5f0206b8",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_9343",
+    "amount": 2517800,
+    "payload": {
+      "cart_value": 1028800
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "b45c45fb-ea02-43c2-ada5-8a7cb3fac49c",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_7092",
+    "amount": 1152200,
+    "payload": {
+      "cart_value": 447500
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "07521d72-a7a0-45c4-92bd-79784e192a30",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_6923",
+    "amount": 1554800,
+    "payload": {
+      "cart_value": 964800
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "d1952833-66be-4c30-bc6d-7f4518aa793b",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_6731",
+    "amount": 2116000,
+    "payload": {
+      "cart_value": 1927600
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "13b61521-973e-4c2f-b762-bd82362fcb9d",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_6003",
+    "amount": 594700,
+    "payload": {
+      "cart_value": 1456200
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "ebb720a4-06f3-4f0c-b591-2b890243111e",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_4165",
+    "amount": 4147800,
+    "payload": {
+      "cart_value": 1515900
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "1d4a1c8e-83df-4fde-9bf7-06127b3a0461",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_6302",
+    "amount": 2327900,
+    "payload": {
+      "cart_value": 173700
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "145d4db9-d158-4c73-8de8-a41d7fac9036",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_7282",
+    "amount": 2553000,
+    "payload": {
+      "cart_value": 145400
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "ae50ead6-ff9f-462c-bde0-4e70ba37880b",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_7496",
+    "amount": 2055200,
+    "payload": {
+      "cart_value": 133000
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "5672b19c-864a-4a77-88cd-c35d817f5551",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_9887",
+    "amount": 2460000,
+    "payload": {
+      "cart_value": 526300
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "69cf02c3-d843-4fc4-b8b7-42e09e33bd1f",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_4969",
+    "amount": 3165200,
+    "payload": {
+      "cart_value": 1413500
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "88de1965-7574-4fab-b112-a7371a9ce4bd",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_7276",
+    "amount": 1147900,
+    "payload": {
+      "cart_value": 1959200
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "72c33005-5ba0-43c1-8247-2381bbd22a98",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_3592",
+    "amount": 989100,
+    "payload": {
+      "cart_value": 1631800
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "c3dd2728-e2da-4071-ad21-62c13b30c6f1",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_6622",
+    "amount": 3237700,
+    "payload": {
+      "cart_value": 65300
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "383fcb9f-65db-48fd-aa8a-776d32048f37",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_6056",
+    "amount": 506600,
+    "payload": {
+      "cart_value": 835000
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "6572d4ad-c10f-461b-be0a-08d70a8d8dc6",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_2763",
+    "amount": 1847300,
+    "payload": {
+      "cart_value": 1994700
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "18377131-7aec-4ffa-b30c-7148a32957c1",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_4355",
+    "amount": 2242100,
+    "payload": {
+      "cart_value": 1497100
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "83f76c38-790a-4533-87c4-530138d44ea2",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_5755",
+    "amount": 2279400,
+    "payload": {
+      "cart_value": 206600
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "c5256587-3408-4c0d-9dd8-ddf4411acd6f",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_1606",
+    "amount": 3747800,
+    "payload": {
+      "cart_value": 439400
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "20a6d216-5789-4955-80ee-d53e45c1f62a",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_7718",
+    "amount": 2736600,
+    "payload": {
+      "cart_value": 1294400
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "84f91707-e0d0-4705-ae8a-558dd58a8ac3",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_4426",
+    "amount": 4116200,
+    "payload": {
+      "cart_value": 158400
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "2301d990-9051-42a1-8efa-5ead06c18fac",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_3374",
+    "amount": 4907500,
+    "payload": {
+      "cart_value": 1081200
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "ad0bd902-6d6f-4d25-82cf-a1c4df0c3904",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_1750",
+    "amount": 2323900,
+    "payload": {
+      "cart_value": 496300
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "3689166d-f4cb-477b-8556-d53867fd233d",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_3457",
+    "amount": 1436900,
+    "payload": {
+      "cart_value": 795100
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "8bf39848-4629-4815-bf18-3c303e8ecbcc",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_5850",
+    "amount": 2014800,
+    "payload": {
+      "cart_value": 408300
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "3e066199-77b2-43ba-97b5-bc725c685906",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_4585",
+    "amount": 1224600,
+    "payload": {
+      "cart_value": 555700
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "5393a23a-ef4d-4615-b4eb-3d4083b31625",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_1087",
+    "amount": 596300,
+    "payload": {
+      "cart_value": 203500
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "c811bfb2-8700-4392-91a2-94af36523eac",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_1351",
+    "amount": 1365600,
+    "payload": {
+      "cart_value": 333600
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "d5acda2e-874d-4756-a267-1504f09d128c",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_6715",
+    "amount": 3131400,
+    "payload": {
+      "cart_value": 954200
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "d76318e2-063e-4a10-ac7a-0fc28aee1788",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_4293",
+    "amount": 4987500,
+    "payload": {
+      "cart_value": 487500
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "0a18c243-ba4e-40a0-ab68-58c93cbc101c",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_1434",
+    "amount": 1428900,
+    "payload": {
+      "cart_value": 446700
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "07eb5176-e67d-4bb6-a026-5a819bf4bd06",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_2347",
+    "amount": 1391600,
+    "payload": {
+      "cart_value": 1917200
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "135360db-8244-413b-b70b-90b61500ed7e",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_8290",
+    "amount": 1233900,
+    "payload": {
+      "cart_value": 201700
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "579a9899-8c94-498d-998d-39947eae416b",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_4184",
+    "amount": 2833800,
+    "payload": {
+      "cart_value": 635700
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "28b75850-8341-40b1-b84d-12e768d05db0",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_4874",
+    "amount": 3409900,
+    "payload": {
+      "cart_value": 930100
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "5019f93a-5dac-4201-9dad-34c0d87230ea",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_1378",
+    "amount": 3707500,
+    "payload": {
+      "cart_value": 266700
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "d7bb6c67-6c21-41a5-a8b6-e0d8478b0346",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_2565",
+    "amount": 4545000,
+    "payload": {
+      "cart_value": 1060400
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "64e69dec-7d72-4c01-b3af-2bc613c3e79e",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_6854",
+    "amount": 4939900,
+    "payload": {
+      "cart_value": 505100
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "fa0a6c3a-0062-4a9c-9834-ca723b4a64f5",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_3340",
+    "amount": 1915000,
+    "payload": {
+      "cart_value": 235800
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "05a2899e-ddce-47b7-b0e8-2f9219827a9d",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_1249",
+    "amount": 167100,
+    "payload": {
+      "cart_value": 442200
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "2ad41887-346c-40a3-9481-fbf03fd3b690",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_5726",
+    "amount": 1787300,
+    "payload": {
+      "cart_value": 1125100
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "65953f4c-b896-496c-b58e-fc559e50510f",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_5439",
+    "amount": 2393800,
+    "payload": {
+      "cart_value": 1021500
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "9059df33-bc33-4469-92f4-2b0056733cd0",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_1538",
+    "amount": 727700,
+    "payload": {
+      "cart_value": 1729900
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "829f628a-e602-4d2f-b8d0-7fee2d58f795",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_7893",
+    "amount": 2312900,
+    "payload": {
+      "cart_value": 271500
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "33962cd9-1677-4e4f-a544-b26121d4d0e1",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_2877",
+    "amount": 634700,
+    "payload": {
+      "cart_value": 1739500
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "ca766204-bcb8-4df3-8fa4-84f2350fbfb5",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_8693",
+    "amount": 2009700,
+    "payload": {
+      "cart_value": 536100
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "fc883a58-9e58-47c7-972e-0f0b7d443340",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_7996",
+    "amount": 1636700,
+    "payload": {
+      "cart_value": 770300
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "59c407b6-dde8-4d4a-af31-460dd39a7824",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_9119",
+    "amount": 2822900,
+    "payload": {
+      "cart_value": 471700
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "916c5052-7ac2-4369-8c21-7217f86a6347",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_2040",
+    "amount": 4155500,
+    "payload": {
+      "cart_value": 529200
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "14c82ca1-6ff4-40bb-8bcd-95273836fc30",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_8010",
+    "amount": 1129300,
+    "payload": {
+      "cart_value": 75300
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "3ab459dc-f0e4-4db4-809d-7b0ccaf8e96c",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_9816",
+    "amount": 4737900,
+    "payload": {
+      "cart_value": 1274600
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "e148e5f6-ac62-4b2b-a51c-8dd792037748",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_4227",
+    "amount": 3318700,
+    "payload": {
+      "cart_value": 1266100
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "9579482f-ccc1-4f4f-b792-861130f0b6fb",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_5941",
+    "amount": 3017900,
+    "payload": {
+      "cart_value": 1881000
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "f7edf942-3b48-42db-a0b8-78484ed9a444",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_7771",
+    "amount": 1644300,
+    "payload": {
+      "cart_value": 1787500
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "57ad2e04-c5f1-451a-a633-a8556768093f",
+    "event_type": "order.abandoned",
+    "failure_cause": "USER_DROPOFF",
+    "customer_id": "cust_4186",
+    "amount": 4264600,
+    "payload": {
+      "cart_value": 533800
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "bd91f91a-d9eb-4c72-ad55-df403a50d98d",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_9941",
+    "amount": 251300,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "b5f684c2-cc44-42f7-8e12-22ca8abe5eb1",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_6873",
+    "amount": 2584600,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.083452+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "51957b0b-c686-47f5-8fc9-a0e5d3132386",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_3567",
+    "amount": 2678400,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "a4ca65d2-2173-4026-8e95-66ee63b7932e",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_4572",
+    "amount": 1260100,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "91773599-07d7-4dce-b73f-d6ac503f559f",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_1331",
+    "amount": 765000,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "f76aaf5a-f2df-4d05-886e-109c1057bd97",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_4775",
+    "amount": 3448500,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "455f231b-09f3-4172-b0c6-4c2305e2608e",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_6711",
+    "amount": 3892000,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "ce38926f-a97a-434a-8023-adf159f30f83",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_4802",
+    "amount": 2596900,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "7d31a469-5a5d-4189-9a2c-dde6792a174c",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_6898",
+    "amount": 3569500,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "28899919-92f0-4c7d-838a-c867b36ed913",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_5546",
+    "amount": 4425700,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "16a64edf-148f-402f-8f30-8d1b5fe548e5",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_2351",
+    "amount": 2177800,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "b5780047-db58-40c4-98b6-3972f535ba19",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_7048",
+    "amount": 2652000,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "78b0f2c8-0f03-4710-b859-94a720d36b0e",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_1706",
+    "amount": 3905900,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "e81f8d16-45eb-4c0d-afd2-458781dfc5d1",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_3304",
+    "amount": 2493100,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "1eff20a9-6bd5-4d1b-94cc-47d113019ca7",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_1849",
+    "amount": 4668800,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "ea3be38f-da47-44cb-a3b2-25b2f0467232",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_5034",
+    "amount": 4530400,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "edc6e307-2b1b-48d9-8dcc-5754fa077a31",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_2831",
+    "amount": 1273900,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "fb8ea712-b7d8-49f7-a4d4-e2be5a0f5604",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_2872",
+    "amount": 4745100,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "d1539355-3873-49aa-abb8-4e5b63b0aea9",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_9894",
+    "amount": 2505600,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "f09f51e8-6341-46a1-a679-2f294bd2ccb1",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_5220",
+    "amount": 4596400,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "e29d3faa-0fc7-4c25-af69-6a1fe230d904",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_2835",
+    "amount": 2677200,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "aa06e4fd-06bf-4db4-ac2b-6483a32739fe",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_3663",
+    "amount": 1990400,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "92fb551f-8489-4314-bb69-f1de67cc409b",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_6117",
+    "amount": 4896600,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "ffb13cc6-4941-4dd0-95dd-fc69a8c25068",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_5152",
+    "amount": 1980800,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "a57b3d93-860f-4d5c-a1c8-0c3a353cbdf5",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_6143",
+    "amount": 2835200,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "2a8aeb2c-a03c-470e-a089-3b37b8a3be47",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_8366",
+    "amount": 504000,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "dc8ce7f2-efd6-4ed7-8308-081493354fff",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_3729",
+    "amount": 4492200,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "1099b315-f86b-4d91-928d-43893053d714",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_9654",
+    "amount": 313700,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "c8a01465-8cd6-4251-b46b-ae245cdfba65",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_9117",
+    "amount": 1292100,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "62738d89-8d8a-41d4-a089-0acf7e71c605",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_4700",
+    "amount": 1685700,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "2771d1a2-5034-4307-9347-62ddec68eb91",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_9671",
+    "amount": 4559100,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "33c45a57-00aa-41df-9007-5bf454d24f23",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_5612",
+    "amount": 822200,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "3d2709f7-56cf-4d11-b5ed-b150d13aba71",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_5387",
+    "amount": 2605600,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "a5c27663-500c-4244-9f87-508f3d571cdc",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_7105",
+    "amount": 1164400,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "c7679570-0d81-4f82-8ae3-7510134f1420",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_5355",
+    "amount": 2019900,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "c4c2a416-69b8-43c6-bb8e-22ec6bcb86f6",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_1231",
+    "amount": 4985700,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "e5f7b1f7-17e0-4f88-a04e-a9a4867fec72",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_5951",
+    "amount": 1929100,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "8c7c3c00-ba40-4349-a72d-68a2a33eea79",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_1236",
+    "amount": 4465100,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "6bb361a2-bb43-4a15-b1c2-bb753e77d038",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_1394",
+    "amount": 284900,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "09a0957c-5e97-491a-8bcf-632408bf5090",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_6795",
+    "amount": 981000,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "c78a01d4-210e-4084-ab89-ef7487872701",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_5698",
+    "amount": 1117100,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "838a6e15-5b07-4261-a813-89d8c044f0f5",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_3255",
+    "amount": 4554400,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "d98d7182-3789-4fff-b564-126b4930e447",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_1006",
+    "amount": 3997700,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "b319d1e0-dead-47d3-b60b-41c1cfc30c50",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_9393",
+    "amount": 3004600,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "d350d358-ecf5-4450-9f42-de586121714b",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_6727",
+    "amount": 329300,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "d568adc3-33de-4f6d-86d3-e6387790bfba",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_5024",
+    "amount": 4367100,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "2b2bdbc4-e49d-45d3-ac99-0327af6994a7",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_9857",
+    "amount": 2901200,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "d2c206fa-3f73-4494-9943-128b6957be6a",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_9764",
+    "amount": 1676900,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "f6030651-b95c-4dfc-b6f1-3b925a9d0a6d",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_5252",
+    "amount": 180400,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "ab0f4df5-5643-40d3-a4d8-bbeba49a7ef3",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_1590",
+    "amount": 3482800,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "4a092404-6eb4-430a-878b-364e267a9f05",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_7396",
+    "amount": 994200,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "013a8084-4f15-4d91-9093-e45a2aaa2d29",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_8054",
+    "amount": 2209100,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "0eb7ad11-f3b7-4e45-a996-9e7f32877201",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_6266",
+    "amount": 3440000,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "c34c628c-1407-4186-8001-de7c4915b834",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_5891",
+    "amount": 4436900,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "1af71869-5199-419e-a5aa-413acf12a565",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_7329",
+    "amount": 2557200,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "a9116099-2783-4d96-817b-1f75cfcacbc7",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_8883",
+    "amount": 2279700,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "8eaec134-46e7-4c39-9a8f-c3ae33e14fc2",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_6502",
+    "amount": 613400,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "686de77a-7b13-430c-b7b2-34c376ab3cb4",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_9851",
+    "amount": 1893200,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "a4f34bc7-641f-4b3f-8c62-bd515b9976ca",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_5875",
+    "amount": 2545300,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "fb4a0b2d-d324-4ab5-a57e-8800e9c22d85",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_5407",
+    "amount": 3801200,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "10b90550-64a7-42cf-85ef-1349e9e4480c",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_1156",
+    "amount": 4040900,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "05eb34db-b7dc-4509-b8d2-3a7906bb866c",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_6824",
+    "amount": 265100,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "1c263e2e-e4f7-47da-83b6-75efe943ccf9",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_7559",
+    "amount": 1840600,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "575e5266-ecd1-410e-b7c3-5de3f40245a6",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_5580",
+    "amount": 4095600,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "bb1f6c02-9284-458a-aec5-5fcd9c8fa060",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_7053",
+    "amount": 1933500,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "f7fdfa27-cb0e-426d-866f-d436cf4d1521",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_1242",
+    "amount": 3534000,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "ad29a163-9734-447b-9cf4-b4483db559a6",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_1802",
+    "amount": 1872000,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "d3600341-6f47-470c-92c1-359d0cd8fa0a",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_1235",
+    "amount": 2123900,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "d26e1cfd-8d6d-4f37-bd3c-046e5ed7e5c0",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_5361",
+    "amount": 2855500,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "4750df03-9a99-4add-a32b-81c871ae94de",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_7956",
+    "amount": 2364800,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "d5b3969a-639f-4dd6-b4b6-364a517df30f",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_8617",
+    "amount": 1119400,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "13310306-2566-4cb9-9d37-8b1c4c6215a5",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_8255",
+    "amount": 3480100,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "9b5d9023-88e6-4e77-ac9c-66160f5919d8",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_9259",
+    "amount": 3048000,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "00d8eca1-3006-4850-9d29-d5624d274360",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_8745",
+    "amount": 2613700,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "5010f528-48d0-473f-a4b2-b2923686acfe",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_4981",
+    "amount": 1761700,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "4a77d346-9440-4157-adda-7d262a010c40",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_8094",
+    "amount": 331400,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "aa49b229-b8e4-4aa1-8ebb-9bdbab1b7d2e",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_4228",
+    "amount": 4410000,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "c4ebc97c-8f7c-4536-a767-e2352ffca79e",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_5290",
+    "amount": 4303500,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "11fe6abe-f56a-481c-9641-1a695b0e5c33",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_9270",
+    "amount": 1769500,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "43a31371-2712-47f0-9d3a-af6954e7ae92",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_6925",
+    "amount": 3234600,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "e6227d26-8cc3-4835-8c0d-c534ae3f876f",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_1302",
+    "amount": 3191800,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "67aee304-fd6f-4a00-8de5-ae4408f5e60c",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_6150",
+    "amount": 3816700,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "65af0129-918d-4576-b4b0-139eef163232",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_3568",
+    "amount": 3859300,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "1368a668-538e-4b76-b2c3-7058b6cc35b0",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_8963",
+    "amount": 3495600,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "047cfe67-c5cd-4d39-b0c0-33e80fb5de1f",
+    "event_type": "subscription.halted",
+    "failure_cause": "RETRIES_EXHAUSTED",
+    "customer_id": "cust_2691",
+    "amount": 1348900,
+    "payload": {
+      "plan_id": "plan_123"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "49f318d0-2c9b-4ed4-9a12-22f208474207",
+    "event_type": "invoice.aging",
+    "failure_cause": "TIME_ELAPSED",
+    "customer_id": "cust_8059",
+    "amount": 733100,
+    "payload": {
+      "days_outstanding": 91
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "fb207eec-1cbd-4f32-9392-badfaa14e8d3",
+    "event_type": "invoice.aging",
+    "failure_cause": "TIME_ELAPSED",
+    "customer_id": "cust_2735",
+    "amount": 433400,
+    "payload": {
+      "days_outstanding": 9
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "844a6912-4487-415a-9365-b9414091cdde",
+    "event_type": "invoice.aging",
+    "failure_cause": "TIME_ELAPSED",
+    "customer_id": "cust_4769",
+    "amount": 4627400,
+    "payload": {
+      "days_outstanding": 19
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "f37a8313-07dc-4851-8e42-13423405bb8d",
+    "event_type": "invoice.aging",
+    "failure_cause": "TIME_ELAPSED",
+    "customer_id": "cust_9536",
+    "amount": 3890500,
+    "payload": {
+      "days_outstanding": 75
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "c6a5b759-dddd-43fb-9b80-2f52e520d41e",
+    "event_type": "invoice.aging",
+    "failure_cause": "TIME_ELAPSED",
+    "customer_id": "cust_2736",
+    "amount": 3439800,
+    "payload": {
+      "days_outstanding": 117
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "33033d38-577d-4de4-8067-602b0fc48512",
+    "event_type": "invoice.aging",
+    "failure_cause": "TIME_ELAPSED",
+    "customer_id": "cust_7464",
+    "amount": 2348900,
+    "payload": {
+      "days_outstanding": 29
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "a66e4760-9f16-48ac-af62-8eddca9a9f98",
+    "event_type": "invoice.aging",
+    "failure_cause": "TIME_ELAPSED",
+    "customer_id": "cust_4285",
+    "amount": 2404100,
+    "payload": {
+      "days_outstanding": 38
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "1a7faa1c-d37e-4e76-ae07-341da43dc75c",
+    "event_type": "invoice.aging",
+    "failure_cause": "TIME_ELAPSED",
+    "customer_id": "cust_6519",
+    "amount": 2482600,
+    "payload": {
+      "days_outstanding": 74
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "303c4edd-e77b-49f7-8b91-4dc194d91a5b",
+    "event_type": "invoice.aging",
+    "failure_cause": "TIME_ELAPSED",
+    "customer_id": "cust_6428",
+    "amount": 2007200,
+    "payload": {
+      "days_outstanding": 15
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "92f60d5f-3043-4630-b79d-0d5d7e9f88d5",
+    "event_type": "invoice.aging",
+    "failure_cause": "TIME_ELAPSED",
+    "customer_id": "cust_6820",
+    "amount": 4910000,
+    "payload": {
+      "days_outstanding": 33
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "68ec1671-e3a8-4c6b-b0a7-a4b0b789ce25",
+    "event_type": "invoice.aging",
+    "failure_cause": "TIME_ELAPSED",
+    "customer_id": "cust_1119",
+    "amount": 2002000,
+    "payload": {
+      "days_outstanding": 27
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "4f3b817a-b068-4db6-861b-21dee55be599",
+    "event_type": "invoice.aging",
+    "failure_cause": "TIME_ELAPSED",
+    "customer_id": "cust_5419",
+    "amount": 1069500,
+    "payload": {
+      "days_outstanding": 94
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "097f170e-3199-42ac-8fb6-806976dd6bec",
+    "event_type": "invoice.aging",
+    "failure_cause": "TIME_ELAPSED",
+    "customer_id": "cust_1930",
+    "amount": 2402200,
+    "payload": {
+      "days_outstanding": 84
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "1ea1771e-d115-4797-b5e0-13a0d7d9331c",
+    "event_type": "invoice.aging",
+    "failure_cause": "TIME_ELAPSED",
+    "customer_id": "cust_2097",
+    "amount": 2787900,
+    "payload": {
+      "days_outstanding": 91
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "c7c890e8-a8e6-41fd-8bd9-4acd61d4a8ac",
+    "event_type": "invoice.aging",
+    "failure_cause": "TIME_ELAPSED",
+    "customer_id": "cust_2058",
+    "amount": 1363100,
+    "payload": {
+      "days_outstanding": 63
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "2a24b819-6d0b-4a2d-a78a-e64bca2289ba",
+    "event_type": "invoice.aging",
+    "failure_cause": "TIME_ELAPSED",
+    "customer_id": "cust_6330",
+    "amount": 1057100,
+    "payload": {
+      "days_outstanding": 15
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "bae03943-9130-43c4-84a3-8fdbe8cf8a9c",
+    "event_type": "invoice.aging",
+    "failure_cause": "TIME_ELAPSED",
+    "customer_id": "cust_6829",
+    "amount": 4218200,
+    "payload": {
+      "days_outstanding": 120
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "64f88abf-0a7a-4e72-96fa-2f175151dab8",
+    "event_type": "invoice.aging",
+    "failure_cause": "TIME_ELAPSED",
+    "customer_id": "cust_8597",
+    "amount": 4037100,
+    "payload": {
+      "days_outstanding": 26
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "f27afd91-178a-46aa-8505-820d42419e51",
+    "event_type": "invoice.aging",
+    "failure_cause": "TIME_ELAPSED",
+    "customer_id": "cust_9031",
+    "amount": 1516500,
+    "payload": {
+      "days_outstanding": 24
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "842e2682-4853-408e-a166-0ddf3b4e1c4b",
+    "event_type": "invoice.aging",
+    "failure_cause": "TIME_ELAPSED",
+    "customer_id": "cust_4577",
+    "amount": 2559000,
+    "payload": {
+      "days_outstanding": 104
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "11a5627a-55a6-4bc7-87d5-4891509d866f",
+    "event_type": "invoice.aging",
+    "failure_cause": "TIME_ELAPSED",
+    "customer_id": "cust_7148",
+    "amount": 4685000,
+    "payload": {
+      "days_outstanding": 76
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "f09c154a-5734-4b51-828b-ae1c292ce265",
+    "event_type": "invoice.aging",
+    "failure_cause": "TIME_ELAPSED",
+    "customer_id": "cust_4877",
+    "amount": 1498500,
+    "payload": {
+      "days_outstanding": 16
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "a0bbc900-e0ff-48ea-b8be-df98f40a3c04",
+    "event_type": "invoice.aging",
+    "failure_cause": "TIME_ELAPSED",
+    "customer_id": "cust_3861",
+    "amount": 1918700,
+    "payload": {
+      "days_outstanding": 58
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "49fcf44a-dea1-4ca5-a816-38f3bb422ea0",
+    "event_type": "invoice.aging",
+    "failure_cause": "TIME_ELAPSED",
+    "customer_id": "cust_3336",
+    "amount": 4752300,
+    "payload": {
+      "days_outstanding": 13
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "629091dd-fad2-45fe-a8c4-64d514c1d3be",
+    "event_type": "invoice.aging",
+    "failure_cause": "TIME_ELAPSED",
+    "customer_id": "cust_4262",
+    "amount": 1397900,
+    "payload": {
+      "days_outstanding": 79
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "118b4f21-7e86-42f9-b4bb-ba5c7e740cc6",
+    "event_type": "invoice.aging",
+    "failure_cause": "TIME_ELAPSED",
+    "customer_id": "cust_8371",
+    "amount": 1749100,
+    "payload": {
+      "days_outstanding": 25
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "d918acfa-f917-442e-bb49-4987337bad74",
+    "event_type": "invoice.aging",
+    "failure_cause": "TIME_ELAPSED",
+    "customer_id": "cust_6381",
+    "amount": 3648500,
+    "payload": {
+      "days_outstanding": 94
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "80b29a84-068f-4cc4-9b12-24c0f96a221c",
+    "event_type": "invoice.aging",
+    "failure_cause": "TIME_ELAPSED",
+    "customer_id": "cust_2447",
+    "amount": 1404800,
+    "payload": {
+      "days_outstanding": 38
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "d1499f7e-aecc-4d20-9906-a9ba98e238ff",
+    "event_type": "invoice.aging",
+    "failure_cause": "TIME_ELAPSED",
+    "customer_id": "cust_8684",
+    "amount": 4439000,
+    "payload": {
+      "days_outstanding": 56
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "b31c2477-c48c-4642-93d5-487d725bea92",
+    "event_type": "invoice.aging",
+    "failure_cause": "TIME_ELAPSED",
+    "customer_id": "cust_4521",
+    "amount": 536600,
+    "payload": {
+      "days_outstanding": 65
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "f739f58e-517c-48d7-9ed2-65cd56f5fe1d",
+    "event_type": "invoice.aging",
+    "failure_cause": "TIME_ELAPSED",
+    "customer_id": "cust_3353",
+    "amount": 1611000,
+    "payload": {
+      "days_outstanding": 90
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "e4819ab8-042b-4c50-875a-6b725e92f3eb",
+    "event_type": "invoice.aging",
+    "failure_cause": "TIME_ELAPSED",
+    "customer_id": "cust_5609",
+    "amount": 1084100,
+    "payload": {
+      "days_outstanding": 64
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "4dc072a8-c78e-4f82-b341-f37409044c9e",
+    "event_type": "invoice.aging",
+    "failure_cause": "TIME_ELAPSED",
+    "customer_id": "cust_4170",
+    "amount": 3340900,
+    "payload": {
+      "days_outstanding": 62
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "36982a14-b5bc-4caa-b758-af9c6ad88c51",
+    "event_type": "invoice.aging",
+    "failure_cause": "TIME_ELAPSED",
+    "customer_id": "cust_7368",
+    "amount": 2991600,
+    "payload": {
+      "days_outstanding": 27
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "ce4959dd-3bfe-4652-b08d-36f4d7e92178",
+    "event_type": "invoice.aging",
+    "failure_cause": "TIME_ELAPSED",
+    "customer_id": "cust_7924",
+    "amount": 4207400,
+    "payload": {
+      "days_outstanding": 5
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "f3d24df3-b496-4b97-8912-4b7c93f85ef7",
+    "event_type": "message.received",
+    "failure_cause": "CUSTOMER_REPLY",
+    "customer_id": "cust_2408",
+    "amount": 4346400,
+    "payload": {
+      "text": "I will pay next Friday"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "e8d3ba33-43ed-4389-a9da-3ca2b7bab8e2",
+    "event_type": "message.received",
+    "failure_cause": "CUSTOMER_REPLY",
+    "customer_id": "cust_3992",
+    "amount": 4557600,
+    "payload": {
+      "text": "I will pay next Friday"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "fe16c88a-0436-47dd-8f58-e7c5dfd59437",
+    "event_type": "message.received",
+    "failure_cause": "CUSTOMER_REPLY",
+    "customer_id": "cust_2885",
+    "amount": 1865200,
+    "payload": {
+      "text": "I will pay next Friday"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "2e3c4486-3142-4e07-b9ad-1a0440503902",
+    "event_type": "message.received",
+    "failure_cause": "CUSTOMER_REPLY",
+    "customer_id": "cust_5000",
+    "amount": 4956400,
+    "payload": {
+      "text": "I will pay next Friday"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "d021bc4e-76a9-4409-8a44-9853c2161470",
+    "event_type": "message.received",
+    "failure_cause": "CUSTOMER_REPLY",
+    "customer_id": "cust_6623",
+    "amount": 2169800,
+    "payload": {
+      "text": "I will pay next Friday"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "f6416311-a830-42c9-b376-eca51f027384",
+    "event_type": "message.received",
+    "failure_cause": "CUSTOMER_REPLY",
+    "customer_id": "cust_3582",
+    "amount": 2395600,
+    "payload": {
+      "text": "I will pay next Friday"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "612d5621-7e99-4440-b7ae-e583ec761566",
+    "event_type": "message.received",
+    "failure_cause": "CUSTOMER_REPLY",
+    "customer_id": "cust_2638",
+    "amount": 361100,
+    "payload": {
+      "text": "I will pay next Friday"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "ffb9101d-ed30-41ac-bf9d-7fa28d7bac80",
+    "event_type": "message.received",
+    "failure_cause": "CUSTOMER_REPLY",
+    "customer_id": "cust_5871",
+    "amount": 676800,
+    "payload": {
+      "text": "I will pay next Friday"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "7955b1f8-2f30-4f2d-8604-b6623f9c7f4b",
+    "event_type": "message.received",
+    "failure_cause": "CUSTOMER_REPLY",
+    "customer_id": "cust_5719",
+    "amount": 1697900,
+    "payload": {
+      "text": "I will pay next Friday"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "b7493b4b-8df8-4823-8381-92c3c53bf884",
+    "event_type": "message.received",
+    "failure_cause": "CUSTOMER_REPLY",
+    "customer_id": "cust_3650",
+    "amount": 4247700,
+    "payload": {
+      "text": "I will pay next Friday"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "27485e22-08e0-4621-9acb-d2764bc6542c",
+    "event_type": "message.received",
+    "failure_cause": "CUSTOMER_REPLY",
+    "customer_id": "cust_3099",
+    "amount": 2355700,
+    "payload": {
+      "text": "I will pay next Friday"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "f02533f1-819e-4efc-b701-fadd097685f0",
+    "event_type": "message.received",
+    "failure_cause": "CUSTOMER_REPLY",
+    "customer_id": "cust_9349",
+    "amount": 3058600,
+    "payload": {
+      "text": "I will pay next Friday"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "10cfbdca-594b-45f0-a6b8-266bb91556e6",
+    "event_type": "message.received",
+    "failure_cause": "CUSTOMER_REPLY",
+    "customer_id": "cust_6539",
+    "amount": 3732700,
+    "payload": {
+      "text": "I will pay next Friday"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "e845e360-516c-4cca-a9da-27e50783e7f6",
+    "event_type": "message.received",
+    "failure_cause": "CUSTOMER_REPLY",
+    "customer_id": "cust_9579",
+    "amount": 4329700,
+    "payload": {
+      "text": "I will pay next Friday"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "82246160-71a5-4496-8de0-bf9def4053dc",
+    "event_type": "message.received",
+    "failure_cause": "CUSTOMER_REPLY",
+    "customer_id": "cust_8243",
+    "amount": 3500600,
+    "payload": {
+      "text": "I will pay next Friday"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "d02a69f3-fd07-4d7a-9c0e-1fbe850e9101",
+    "event_type": "message.received",
+    "failure_cause": "CUSTOMER_REPLY",
+    "customer_id": "cust_7268",
+    "amount": 3488000,
+    "payload": {
+      "text": "I will pay next Friday"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "5525c4d5-4ce1-41a9-848d-73074f6df081",
+    "event_type": "message.received",
+    "failure_cause": "CUSTOMER_REPLY",
+    "customer_id": "cust_7930",
+    "amount": 1734900,
+    "payload": {
+      "text": "I will pay next Friday"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "65ebc270-0fbd-40bc-abb8-53dc95623566",
+    "event_type": "message.received",
+    "failure_cause": "CUSTOMER_REPLY",
+    "customer_id": "cust_8544",
+    "amount": 3917700,
+    "payload": {
+      "text": "I will pay next Friday"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "989f001f-95d2-4036-aa7b-9ecce23926df",
+    "event_type": "message.received",
+    "failure_cause": "CUSTOMER_REPLY",
+    "customer_id": "cust_6576",
+    "amount": 1850400,
+    "payload": {
+      "text": "I will pay next Friday"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "7cd3d425-d0f7-4f64-89a2-849c52095758",
+    "event_type": "message.received",
+    "failure_cause": "CUSTOMER_REPLY",
+    "customer_id": "cust_1468",
+    "amount": 711400,
+    "payload": {
+      "text": "I will pay next Friday"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "d78d0158-16a7-4e52-98e3-407d5599a0aa",
+    "event_type": "message.received",
+    "failure_cause": "CUSTOMER_REPLY",
+    "customer_id": "cust_1180",
+    "amount": 598600,
+    "payload": {
+      "text": "I will pay next Friday"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "b98d32b6-591d-4356-97b1-de51c20b6bf9",
+    "event_type": "message.received",
+    "failure_cause": "CUSTOMER_REPLY",
+    "customer_id": "cust_1684",
+    "amount": 2063100,
+    "payload": {
+      "text": "I will pay next Friday"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "efbfc9c1-17ba-48e4-9d95-340c851617d7",
+    "event_type": "message.received",
+    "failure_cause": "CUSTOMER_REPLY",
+    "customer_id": "cust_8436",
+    "amount": 4527000,
+    "payload": {
+      "text": "I will pay next Friday"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "ed483609-f042-46d8-9261-e383caec9f3c",
+    "event_type": "message.received",
+    "failure_cause": "CUSTOMER_REPLY",
+    "customer_id": "cust_5714",
+    "amount": 333500,
+    "payload": {
+      "text": "I will pay next Friday"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "da575bbb-ca99-48f4-a906-56e6545b449e",
+    "event_type": "message.received",
+    "failure_cause": "CUSTOMER_REPLY",
+    "customer_id": "cust_3350",
+    "amount": 4672800,
+    "payload": {
+      "text": "I will pay next Friday"
+    },
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "fc6fbf5a-0c41-4d93-b7ae-96fea78fd3da",
+    "event_type": "payment.failed",
+    "failure_cause": "FRAUD_SUSPECTED",
+    "customer_id": "cust_7715",
+    "amount": 1219300,
+    "payload": {},
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": true,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "4b3e9647-acf1-4a42-82f1-1012226c656a",
+    "event_type": "payment.failed",
+    "failure_cause": "FRAUD_SUSPECTED",
+    "customer_id": "cust_6300",
+    "amount": 1366400,
+    "payload": {},
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": true,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "f743d004-54ed-4cec-8505-3cd9986e0386",
+    "event_type": "payment.failed",
+    "failure_cause": "FRAUD_SUSPECTED",
+    "customer_id": "cust_1707",
+    "amount": 2670500,
+    "payload": {},
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": true,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "71a5e079-3fb5-495c-ad59-84f5f1b6f879",
+    "event_type": "payment.failed",
+    "failure_cause": "FRAUD_SUSPECTED",
+    "customer_id": "cust_6104",
+    "amount": 4958300,
+    "payload": {},
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": true,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "cbdd5037-3156-44a1-a0db-38b898bb0705",
+    "event_type": "payment.failed",
+    "failure_cause": "FRAUD_SUSPECTED",
+    "customer_id": "cust_7215",
+    "amount": 736700,
+    "payload": {},
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": true,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "f40268a3-823d-40cf-8927-24d1f9c91f6a",
+    "event_type": "payment.failed",
+    "failure_cause": "FRAUD_SUSPECTED",
+    "customer_id": "cust_3419",
+    "amount": 1387700,
+    "payload": {},
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": true,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "7534b257-ec9e-4e8c-9603-c51c436a382a",
+    "event_type": "payment.failed",
+    "failure_cause": "FRAUD_SUSPECTED",
+    "customer_id": "cust_5155",
+    "amount": 2297700,
+    "payload": {},
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": true,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "6c485126-cb64-43d3-9fce-13fbd75570b6",
+    "event_type": "payment.failed",
+    "failure_cause": "FRAUD_SUSPECTED",
+    "customer_id": "cust_9549",
+    "amount": 157200,
+    "payload": {},
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": true,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "60d9ff2f-ce9c-4151-9436-7fe9b00b0196",
+    "event_type": "payment.failed",
+    "failure_cause": "FRAUD_SUSPECTED",
+    "customer_id": "cust_3191",
+    "amount": 4549700,
+    "payload": {},
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": true,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "5452414b-1fa3-497e-b485-fb517f2cd40a",
+    "event_type": "payment.failed",
+    "failure_cause": "FRAUD_SUSPECTED",
+    "customer_id": "cust_7338",
+    "amount": 3426900,
+    "payload": {},
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": true,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "846e086a-6c13-4cac-945d-2b3fb549522e",
+    "event_type": "payment.failed",
+    "failure_cause": "FRAUD_SUSPECTED",
+    "customer_id": "cust_2827",
+    "amount": 575900,
+    "payload": {},
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": true,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "19b0dc55-ff4c-4b27-ab72-cfc4afaaaea7",
+    "event_type": "payment.failed",
+    "failure_cause": "FRAUD_SUSPECTED",
+    "customer_id": "cust_8927",
+    "amount": 3710200,
+    "payload": {},
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": true,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "3c44b4df-51b7-4c46-99cd-4b22596efd75",
+    "event_type": "payment.failed",
+    "failure_cause": "FRAUD_SUSPECTED",
+    "customer_id": "cust_1324",
+    "amount": 3584500,
+    "payload": {},
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": true,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "b7e97cf1-e61d-41cc-a7ae-f91f88c7d444",
+    "event_type": "payment.failed",
+    "failure_cause": "FRAUD_SUSPECTED",
+    "customer_id": "cust_9727",
+    "amount": 564700,
+    "payload": {},
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": true,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "762295dd-8b15-4cbd-84b3-632e6807c8f8",
+    "event_type": "payment.failed",
+    "failure_cause": "FRAUD_SUSPECTED",
+    "customer_id": "cust_5614",
+    "amount": 3907700,
+    "payload": {},
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": true,
+      "is_opt_out": false,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "545d577b-1c5f-47ee-8ebf-0959a20b48cf",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "optout_cust_1604",
+    "amount": 3637600,
+    "payload": {},
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": true,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "df292ffc-d57e-44d6-8cd6-020c9c2b3f0a",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "optout_cust_6469",
+    "amount": 213800,
+    "payload": {},
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": true,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "376b6261-22c5-4ad3-b901-245d4403e15f",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "optout_cust_3757",
+    "amount": 2329300,
+    "payload": {},
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": true,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "0d2f7e64-d62f-4fa6-af99-8a597a9f7729",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "optout_cust_4620",
+    "amount": 3107400,
+    "payload": {},
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": true,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "3d9a8f4f-6b86-49f7-8c24-1d7f5faf5bce",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "optout_cust_6854",
+    "amount": 2740600,
+    "payload": {},
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": true,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "c7fab817-a4d0-4506-b34a-32405e766cb6",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "optout_cust_6618",
+    "amount": 3357600,
+    "payload": {},
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": true,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "727f5ccc-cfa9-40fd-bd6d-2493dc8e8bc2",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "optout_cust_4919",
+    "amount": 3633000,
+    "payload": {},
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": true,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "3a94e5a6-6713-4257-9a66-5a0f8d800e80",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "optout_cust_4819",
+    "amount": 914600,
+    "payload": {},
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": true,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "8b20d78e-bc3c-41dc-bde5-8fbbe5005d26",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "optout_cust_4480",
+    "amount": 1033700,
+    "payload": {},
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": true,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "2d07c0a8-82ab-4c26-ba5e-e4b14fa1fc46",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "optout_cust_8664",
+    "amount": 4641400,
+    "payload": {},
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": true,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "66047c66-892a-4b51-a451-d01b4a460696",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "optout_cust_4037",
+    "amount": 2696700,
+    "payload": {},
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": true,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "a0291d5a-2903-4976-b648-e125ee24c23a",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "optout_cust_5218",
+    "amount": 3224500,
+    "payload": {},
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": true,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "a7a1964d-5255-4e06-b4da-64b1ccb44c99",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "optout_cust_2640",
+    "amount": 3852300,
+    "payload": {},
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": true,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "7fe3fd55-8dd4-4be1-9fbb-c32e9f87e615",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "optout_cust_5103",
+    "amount": 2935500,
+    "payload": {},
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": true,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "bfd3c9e1-8837-4f93-8640-cc6bcaca4ee0",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "optout_cust_2833",
+    "amount": 206900,
+    "payload": {},
+    "timestamp": "2026-08-22T14:01:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": true,
+      "is_after_hours": false
+    }
+  },
+  {
+    "id": "48afd1f0-2612-4d05-ac7d-9ba92c852a0d",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "cust_7040",
+    "amount": 114000,
+    "payload": {},
+    "timestamp": "2026-08-22T21:30:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": true
+    }
+  },
+  {
+    "id": "e6bab334-409f-4489-a790-e33fc2d8105a",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "cust_7025",
+    "amount": 1161000,
+    "payload": {},
+    "timestamp": "2026-08-22T21:30:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": true
+    }
+  },
+  {
+    "id": "cded7bbf-4e4d-490b-bad4-12a551ee0852",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "cust_4615",
+    "amount": 256600,
+    "payload": {},
+    "timestamp": "2026-08-22T21:30:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": true
+    }
+  },
+  {
+    "id": "7ad27d28-6695-439f-8c9b-3c347fc96572",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "cust_4665",
+    "amount": 3767100,
+    "payload": {},
+    "timestamp": "2026-08-22T21:30:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": true
+    }
+  },
+  {
+    "id": "5449e9d9-dbdc-4791-b7e9-d368178eef41",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "cust_3076",
+    "amount": 2569300,
+    "payload": {},
+    "timestamp": "2026-08-22T21:30:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": true
+    }
+  },
+  {
+    "id": "94d9b514-2fcf-4d92-80fc-c7e81de4a858",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "cust_3798",
+    "amount": 2054900,
+    "payload": {},
+    "timestamp": "2026-08-22T21:30:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": true
+    }
+  },
+  {
+    "id": "86ea29df-336c-4aa4-a5fe-0783131f431c",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "cust_9174",
+    "amount": 3461700,
+    "payload": {},
+    "timestamp": "2026-08-22T21:30:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": true
+    }
+  },
+  {
+    "id": "d3893475-977c-4945-9928-cdc0ea46512e",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "cust_9160",
+    "amount": 427300,
+    "payload": {},
+    "timestamp": "2026-08-22T21:30:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": true
+    }
+  },
+  {
+    "id": "63400c1a-c0cf-40fa-8f5d-c3c03398fda3",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "cust_7561",
+    "amount": 4691300,
+    "payload": {},
+    "timestamp": "2026-08-22T21:30:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": true
+    }
+  },
+  {
+    "id": "f07c900e-39f7-4298-b9b1-611e8cf46b78",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "cust_6695",
+    "amount": 4680900,
+    "payload": {},
+    "timestamp": "2026-08-22T21:30:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": true
+    }
+  },
+  {
+    "id": "482d15a2-769a-487b-a649-18e460ad98fa",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "cust_5925",
+    "amount": 220700,
+    "payload": {},
+    "timestamp": "2026-08-22T21:30:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": true
+    }
+  },
+  {
+    "id": "9b183420-ed98-4e80-88f3-51d0172d38f3",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "cust_8562",
+    "amount": 120900,
+    "payload": {},
+    "timestamp": "2026-08-22T21:30:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": true
+    }
+  },
+  {
+    "id": "c6069497-7dfe-465c-9b2b-cccdb53abeb5",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "cust_6630",
+    "amount": 3963900,
+    "payload": {},
+    "timestamp": "2026-08-22T21:30:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": true
+    }
+  },
+  {
+    "id": "47309fe5-aedc-46f9-b886-699595c6ab56",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "cust_1911",
+    "amount": 1306100,
+    "payload": {},
+    "timestamp": "2026-08-22T21:30:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": true
+    }
+  },
+  {
+    "id": "2c209b07-b280-467e-aebf-273a28b35bfb",
+    "event_type": "payment.failed",
+    "failure_cause": "BANK_INFRA_DOWN",
+    "customer_id": "cust_5802",
+    "amount": 4665500,
+    "payload": {},
+    "timestamp": "2026-08-22T21:30:00.084633+00:00",
+    "meta": {
+      "is_fraud": false,
+      "is_opt_out": false,
+      "is_after_hours": true
+    }
+  }
+]

@@ -67,11 +67,12 @@ async def _select_recovery_action(
         case FailureCause.INSUFFICIENT_FUNDS:
             # Target salary day for retry — more likely to have funds
             predicted_date = next_salary_date([])    # Pass real transaction dates in production
-            logger.info("Subscription %s: INSUFFICIENT_FUNDS — targeting salary day %s", subscription_id, predicted_date)
+            date_str = predicted_date.isoformat() if predicted_date else "1st of next month"
+            logger.info("Subscription %s: INSUFFICIENT_FUNDS — targeting salary day %s", subscription_id, date_str)
             return {
                 "module": "SUBSCRIPTION_RESCUE",
                 "action": "RETRY_SCHEDULED",
-                "retry_date": predicted_date.isoformat(),
+                "retry_date": date_str,
                 "cause": cause,
             }
 
