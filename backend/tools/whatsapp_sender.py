@@ -17,20 +17,44 @@ class MessageResult:
     status: str
 
 
+from twilio.rest import Client
+
 async def send_whatsapp_text(
     to_phone: str,
     body: str,
     preview_url: bool = False,
 ) -> MessageResult:
     """
-    Sends a free-form text message via WhatsApp Business Cloud API.
-    Only works within the 24-hour customer service window.
-    For outbound marketing/recovery, use send_whatsapp_template instead.
+    Sends a WhatsApp message via Twilio (Real-time).
+    Falls back to original logic if Twilio is not configured.
     """
     if not settings.feature_whatsapp_enabled:
         logger.info("WhatsApp disabled — skipping message to %s", to_phone)
         return MessageResult(message_id="DISABLED", status="SKIPPED")
 
+    if settings.twilio_account_sid and settings.twilio_auth_token:
+        try:
+            client = Client(settings.twilio_account_sid, settings.twilio_auth_token)
+            target = settings.your_personal_phone_number if settings.your_personal_phone_number else to_phone
+            if not target.startswith("whatsapp:"):
+                target = f"whatsapp:{target}"
+            
+            from_num = settings.twilio_whatsapp_number
+            if not from_num.startswith("whatsapp:"):
+                from_num = f"whatsapp:{from_num}"
+                
+            message = client.messages.create(
+                from_=from_num,
+                body=body,
+                to=target
+            )
+            logger.info(f"Twilio WhatsApp sent! SID: {message.sid}")
+            return MessageResult(message_id=message.sid, status="SENT")
+        except Exception as e:
+            logger.error(f"Twilio WhatsApp failed: {e}")
+            return MessageResult(message_id="FAILED", status="ERROR")
+
+    # Fallback to standard Meta Graph API
     url = f"{_GRAPH_API_BASE}/{settings.whatsapp_phone_number_id}/messages"
     payload = {
         "messaging_product": "whatsapp",
@@ -55,6 +79,36 @@ async def send_whatsapp_template(
         logger.info("WhatsApp disabled — skipping template to %s", to_phone)
         return MessageResult(message_id="DISABLED", status="SKIPPED")
 
+    if settings.twilio_account_sid and settings.twilio_auth_token:
+        try:
+            client = Client(settings.twilio_account_sid, settings.twilio_auth_token)
+            target = settings.your_personal_phone_number if settings.your_personal_phone_number else to_phone
+            if not target.startswith("whatsapp:"):
+                target = f"whatsapp:{target}"
+            
+            from_num = settings.twilio_whatsapp_number
+            if not from_num.startswith("whatsapp:"):
+                from_num = f"whatsapp:{from_num}"
+                
+            # For Twilio demo, we just send a mock of the template
+            mock_body = f"[{template_name.upper()}]\n"
+            for comp in components:
+                for param in comp.get("parameters", []):
+                    if param.get("type") == "text":
+                        mock_body += f"{param.get('text')} "
+                        
+            message = client.messages.create(
+                from_=from_num,
+                body=mock_body,
+                to=target
+            )
+            logger.info(f"Twilio WhatsApp Template sent! SID: {message.sid}")
+            return MessageResult(message_id=message.sid, status="SENT")
+        except Exception as e:
+            logger.error(f"Twilio WhatsApp Template failed: {e}")
+            return MessageResult(message_id="FAILED", status="ERROR")
+
+    # Fallback to standard Meta Graph API
     url = f"{_GRAPH_API_BASE}/{settings.whatsapp_phone_number_id}/messages"
     payload = {
         "messaging_product": "whatsapp",
