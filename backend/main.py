@@ -54,12 +54,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-from routers import webhooks, events, api, batch
+from routers import api, webhooks, twilio_voice, events, batch, realtime
 
-app.include_router(webhooks.router)
-app.include_router(events.router)
 app.include_router(api.router)
+app.include_router(webhooks.router)
+app.include_router(twilio_voice.router)
+app.include_router(events.router)
 app.include_router(batch.router)
+app.include_router(realtime.router)
 
 @app.get("/health")
 async def health_check() -> dict[str, str]:

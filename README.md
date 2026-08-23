@@ -283,18 +283,21 @@ ELEVENLABS_API_KEY=...
 
 ReVault ships with a synthetic dataset of 355 records covering every failure type — insufficient funds, bank infrastructure down, expired cards, UPI limit exceeded, abandoned checkouts, halted subscriptions, and overdue B2B invoices.
 
-```bash
-cd backend
+Terminal 1: (Backend)
+cd e:\ReVault\backend
+venv\Scripts\uvicorn.exe main:app --reload --port 8000
 
-# Generate synthetic failure events
-python simulation/generate_synthetic_data.py
+Terminal 2: (API Gateway)
+cd e:\ReVault\services\api-gateway
+go run main.go
 
-# Run all agents across the full batch
-python simulation/batch_runner.py
+Terminal 3: (Frontend)
+cd e:\ReVault\frontend
+npm run dev
 
-# Evaluate recovery metrics
-python simulation/metrics_evaluator.py
-```
+Terminal 4: (Batch Simulation)
+cd e:\ReVault\backend
+venv\Scripts\python.exe batch\batch_runner.py
 
 The batch report shows recovered revenue per module, classifier accuracy, false positive rate, compliance violations (should be zero), and correct escalations.
 

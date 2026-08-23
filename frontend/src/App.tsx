@@ -12,7 +12,7 @@ import { PTPTracker } from './pages/PTPTracker';
 import { VoiceReplay } from './pages/VoiceReplay';
 import { AuditTrail } from './pages/AuditTrail';
 import { ConfigPanel } from './pages/ConfigPanel';
-import { useReVaultSocket } from './hooks/useReVaultSocket';
+import { useSupabaseRealtime } from './hooks/useSupabaseRealtime';
 
 /**
  * On first visit (fresh browser session), redirect to /landing.
@@ -116,7 +116,7 @@ const Shell: React.FC = () => {
 
 /* ── Root component ────────────────────────────── */
 const App: React.FC = () => {
-  useReVaultSocket();
+  useSupabaseRealtime();
   const location = useLocation();
 
   // Landing is full-screen, no sidebar shell

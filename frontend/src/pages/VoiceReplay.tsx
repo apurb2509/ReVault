@@ -125,19 +125,50 @@ const VoiceWaveform: React.FC<{ isPlaying: boolean }> = ({ isPlaying }) => (
 export const VoiceReplay: React.FC = () => {
   const [playing, setPlaying] = useState<string | null>(null);
   const [expanded, setExpanded] = useState<Set<string>>(new Set(['VIQ-001']));
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [loadingAudio, setLoadingAudio] = useState<string | null>(null);
 
-  const togglePlay = useCallback((id: string, durationStr: string) => {
+  const togglePlay = useCallback(async (id: string, transcript: string, customerName: string) => {
     if (playing === id) {
-      if (timerRef.current) clearTimeout(timerRef.current);
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
       setPlaying(null);
       return;
     }
-    // Parse duration "0:31" → ms
-    const [m, s] = durationStr.split(':').map(Number);
-    const ms = ((m * 60) + (s || 30)) * 1000;
-    setPlaying(id);
-    timerRef.current = setTimeout(() => setPlaying(null), Math.min(ms, 5000)); // cap at 5s for demo
+
+    if (audioRef.current) {
+      audioRef.current.pause();
+    }
+    
+    setLoadingAudio(id);
+    try {
+      const response = await fetch('http://localhost:8000/api/voice/synthesize', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ script: transcript, customer_name: customerName })
+      });
+
+      if (!response.ok) throw new Error("Synthesis failed");
+      
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+      const audio = new Audio(url);
+      
+      audio.onended = () => {
+        setPlaying(null);
+      };
+      
+      audioRef.current = audio;
+      await audio.play();
+      setPlaying(id);
+    } catch (e) {
+      console.error(e);
+      alert("Failed to synthesize audio. Check backend logs.");
+    } finally {
+      setLoadingAudio(null);
+    }
   }, [playing]);
 
   const toggleExpand = (id: string) => {
@@ -202,10 +233,10 @@ export const VoiceReplay: React.FC = () => {
                 <button
                   id={`play-${call.id}`}
                   className={`btn btn-sm ${isPlaying ? 'btn-danger' : 'btn-primary'}`}
-                  onClick={() => togglePlay(call.id, call.duration)}
-                  disabled={call.outcome === 'NO_ANSWER'}
+                  onClick={() => togglePlay(call.id, call.transcript, call.customer)}
+                  disabled={call.outcome === 'NO_ANSWER' || loadingAudio === call.id}
                 >
-                  {isPlaying ? <><Pause size={12} /> Stop</> : <><Play size={12} /> Play</>}
+                  {loadingAudio === call.id ? 'Loading...' : isPlaying ? <><Pause size={12} /> Stop</> : <><Play size={12} /> Play</>}
                 </button>
                 <button
                   className="btn btn-ghost btn-sm"

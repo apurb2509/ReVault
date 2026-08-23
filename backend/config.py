@@ -51,6 +51,14 @@ class Settings(BaseSettings):
     contact_start_hour: int = 9    # 9 AM
     contact_end_hour: int = 21     # 9 PM
 
+    # Twilio Integration
+    twilio_account_sid: str = ""
+    twilio_auth_token: str = ""
+    twilio_whatsapp_number: str = ""
+    twilio_voice_number: str = ""
+    your_personal_phone_number: str = ""
+    ngrok_public_url: str = ""
+
     @property
     def is_production(self) -> bool:
         return self.app_env == "production"

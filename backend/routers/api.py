@@ -10,7 +10,7 @@ router = APIRouter(prefix="/api", tags=["read_path"])
 @router.get("/metrics")
 async def get_metrics(db: AsyncSession = Depends(get_db)) -> dict[str, Any]:
     # In a real scenario, this would aggregate data, but we'll run some basic counts
-    result = await db.execute(text("SELECT COALESCE(SUM(amount_recovered), 0) FROM recovery_actions WHERE outcome = 'SUCCESS'"))
+    result = await db.execute(text("SELECT COALESCE(SUM(amount_recovered), 0) FROM recovery_actions WHERE outcome = 'PAYMENT_MADE'"))
     recovered_amount = result.scalar()
 
     result = await db.execute(text("SELECT COALESCE(SUM(amount), 0) FROM payment_events"))
@@ -86,3 +86,25 @@ async def get_audit_trail(db: AsyncSession = Depends(get_db)) -> list[dict[str, 
         }
         for row in rows
     ]
+
+from pydantic import BaseModel
+from fastapi.responses import FileResponse
+import os
+
+class VoiceSynthesisRequest(BaseModel):
+    script: str
+    customer_name: str
+
+@router.post("/voice/synthesize")
+async def synthesize_voice_endpoint(req: VoiceSynthesisRequest):
+    from tools.voice_synthesizer import synthesize_hinglish
+    result = await synthesize_hinglish(req.script, req.customer_name)
+    
+    # Return the generated mp3 file
+    # Ensure the file gets cleaned up eventually in a real prod app, 
+    # but for this demo FileResponse will serve it directly from the temp dir
+    return FileResponse(
+        path=result.file_path, 
+        media_type="audio/mpeg", 
+        filename=f"{req.customer_name.replace(' ', '_')}_recovery.mp3"
+    )
