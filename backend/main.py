@@ -24,6 +24,28 @@ async def rca_trigger(segment: dict, current_payments: list[dict]) -> None:
     logger.info("RCA trigger fired for segment: %s", segment)
 
 
+async def trigger_live_test_startup():
+    import asyncio
+    await asyncio.sleep(10)
+    logger.info("Executing automated Startup Live Test for WhatsApp...")
+    
+    from routers.realtime import TriggerEventRequest, process_realtime_event
+    from db.database import async_session_maker
+    
+    req = TriggerEventRequest(
+        event_type="payment.failed",
+        customer_name="Apurb",
+        phone_number="WILL_USE_ENV_VAR",
+        amount=250000,
+        failure_cause="INSUFFICIENT_FUNDS"
+    )
+    
+    try:
+        async with async_session_maker() as db:
+            await process_realtime_event(req, db)
+    except Exception as e:
+        logger.error(f"Startup live test failed: {e}")
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("Starting ReVault API...")
@@ -32,6 +54,10 @@ async def lifespan(app: FastAPI):
     rzp = RazorpayClient()
     monitor = DegradationMonitor(rzp, broadcaster, rca_trigger)
     monitor.start()
+
+    import asyncio
+    if settings.startup_live_test:
+        asyncio.create_task(trigger_live_test_startup())
 
     yield
     

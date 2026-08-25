@@ -152,3 +152,25 @@ class RetryScheduler:
         }
         # TTL of 30 days — abandoned states are not needed indefinitely
         await self._redis.set(self._key(state.event_id), json.dumps(data), ex=30 * 86_400)
+
+        # Mirror to Supabase
+        try:
+            from db.supabase_client import supabase
+            if supabase:
+                record = {
+                    "event_id": state.event_id,
+                    "attempt_number": state.attempt_count,
+                    "max_attempts": state.max_attempts,
+                    "next_retry_at": state.next_retry_at.isoformat(),
+                    "retry_rail": state.retry_rail.value,
+                    "cause": state.cause.value,
+                    "status": state.status.value
+                }
+                res = supabase.table("retry_schedules").select("id").eq("event_id", state.event_id).execute()
+                if res.data:
+                    supabase.table("retry_schedules").update(record).eq("event_id", state.event_id).execute()
+                else:
+                    supabase.table("retry_schedules").insert(record).execute()
+        except Exception as e:
+            import logging
+            logging.getLogger(__name__).error("Failed to mirror retry schedule to Supabase: %s", e)

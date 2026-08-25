@@ -1,3 +1,4 @@
+import asyncio
 import json
 import logging
 from typing import Any
@@ -12,8 +13,8 @@ settings = get_settings()
 genai.configure(api_key=settings.gemini_api_key)
 
 # Flash for speed-sensitive tasks; Pro for complex reasoning
-_FLASH = genai.GenerativeModel("gemini-2.0-flash")
-_PRO = genai.GenerativeModel("gemini-2.0-flash")  # Use Flash for both — Pro is deprecated in v0.8
+_FLASH = genai.GenerativeModel("gemini-3.6-flash")
+_PRO = genai.GenerativeModel("gemini-3.6-flash")  # Use Flash for both — Pro is deprecated in v0.8
 
 _JSON_CONFIG = genai.GenerationConfig(
     response_mime_type="application/json",
@@ -35,12 +36,20 @@ class GeminiClient:
     async def generate_text(self, prompt: str) -> str:
         """Returns raw text for cases where structured JSON is not needed."""
         model = _FLASH
-        try:
-            response = model.generate_content(prompt)
-            return response.text
-        except Exception:
-            logger.exception("Gemini text generation failed")
-            raise
+        for attempt in range(5):
+            try:
+                response = await model.generate_content_async(prompt)
+                return response.text
+            except Exception as e:
+                if "429" in str(e) or "ResourceExhausted" in type(e).__name__:
+                    if attempt == 4:
+                        raise
+                    delay = 5 * (2 ** attempt)
+                    logger.warning(f"Gemini Rate Limit hit. Sleeping for {delay} seconds...")
+                    await asyncio.sleep(delay)
+                    continue
+                logger.exception("Gemini text generation failed")
+                raise
 
 
 def get_gemini_client() -> GeminiClient:
@@ -59,15 +68,23 @@ async def call_gemini(prompt: str, use_pro: bool = False) -> dict[str, Any]:
     movement based solely on LLM output without a compliance gate.
     """
     model = _PRO if use_pro else _FLASH
-    try:
-        response = model.generate_content(prompt, generation_config=_JSON_CONFIG)
-        return json.loads(response.text)
-    except json.JSONDecodeError as exc:
-        logger.error("Gemini returned non-JSON output: %s", response.text[:500])
-        raise ValueError(f"Gemini output was not valid JSON: {exc}") from exc
-    except Exception:
-        logger.exception("Gemini API call failed")
-        raise
+    for attempt in range(5):
+        try:
+            response = await model.generate_content_async(prompt, generation_config=_JSON_CONFIG)
+            return json.loads(response.text)
+        except json.JSONDecodeError as exc:
+            logger.error("Gemini returned non-JSON output: %s", response.text[:500])
+            raise ValueError(f"Gemini output was not valid JSON: {exc}") from exc
+        except Exception as e:
+            if "429" in str(e) or "ResourceExhausted" in type(e).__name__:
+                if attempt == 4:
+                    raise
+                delay = 5 * (2 ** attempt)
+                logger.warning(f"Gemini Rate Limit hit in call_gemini. Sleeping for {delay} seconds...")
+                await asyncio.sleep(delay)
+                continue
+            logger.exception("Gemini API call failed")
+            raise
 
 
 RCA_PROMPT = """

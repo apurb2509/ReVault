@@ -116,15 +116,40 @@ async def _execute_recovery(invoice: Invoice, tier: RiskTier, risk_analysis: dic
 def _extract_invoice(raw_payload: dict) -> Invoice | None:
     try:
         data = raw_payload.get("invoice", {})
-        if not data:
+        invoice_number = data.get("invoice_number")
+        if not invoice_number:
+            invoice_number = raw_payload.get("payload", {}).get("payment", {}).get("entity", {}).get("order_id")
+            
+        if not invoice_number:
             return None
-        return Invoice(
-            invoice_number=data["invoice_number"],
-            customer_company=data["customer_company"],
-            customer_contact=data["customer_contact"],
-            customer_phone=data["customer_phone"],
-            amount=data["amount"],
-            due_date=date.fromisoformat(data["due_date"]),
-        )
-    except (KeyError, ValueError):
-        return None
+            
+        from db.supabase_client import supabase
+        if supabase:
+            res = supabase.table("b2b_invoices").select("*").eq("id", invoice_number).execute()
+            if res.data:
+                row = res.data[0]
+                from datetime import date
+                # We need days_outstanding too, though the Invoice model has it? Wait, Invoice model computes it or it is computed.
+                # Actually Invoice model has days_outstanding property, or we just pass due_date.
+                return Invoice(
+                    invoice_number=row["id"],
+                    customer_company=row["company_name"],
+                    customer_contact=row["contact_email"],
+                    customer_phone=row.get("contact_phone", ""),
+                    amount=row["amount"],
+                    due_date=date.fromisoformat(row["due_date"].split('T')[0]),
+                )
+                
+        if data:
+            from datetime import date
+            return Invoice(
+                invoice_number=data["invoice_number"],
+                customer_company=data["customer_company"],
+                customer_contact=data["customer_contact"],
+                customer_phone=data.get("customer_phone", ""),
+                amount=data["amount"],
+                due_date=date.fromisoformat(data["due_date"]),
+            )
+    except Exception as e:
+        logger.error("Failed to extract invoice: %s", e)
+    return None

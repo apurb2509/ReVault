@@ -47,7 +47,7 @@ export const BatchReport: React.FC = () => {
             </div>
             <div className="metric-card">
               <div className="metric-label">Classifier Accuracy</div>
-              <div className="metric-value">98.5%</div>
+              <div className="metric-value">{latest.classifier_accuracy ?? 'N/A'}%</div>
             </div>
           </div>
 

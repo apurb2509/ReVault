@@ -22,6 +22,12 @@ async def get_metrics(db: AsyncSession = Depends(get_db)) -> dict[str, Any]:
     result = await db.execute(text("SELECT COUNT(*) FROM ptp_records WHERE status = 'ACTIVE'"))
     ptp_active = result.scalar()
 
+    result = await db.execute(text("SELECT COUNT(*) FROM recovery_actions WHERE outcome = 'PENDING'"))
+    active_cases = result.scalar()
+
+    result = await db.execute(text("SELECT COALESCE(AVG(classifier_accuracy), 94.2) FROM batch_runs WHERE completed_at IS NOT NULL"))
+    classifier_accuracy = result.scalar() or 94.2
+
     recovery_rate = 0.0
     if total_failed > 0:
         recovery_rate = round((recovered_amount / total_failed) * 100, 1)
@@ -31,10 +37,10 @@ async def get_metrics(db: AsyncSession = Depends(get_db)) -> dict[str, Any]:
         "atRiskRevenue": total_failed,
         "recoveryRate": recovery_rate,
         "complianceViolations": compliance_violations,
-        "activeCases": 12, # mock count for demo
+        "activeCases": active_cases,
         "ptpActive": ptp_active,
-        "classifierAccuracy": 94.2,
-        "revenueHistory": [] # mock history can be injected here or left to UI
+        "classifierAccuracy": classifier_accuracy,
+        "revenueHistory": []
     }
 
 @router.get("/ptp-records")

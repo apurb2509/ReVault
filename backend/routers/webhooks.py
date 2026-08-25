@@ -152,21 +152,23 @@ async def process_event_graph(event: PaymentEvent, db: AsyncSession) -> None:
                 await audit.log_action(action_record, action_dict)
                 await compliance.record_contact(customer_id)
                 
-                # Push the AI decision to the Go Gateway for real-time frontend WebSocket update
-                import httpx
-                try:
-                    payload = {
-                        "event": "RECOVERY_ACTION",
-                        "module": action_dict.get("module", "UNKNOWN"),
-                        "action": action_dict.get("action", "UNKNOWN"),
-                        "amount": event.amount,
-                        "customer_id": customer_id,
-                        "reasoning": final_state.get("rca_result")
-                    }
-                    async with httpx.AsyncClient() as client:
-                        await client.post("http://localhost:8080/internal/broadcast", json=payload)
-                except Exception as e:
-                    logger.error(f"Failed to broadcast to Go gateway: {e}")
+                # The frontend now subscribes directly to Supabase Realtime
+                pass
 
     except Exception:
         logger.exception("Failed to process event %s through graph", event.id)
+
+from pydantic import BaseModel
+
+class SimulateReplyRequest(BaseModel):
+    customer_phone: str
+    message: str
+
+@router.post("/simulate-reply")
+async def simulate_incoming_reply(
+    req: SimulateReplyRequest,
+    db: AsyncSession = Depends(get_db),
+) -> dict[str, str]:
+    from agents.ptp_tracker import process_incoming_reply
+    await process_incoming_reply(req.customer_phone, req.message, db)
+    return {"status": "ok", "message": "Reply processed"}

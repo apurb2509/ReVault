@@ -47,3 +47,31 @@ async def play_audio(script: str, customer: str):
         path=result.file_path, 
         media_type="audio/mpeg"
     )
+
+from sqlalchemy.ext.asyncio import AsyncSession
+from fastapi import Depends
+from db.database import get_db
+from twilio.twiml.messaging_response import MessagingResponse
+
+@router.post("/whatsapp")
+async def twilio_whatsapp(
+    From: str = Form(...),
+    Body: str = Form(...),
+    db: AsyncSession = Depends(get_db)
+):
+    """
+    Twilio hits this endpoint when a user replies to the AI's WhatsApp message.
+    We pass the message to the PTP (Promise-to-Pay) Tracker NLP engine.
+    """
+    logger.info(f"LIVE WhatsApp Reply received from {From}: {Body}")
+    
+    # Twilio sends From as "whatsapp:+1234567890"
+    customer_phone = From.replace("whatsapp:", "")
+    
+    from agents.ptp_tracker import process_incoming_reply
+    await process_incoming_reply(customer_phone, Body, db)
+    
+    # Twilio requires valid TwiML response, even an empty one
+    resp = MessagingResponse()
+    return PlainTextResponse(str(resp), media_type="text/xml")
+
