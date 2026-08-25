@@ -79,3 +79,49 @@ def _extract_customer(raw_payload: dict) -> dict:
         return raw_payload["payload"]["payment"]["entity"].get("customer", {}) or {}
     except (KeyError, TypeError):
         return {}
+
+
+async def poll_type_b_abandonment() -> None:
+    """
+    Actively polls Razorpay for Type B abandonment (orders created but never paid).
+    """
+    from datetime import datetime, timedelta
+    from tools.razorpay_client import RazorpayClient
+    
+    logger.info("Polling Razorpay for Type B Abandonment (orders without payment attempts)...")
+    rzp_client = RazorpayClient()
+    now = datetime.utcnow()
+    # Check orders created between 2 hours ago and 30 minutes ago
+    orders = await rzp_client.fetch_orders_without_payment(
+        from_dt=now - timedelta(minutes=120),
+        to_dt=now - timedelta(minutes=30),
+    )
+    
+    if not orders:
+        return
+
+    from db.supabase_client import supabase
+    if not supabase:
+        return
+        
+    for order in orders:
+        order_id = order.get("id")
+        res = supabase.table("payment_events").select("id").eq("order_id", order_id).eq("event_type", "order.abandoned").execute()
+        if res.data:
+            continue
+            
+        logger.warning("Detected Type B Abandonment: Order %s has no payments.", order_id)
+        record = {
+            "razorpay_event_id": f"type_b_{order_id}",
+            "event_type": "order.abandoned",
+            "order_id": order_id,
+            "amount": order.get("amount", 0),
+            "currency": order.get("currency", "INR"),
+            "failure_cause": "USER_ABANDONED",
+            "raw_payload": {"payload": {"order": {"entity": order}}, "type_b_abandonment": True}
+        }
+        try:
+            supabase.table("payment_events").insert(record).execute()
+            logger.info("Inserted synthesized order.abandoned event for %s", order_id)
+        except Exception as e:
+            logger.error("Failed to insert Type B abandonment for %s: %s", order_id, e)

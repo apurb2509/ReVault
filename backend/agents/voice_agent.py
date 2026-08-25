@@ -140,3 +140,37 @@ class VoiceAgent:
         except Exception as e:
             logger.error(f"Twilio Outbound Call failed: {e}")
             return False
+
+    async def save_voice_call_record(self, customer_id: str, event_id: str, module: str, script_data: dict, audio_path: str) -> str:
+        """Uploads audio to Supabase Storage and inserts a voice_calls record."""
+        from db.supabase_client import supabase
+        import os
+        if not supabase:
+            return ""
+        
+        file_name = os.path.basename(audio_path)
+        try:
+            with open(audio_path, "rb") as f:
+                # Upsert is safer in case of retries
+                try:
+                    supabase.storage.from_("voice_calls").upload(file_name, f.read())
+                except Exception:
+                    pass # ignore if already exists
+            public_url = supabase.storage.from_("voice_calls").get_public_url(file_name)
+            
+            record = {
+                "customer_id": customer_id,
+                "event_id": event_id if event_id else None,
+                "module": module,
+                "language": script_data.get("language_mix", "Hinglish"),
+                "tone": script_data.get("tone", "warm"),
+                "transcript": script_data.get("script", ""),
+                "audio_url": public_url,
+                "outcome": "GENERATED",
+            }
+            supabase.table("voice_calls").insert(record).execute()
+            logger.info("Voice call record inserted into Supabase with URL: %s", public_url)
+            return public_url
+        except Exception as e:
+            logger.error("Failed to save voice call to Supabase: %s", e)
+            return ""

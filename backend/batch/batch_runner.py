@@ -43,20 +43,47 @@ from agents.b2b_chaser import B2BReceivablesChaser, InvoiceState
 
 settings = get_settings()
 
-# ── Simulation data path (relative, works on any machine) ────────────────
-_REPO_ROOT = Path(__file__).parent.parent.parent  # e.g. e:\ReVault
-_DATA_PATH = _REPO_ROOT / "simulation" / "sample_data" / "batch_events.json"
+def generate_dynamic_batch_events() -> list[dict]:
+    import random
+    from datetime import datetime, timezone
+    
+    events = []
+    def create_event(event_type, cause, payload, is_fraud=False, is_opt_out=False, is_after_hours=False):
+        timestamp = datetime.now(timezone.utc)
+        if is_after_hours:
+            timestamp = timestamp.replace(hour=21, minute=30)
+            
+        customer_id = f"cust_{random.randint(1000, 9999)}"
+        if is_opt_out:
+            customer_id = f"optout_{customer_id}"
 
+        return {
+            "id": str(uuid.uuid4()),
+            "event_type": event_type,
+            "failure_cause": "FRAUD_SUSPECTED" if is_fraud else cause,
+            "customer_id": customer_id,
+            "amount": random.randint(1000, 50000) * 100,
+            "payload": payload,
+            "timestamp": timestamp.isoformat(),
+            "meta": {
+                "is_fraud": is_fraud,
+                "is_opt_out": is_opt_out,
+                "is_after_hours": is_after_hours
+            }
+        }
 
-def _ensure_data_exists() -> None:
-    """Auto-generate simulation data if not present."""
-    if not _DATA_PATH.exists():
-        print(f"Simulation data not found at {_DATA_PATH} — generating now...")
-        _DATA_PATH.parent.mkdir(parents=True, exist_ok=True)
-        # Import and run generator inline
-        sys.path.insert(0, str(Path(__file__).parent))
-        from generate_synthetic_data import generate_batch_data
-        generate_batch_data(str(_DATA_PATH))
+    causes = ["INSUFFICIENT_FUNDS", "BANK_INFRA_DOWN", "CARD_EXPIRED", "UPI_LIMIT_EXCEEDED", "AUTH_FAILURE"]
+    for _ in range(130): events.append(create_event("payment.failed", random.choice(causes), {"method": "upi"}))
+    for _ in range(80): events.append(create_event("order.abandoned", "USER_DROPOFF", {"cart_value": random.randint(500, 20000) * 100}))
+    for _ in range(85): events.append(create_event("subscription.halted", "RETRIES_EXHAUSTED", {"plan_id": "plan_123"}))
+    for _ in range(35): events.append(create_event("invoice.aging", "TIME_ELAPSED", {"days_outstanding": random.randint(5, 120)}))
+    for _ in range(25): events.append(create_event("message.received", "CUSTOMER_REPLY", {"text": "I will pay next Friday"}))
+    for _ in range(15): events.append(create_event("payment.failed", "FRAUD_SUSPECTED", {}, is_fraud=True))
+    for _ in range(15): events.append(create_event("payment.failed", "BANK_INFRA_DOWN", {}, is_opt_out=True))
+    for _ in range(15): events.append(create_event("payment.failed", "BANK_INFRA_DOWN", {}, is_after_hours=True))
+    
+    random.shuffle(events)
+    return events
 
 
 async def run_batch() -> None:
@@ -64,14 +91,11 @@ async def run_batch() -> None:
     print("  ReVault Batch Runner — AI Revenue Recovery")
     print("=" * 60)
 
-    _ensure_data_exists()
+    events = generate_dynamic_batch_events()
 
-    with open(_DATA_PATH, "r") as f:
-        events = json.load(f)
+    print(f"Generated {len(events)} random batch events in memory...")
 
-    print(f"Loaded {len(events)} events from {_DATA_PATH.name}")
-
-    redis_client = aioredis.from_url(settings.redis_url)
+    redis_client = aioredis.from_url(settings.redis_url, ssl_cert_reqs="none")
 
     # Pre-seed opt-outs in Redis so compliance engine blocks them
     opt_out_count = 0
@@ -130,7 +154,7 @@ async def run_batch() -> None:
                     })
                     await db.commit()
                 except Exception as exc:
-                    print(f"  ⚠ Failed to insert payment_event {event_uuid}: {exc}")
+                    print(f"  ⚠ Failed to insert payment_event {event_uuid}: {repr(exc)}")
                     stats["errors"] += 1
                     return
 

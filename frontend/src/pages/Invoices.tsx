@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { ExternalLink, Clock } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ExternalLink, Clock, Plus, X } from 'lucide-react';
 import { Header } from '../components/layout/Header';
+import { supabase } from '../lib/supabaseClient';
 
 interface Invoice {
   id: string;
@@ -11,22 +12,10 @@ interface Invoice {
   days_outstanding: number;
   risk_tier: 'GREEN' | 'YELLOW' | 'ORANGE' | 'RED';
   status: 'OUTSTANDING' | 'PTP' | 'PAID' | 'ESCALATED';
-  payment_link?: string;
   timeline: string[];
 }
 
-const INVOICES: Invoice[] = [
-  { id: 'INV-101', company: 'Acme Corp',        contact: 'Suresh Kumar',   amount: 4500000,  due_date: '2026-08-06', days_outstanding: 15, risk_tier: 'GREEN',  status: 'OUTSTANDING', timeline: ['Aug 06: Invoice sent', 'Aug 12: Email reminder sent', 'Aug 15: WhatsApp nudge queued'] },
-  { id: 'INV-102', company: 'GlobalTech',        contact: 'Rajesh Nair',    amount: 1200000,  due_date: '2026-07-20', days_outstanding: 32, risk_tier: 'YELLOW', status: 'PTP',         timeline: ['Jul 20: Invoice sent', 'Aug 01: Reminder', 'Aug 10: WhatsApp + link', 'Aug 12: PTP captured "Will pay next week"'] },
-  { id: 'INV-103', company: 'Initech',           contact: 'Pooja Sharma',   amount: 8270000,  due_date: '2026-05-18', days_outstanding: 94, risk_tier: 'RED',    status: 'ESCALATED',   timeline: ['May 18: Invoice sent', 'Jun 01: Email', 'Jun 15: WhatsApp', 'Jul 01: VoiceIQ call', 'Jul 15: PTP captured', 'Jul 20: PTP BROKEN', 'Aug 01: Escalated to human review'] },
-  { id: 'INV-104', company: 'Nexgen Systems',    contact: 'Ankit Joshi',    amount: 6500000,  due_date: '2026-07-01', days_outstanding: 51, risk_tier: 'ORANGE', status: 'OUTSTANDING', timeline: ['Jul 01: Invoice sent', 'Jul 15: Email', 'Aug 01: Hinglish WhatsApp', 'Aug 10: VoiceIQ call scheduled'] },
-  { id: 'INV-105', company: 'BuildFast Inc',     contact: 'Siddharth Rao',  amount: 2500000,  due_date: '2026-08-10', days_outstanding: 11, risk_tier: 'GREEN',  status: 'OUTSTANDING', timeline: ['Aug 10: Invoice sent', 'Aug 14: Polite email reminder'] },
-  { id: 'INV-106', company: 'MediConnect',       contact: 'Deepa Pillai',   amount: 1750000,  due_date: '2026-07-25', days_outstanding: 27, risk_tier: 'YELLOW', status: 'PTP',         timeline: ['Jul 25: Invoice', 'Aug 05: WhatsApp', 'Aug 10: PTP: "Will pay today"', 'Aug 10: PAID — case closed'] },
-  { id: 'INV-107', company: 'CloudEdge Ltd',     contact: 'Vikram Nair',    amount: 9800000,  due_date: '2026-05-30', days_outstanding: 82, risk_tier: 'ORANGE', status: 'OUTSTANDING', timeline: ['May 30: Invoice', 'Jun 15: Email', 'Jul 01: WhatsApp (Hinglish)', 'Jul 20: VoiceIQ call - voicemail'] },
-  { id: 'INV-108', company: 'TechSpark',         contact: 'Meena Gupta',    amount: 3200000,  due_date: '2026-08-01', days_outstanding: 20, risk_tier: 'GREEN',  status: 'PAID',        timeline: ['Aug 01: Invoice', 'Aug 08: Reminder', 'Aug 15: Payment received ✓'] },
-];
-
-const RISK_CONFIG: Record<Invoice['risk_tier'], { label: string; cssClass: string }> = {
+const RISK_CONFIG: Record<string, { label: string; cssClass: string }> = {
   GREEN:  { label: '0-30 days',  cssClass: 'risk-green'  },
   YELLOW: { label: '31-60 days', cssClass: 'risk-yellow' },
   ORANGE: { label: '61-90 days', cssClass: 'risk-orange' },
@@ -49,13 +38,79 @@ const COL_COLORS: Record<Invoice['status'], string> = {
 
 export const Invoices: React.FC = () => {
   const [selected, setSelected] = useState<Invoice | null>(null);
+  const [invoices, setInvoices] = useState<Invoice[]>([]);
+  const [showAddForm, setShowAddForm] = useState(false);
+  const [newInvoice, setNewInvoice] = useState({ company_name: '', contact_email: '', contact_phone: '', amount: '', due_date: '' });
+
+  useEffect(() => {
+    const fetchInvoices = async () => {
+      const { data } = await supabase.from('b2b_invoices').select('*').order('created_at', { ascending: false });
+      if (data) {
+        const formatted = data.map(d => ({
+          id: d.id,
+          company: d.company_name,
+          contact: d.contact_email,
+          amount: d.amount,
+          due_date: d.due_date,
+          days_outstanding: Math.max(0, Math.floor((Date.now() - new Date(d.due_date).getTime()) / (1000 * 60 * 60 * 24))),
+          risk_tier: d.risk_tier || 'GREEN',
+          status: d.status || 'OUTSTANDING',
+          timeline: []
+        }));
+        setInvoices(formatted);
+      }
+    };
+    
+    fetchInvoices();
+    
+    const sub = supabase
+      .channel('invoices-channel')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'b2b_invoices' }, fetchInvoices)
+      .subscribe();
+      
+    return () => { supabase.removeChannel(sub); };
+  }, []);
+
+  const handleAddInvoice = async (e: React.FormEvent) => {
+    e.preventDefault();
+    await supabase.from('b2b_invoices').insert([{
+      company_name: newInvoice.company_name,
+      contact_email: newInvoice.contact_email,
+      contact_phone: newInvoice.contact_phone,
+      amount: parseInt(newInvoice.amount, 10),
+      due_date: newInvoice.due_date,
+      risk_tier: 'GREEN',
+      status: 'OUTSTANDING'
+    }]);
+    setShowAddForm(false);
+    setNewInvoice({ company_name: '', contact_email: '', contact_phone: '', amount: '', due_date: '' });
+  };
 
   return (
     <>
-      <Header
-        title="B2B Invoice Tracker"
-        subtitle="Receivables Pursuit Agent — risk-tiered kanban view"
-      />
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+        <Header title="B2B Invoice Tracker" subtitle="Receivables Pursuit Agent — live from Supabase" />
+        <button className="btn btn-primary btn-sm" onClick={() => setShowAddForm(true)}>
+          <Plus size={14} style={{ marginRight: '6px' }} /> Add Invoice
+        </button>
+      </div>
+
+      {showAddForm && (
+        <div className="panel" style={{ marginBottom: '20px', position: 'relative' }}>
+          <button style={{ position: 'absolute', top: '10px', right: '10px', background: 'transparent', border: 'none', color: 'var(--text-muted)', cursor: 'pointer' }} onClick={() => setShowAddForm(false)}>
+            <X size={16} />
+          </button>
+          <div style={{ fontSize: '14px', fontWeight: 700, marginBottom: '16px' }}>Create New B2B Invoice</div>
+          <form onSubmit={handleAddInvoice} style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+            <input required type="text" placeholder="Company Name" className="input-field" value={newInvoice.company_name} onChange={e => setNewInvoice({...newInvoice, company_name: e.target.value})} />
+            <input required type="email" placeholder="Contact Email" className="input-field" value={newInvoice.contact_email} onChange={e => setNewInvoice({...newInvoice, contact_email: e.target.value})} />
+            <input required type="text" placeholder="Contact Phone" className="input-field" value={newInvoice.contact_phone} onChange={e => setNewInvoice({...newInvoice, contact_phone: e.target.value})} />
+            <input required type="number" placeholder="Amount (paise)" className="input-field" value={newInvoice.amount} onChange={e => setNewInvoice({...newInvoice, amount: e.target.value})} />
+            <input required type="date" className="input-field" value={newInvoice.due_date} onChange={e => setNewInvoice({...newInvoice, due_date: e.target.value})} />
+            <button type="submit" className="btn btn-primary btn-sm">Submit</button>
+          </form>
+        </div>
+      )}
 
       {/* Legend */}
       <div style={{ display: 'flex', gap: '12px', marginBottom: '20px', flexWrap: 'wrap' }}>
@@ -70,7 +125,7 @@ export const Invoices: React.FC = () => {
         {/* Kanban board */}
         <div className="kanban-board" style={{ flex: 1 }}>
           {STATUS_COLS.map(status => {
-            const col = INVOICES.filter(inv => inv.status === status);
+            const col = invoices.filter(inv => inv.status === status);
             return (
               <div key={status} className="kanban-column">
                 <div className="kanban-col-header">
@@ -80,7 +135,7 @@ export const Invoices: React.FC = () => {
                   <div className="kanban-col-count">{col.length}</div>
                 </div>
                 {col.map(inv => {
-                  const risk = RISK_CONFIG[inv.risk_tier];
+                  const risk = RISK_CONFIG[inv.risk_tier] || RISK_CONFIG.GREEN;
                   return (
                     <div
                       key={inv.id}
@@ -90,7 +145,7 @@ export const Invoices: React.FC = () => {
                       style={{ borderLeftColor: COL_COLORS[status], borderLeftWidth: '3px' }}
                     >
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '6px' }}>
-                        <span className="text-mono" style={{ fontSize: '11px', color: 'var(--accent-bright)' }}>{inv.id}</span>
+                        <span className="text-mono" style={{ fontSize: '11px', color: 'var(--accent-bright)' }}>{inv.id.slice(0,8)}</span>
                         <span className={`badge ${risk.cssClass}`} style={{ fontSize: '9px' }}>{inv.risk_tier}</span>
                       </div>
                       <div style={{ fontWeight: 700, fontSize: '13px', color: 'var(--text-primary)', marginBottom: '2px' }}>{inv.company}</div>
@@ -117,13 +172,13 @@ export const Invoices: React.FC = () => {
           <div className="panel" style={{ width: '300px', flexShrink: 0 }}>
             <div style={{ marginBottom: '16px' }}>
               <div style={{ fontWeight: 700, fontSize: '16px', marginBottom: '4px' }}>{selected.company}</div>
-              <div style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>{selected.id} · {selected.contact}</div>
+              <div style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>{selected.id.slice(0,8)} · {selected.contact}</div>
             </div>
             <div style={{ fontFamily: 'var(--font-display)', fontSize: '22px', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '8px' }}>
               ₹{(selected.amount / 100).toLocaleString('en-IN')}
             </div>
             <div style={{ marginBottom: '16px', display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-              <span className={`badge ${RISK_CONFIG[selected.risk_tier].cssClass}`}>{selected.risk_tier}</span>
+              <span className={`badge ${RISK_CONFIG[selected.risk_tier]?.cssClass || 'badge-muted'}`}>{selected.risk_tier}</span>
               <span className="badge badge-muted">{selected.days_outstanding} days overdue</span>
             </div>
 
@@ -131,6 +186,7 @@ export const Invoices: React.FC = () => {
             <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '12px' }}>Recovery Timeline</div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              {selected.timeline.length === 0 && <div style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>No timeline events yet.</div>}
               {selected.timeline.map((item, i) => (
                 <div key={i} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
                   <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--accent)', marginTop: '6px', flexShrink: 0 }} />

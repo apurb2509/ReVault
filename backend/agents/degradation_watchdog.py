@@ -58,9 +58,25 @@ def _build_failure_summary(event) -> str:
 
 
 def _build_baseline_stub() -> str:
-    # In production this pulls real 24hr aggregates from the DB/TimescaleDB
-    return (
-        "24hr success rate across all methods: 94.2%\n"
-        "SBI UPI 24hr success rate: 91.5%\n"
-        "HDFC Card 24hr success rate: 96.8%"
-    )
+    from db.supabase_client import supabase
+    if not supabase:
+        return "Supabase client not initialized."
+    
+    try:
+        from datetime import datetime, timedelta
+        twenty_four_hours_ago = (datetime.utcnow() - timedelta(hours=24)).isoformat()
+        
+        res_captured = supabase.table("payment_events").select("id", count="exact").eq("event_type", "payment.captured").gte("received_at", twenty_four_hours_ago).execute()
+        res_failed = supabase.table("payment_events").select("id", count="exact").eq("event_type", "payment.failed").gte("received_at", twenty_four_hours_ago).execute()
+        
+        captured_count = res_captured.count or 0
+        failed_count = res_failed.count or 0
+        total = captured_count + failed_count
+        
+        overall_success_rate = (captured_count / total * 100) if total > 0 else 100.0
+        
+        return f"24hr success rate across all methods: {overall_success_rate:.1f}%\n(Real-time metrics from Supabase)"
+    except Exception as e:
+        import logging
+        logging.getLogger(__name__).error("Failed to fetch live baseline: %s", e)
+        return "Error fetching live baseline from DB."

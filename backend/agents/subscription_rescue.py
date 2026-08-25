@@ -65,8 +65,23 @@ async def _select_recovery_action(
             return {"module": "SUBSCRIPTION_RESCUE", "action": "RETRY_SCHEDULED", "delay_hours": 2, "cause": cause}
 
         case FailureCause.INSUFFICIENT_FUNDS:
+            historical_dates = []
+            from db.supabase_client import supabase
+            contact = customer.get("contact")
+            if supabase and contact:
+                try:
+                    res = supabase.table("payment_events").select("received_at")\
+                        .eq("event_type", "payment.captured")\
+                        .eq("raw_payload->payload->payment->entity->>contact", contact)\
+                        .execute()
+                    if res.data:
+                        from datetime import datetime
+                        historical_dates = [datetime.fromisoformat(row["received_at"]).date() for row in res.data]
+                except Exception as e:
+                    logger.error("Failed to fetch historical dates: %s", e)
+
             # Target salary day for retry — more likely to have funds
-            predicted_date = next_salary_date([])    # Pass real transaction dates in production
+            predicted_date = next_salary_date(historical_dates)
             date_str = predicted_date.isoformat() if predicted_date else "1st of next month"
             logger.info("Subscription %s: INSUFFICIENT_FUNDS — targeting salary day %s", subscription_id, date_str)
             return {

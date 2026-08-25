@@ -10,8 +10,9 @@ class Settings(BaseSettings):
     razorpay_key_secret: str
     razorpay_webhook_secret: str
 
-    # Gemini
+    # Gemini & OpenAI
     gemini_api_key: str
+    openai_api_key: str = ""
 
     # Database
     database_url: str
@@ -45,11 +46,9 @@ class Settings(BaseSettings):
     feature_voice_enabled: bool = True
     feature_email_enabled: bool = True
 
-    # Compliance hard limits (can be overridden per merchant in DB)
-    max_recovery_attempts: int = 3
-    cooling_period_hours: int = 24
-    contact_start_hour: int = 9    # 9 AM
-    contact_end_hour: int = 21     # 9 PM
+    # Supabase
+    supabase_url: str = ""
+    supabase_key: str = ""
 
     # Twilio Integration
     twilio_account_sid: str = ""
@@ -58,6 +57,7 @@ class Settings(BaseSettings):
     twilio_voice_number: str = ""
     your_personal_phone_number: str = ""
     ngrok_public_url: str = ""
+    startup_live_test: bool = False
 
     @property
     def is_production(self) -> bool:

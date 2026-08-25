@@ -2,339 +2,131 @@
 
 > **"Don't just find the leak. Stop it. Measure it. Win it back."**
 
-ReVault is an autonomous, multi-agent revenue recovery platform built for Razorpay merchants. It doesn't just alert you when payments fail — it detects the failure, diagnoses the root cause using AI, executes a compliant recovery action, and tracks whether real money was actually recovered. Every decision is logged. Every action is auditable. Every rupee matters.
-
-Built for the **Razorpay Buildathon 2026 — Track 3: AI Revenue Recovery**.
+ReVault is an autonomous, multi-agent revenue recovery platform. It doesn't just alert you when payments fail — it detects the failure, diagnoses the root cause using AI, executes a compliant recovery action, and tracks whether real money was actually recovered. Every decision is logged. Every action is auditable. Every rupee matters.
 
 ---
 
-## What Problem Does This Solve?
+## 🛑 The 7 Revenue Problems & How ReVault Solves Them
 
-Razorpay processes 500M+ transactions a month. A significant portion of that revenue never makes it through — failed payments, abandoned checkouts, halted subscriptions, overdue B2B invoices, and broken payment promises quietly drain merchant revenue every day.
-
-The existing tools either tell you *something failed* (but not why), or retry blindly on a fixed schedule (without adapting to the root cause). Nobody has built a single system that addresses all these failure modes intelligently, in one place, with a full audit trail.
-
-**ReVault does.**
-
----
-
-## The Seven Modules
-
-| Module | What It Does |
+| The Revenue Leak (Problem) | The ReVault AI Solution (Module) |
 |---|---|
-| **1. Payment Degradation Watchdog** | Detects real-time payment success rate drops per bank/method, runs AI root-cause analysis, pushes merchant advisories |
-| **2. Abandonment Hunter Agent** | Finds orders that were created but never paid, runs a tiered WhatsApp/SMS recovery sequence |
-| **3. Subscription Rescue Agent** | Classifies subscription failures before the native T+1 retry fires, picks the right recovery strategy per cause |
-| **4. B2B Receivables Pursuit Agent** | Ages outstanding invoices, scores risk, and runs a multi-touch recovery sequence (email → WhatsApp → voice → escalation) |
-| **5. Intelligent Mandate Retry Sequencer** | Goes beyond fixed-schedule retries — dynamically re-classifies failure cause on every retry and switches rails (UPI → card → payment link) |
-| **6. VoiceIQ Recovery Agent** | Generates personalized Hinglish voice scripts via Gemini and gTTS, plays them in the dashboard, tracks call outcomes |
-| **7. Promise-to-Pay Commitment Engine** | Extracts payment commitments from customer replies ("I'll pay Friday"), monitors the promise, and escalates immediately on a broken promise |
+| **1. Unnoticed Systemic Outages:** Bank infrastructure goes down, causing hundreds of payments to fail silently before merchants realize it. | **Payment Degradation Watchdog:** Detects real-time payment success rate drops per bank/method, runs AI root-cause analysis, and pushes merchant advisories instantly. |
+| **2. High-Intent Drop-offs:** Users add items to cart, initiate checkout, but abandon it midway due to friction. | **Abandonment Hunter Agent:** Finds created but unpaid orders, waiting for a smart interval before running a tiered WhatsApp/SMS recovery sequence. |
+| **3. Blind Subscription Retries:** Subscriptions retry blindly on a T+1 schedule regardless of why it failed (e.g. retrying an expired card is pointless). | **Subscription Rescue Agent:** Classifies subscription failures *before* the native retry fires, picking the exact right recovery strategy per cause (e.g. asking for a new card instead of retrying). |
+| **4. Overdue B2B Invoices:** Following up on unpaid B2B invoices is highly manual, awkward, and prone to human delay. | **B2B Receivables Pursuit Agent:** Ages outstanding invoices, scores risk, and runs a multi-touch autonomous recovery sequence (email → WhatsApp → voice → human escalation). |
+| **5. Rigid Mandate Rails:** Failed UPI mandates keep retrying on UPI, even if the user's UPI app is temporarily blocked. | **Intelligent Mandate Retry Sequencer:** Dynamically re-classifies the failure cause on every retry and switches rails (e.g., failing on UPI? Send a card payment link). |
+| **6. Generic SMS Reminders:** Text messages are ignored. Personal touch is lost at scale. | **VoiceIQ Recovery Agent:** Generates highly personalized, context-aware Hinglish voice scripts via LLMs, synthesizes them to human voice, and places the call. |
+| **7. Broken Payment Promises:** A user replies "I'll pay on Friday", but nobody tracks it to hold them accountable. | **Promise-to-Pay (PTP) Engine:** Uses OpenAI NLP to extract exact dates from natural customer replies, monitors the promise, and escalates immediately if broken. |
 
 ---
 
-## Architecture
+## 🏗️ Architecture & Data Flow (Real-Time Sequence)
 
-```
-INGESTION LAYER
-  Razorpay Webhooks  →  Polling Scheduler  →  Manual Batch Upload
-          │
-EVENT PROCESSING  (Apache Kafka)
-  Dedup  →  Priority Queue  →  Rate Limiter  →  Compliance Filter
-          │
-LANGGRAPH AGENT ORCHESTRATOR  (Python / FastAPI)
-  Module 1: Degradation Watchdog     Module 2: Abandonment Hunter
-  Module 3: Subscription Rescue      Module 4: B2B Receivables
-  Module 5: Mandate Retry            Module 6: VoiceIQ Agent
-  Module 7: PTP Tracker
-  Shared: Gemini 1.5 Flash  │  Compliance Engine  │  Audit Logger
-          │
-ACTION EXECUTION LAYER
-  Razorpay Payment Links API  │  WhatsApp Business API  │  gTTS Voice
-  Razorpay Subscriptions API  │  SendGrid Email
-          │
-PERSISTENCE & ANALYTICS
-  PostgreSQL (audit trail, events, PTP records)
-  Redis (retry state machine, dedup, cache)
-          │
-OPERATOR CONTROL PLANE  (React 18 + TypeScript)
-  Real-time WebSocket Feed  │  HITL Approval Queue  │  Batch Report
-  Agent Thought Traces  │  Voice Replay Center  │  Config Panel
+Below is the real-time data flow sequence chart mapping how an event flows from Razorpay through ReVault's AI agents.
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant RZP as Razorpay
+    participant GO as API Gateway (Go)
+    participant K as Apache Kafka
+    participant W as FastApi Orchestrator
+    participant AI as LangGraph Agents
+    participant C as Compliance Engine
+    participant DB as Supabase
+    participant UI as React Dashboard
+
+    RZP->>GO: Webhook (e.g. payment.failed)
+    GO->>GO: Verify Signature & Idempotency
+    GO->>K: Publish Normalized Event
+    K->>W: Consume Event
+    W->>AI: Trigger Agent Graph State Machine
+    AI->>AI: LLM Root Cause Analysis
+    AI->>C: Propose Recovery Action (e.g. WhatsApp)
+    C->>DB: Check hard rules (Time limits, opt-outs)
+    
+    alt Action Allowed by Rules
+        C-->>AI: Approved
+        AI->>RZP: Execute Recovery (e.g. Send Payment Link)
+        AI->>DB: Log Action & AI Reasoning
+        DB-->>UI: Real-Time UI Update
+    else Action Blocked
+        C-->>AI: Denied (e.g. After 9 PM TRAI Rule)
+        AI->>DB: Log Compliance Block
+        DB-->>UI: Alert Dashboard
+    end
 ```
 
-The ingestion layer is a **Go** service — high-throughput, signature-validated, idempotent. It publishes normalized events to **Kafka**. The Python **FastAPI** service runs the LangGraph agent graph. All agent actions pass through a deterministic **Compliance Engine** before execution — the LLM recommends, the rules decide.
+The ingestion layer is high-throughput and idempotent. All agent actions must pass through a deterministic **Compliance Engine** before execution — *the LLM recommends, but the hard-coded rules decide.*
 
 ---
 
-## Tech Stack
+## 💻 Tech Stack & Why We Chose It
 
-### Backend
-| Technology | Role |
-|---|---|
-| Go (Golang) 1.25.0 | Microservices Core (API gateway, webhook handler, fast ingress) |
-| Python 3.12 + FastAPI | Agent Orchestration Server |
-| LangGraph 0.2+ | Multi-agent orchestration for Gemini LLM logic |
-| Node.js | WhatsApp & notification workers |
-| Apache Kafka (Upstash free tier) | Primary event bus |
-| Redis (Upstash free tier) | Retry state machine, dedup, rate limiting |
-| PostgreSQL (Supabase free tier) | Transactional DB, audit trail |
+### Backend & Orchestration
+| Technology | Role | Why We Chose It |
+|---|---|---|
+| **Python 3.12 + FastAPI** | Agent Orchestration Server | Python is the undisputed king of AI integration, and FastAPI provides unmatched async performance for heavy API loads. |
+| **LangGraph** | Multi-agent state machine | Standard LangChain chains are too linear. LangGraph allows cyclical, stateful, multi-step agent reasoning workflows. |
+| **Go (Golang)** | API Gateway / Ingress | Go handles raw concurrent webhook ingress far more efficiently than Python, ensuring we never drop an event. |
 
-### AI / LLM
-| Technology | Role |
-|---|---|
-| Google Gemini 1.5 Flash | Root cause analysis, script generation, NLP PTP extraction |
-| Gemini 1.5 Pro | Complex reasoning fallback |
-| gTTS | Free voice synthesis |
-| ElevenLabs (free tier) | Higher-quality Hinglish voice (10k chars/month) |
+### AI / NLP Models
+| Technology | Role | Why We Chose It |
+|---|---|---|
+| **Google Gemini 1.5 Flash** | Core Reasoning Engine | Lightning fast for root-cause analysis, script generation, and decision making with high accuracy. |
+| **OpenAI (gpt-4o-mini)** | PTP Tracker NLP | Specifically chosen for the PTP tracker because OpenAI's JSON Structured Outputs are flawless for strict date extraction. |
+| **ElevenLabs / gTTS** | Voice Synthesis | ElevenLabs provides ultra-realistic Hinglish accents. gTTS acts as a reliable, free fallback. |
+
+### Data & Infrastructure
+| Technology | Role | Why We Chose It |
+|---|---|---|
+| **Apache Kafka (Upstash)** | Event Bus | Decouples webhook ingestion from slow AI processing, ensuring durability under massive traffic spikes. |
+| **PostgreSQL (Supabase)** | Transactional DB | Supabase provides Realtime WebSockets out-of-the-box, allowing the frontend to react to DB writes instantly. |
+| **Redis (Upstash)** | Dedup & Caching | Lightning fast idempotency locks and pre-seeded opt-out checks before hitting the DB. |
 
 ### Frontend
-| Technology | Role |
-|---|---|
-| React 18 + TypeScript | Operator dashboard |
-| Redux Toolkit + RTK Query | State management + API layer |
-| Recharts | Analytics and recovery charts |
-| TanStack Table | Batch report tables |
-| Sass | Styling |
-| Socket.io-client | Real-time WebSocket event feed |
-
-### Infrastructure
-| Technology | Role |
-|---|---|
-| Docker + Docker Compose | Local dev environment |
-| GitHub Actions | CI/CD |
-| Render.com (free) | Backend hosting |
-| Vercel (free) | Frontend hosting |
-| Supabase (free) | Managed PostgreSQL |
-| Upstash (free) | Managed Kafka + Redis |
-
-**Total infrastructure cost: ₹0** — every tool runs on a genuinely free, no-card-required tier.
+| Technology | Role | Why We Chose It |
+|---|---|---|
+| **React 18 + Vite** | Dashboard UI | Vite provides instantaneous HMR, and React offers the best ecosystem for complex admin dashboards. |
+| **Redux Toolkit** | State Management | RTK Query effortlessly caches and syncs the massive amounts of batch reporting data. |
 
 ---
 
-## Repository Structure
+## ⚙️ Getting Started (Simplified)
 
-```
-revault/
-├── backend/
-│   ├── main.py                       # FastAPI app entry point, WebSocket hub
-│   ├── config.py                     # Env vars, feature flags
-│   │
-│   ├── agents/                       # LangGraph agent nodes
-│   │   ├── graph.py                  # Master LangGraph state machine
-│   │   ├── degradation_watchdog.py   # Module 1
-│   │   ├── abandonment_hunter.py     # Module 2
-│   │   ├── subscription_rescue.py    # Module 3
-│   │   ├── receivables_pursuit.py    # Module 4
-│   │   ├── mandate_sequencer.py      # Module 5
-│   │   ├── voice_agent.py            # Module 6
-│   │   └── ptp_tracker.py            # Module 7
-│   │
-│   ├── tools/                        # Agent tools (Razorpay, WhatsApp, voice, email)
-│   │   ├── razorpay_client.py
-│   │   ├── payment_links.py
-│   │   ├── whatsapp_sender.py
-│   │   ├── voice_synthesizer.py
-│   │   ├── email_sender.py
-│   │   └── gemini_client.py
-│   │
-│   ├── services/
-│   │   ├── webhook_handler.py        # Razorpay webhook verification + routing
-│   │   ├── compliance_engine.py      # Stopping rules, opt-out, time windows
-│   │   ├── audit_logger.py           # Immutable audit trail writer
-│   │   ├── retry_scheduler.py        # Redis-backed retry state machine
-│   │   ├── salary_predictor.py       # Salary day analysis for funds failures
-│   │   └── degradation_monitor.py    # APScheduler background polling job
-│   │
-│   ├── models/                       # Pydantic models
-│   ├── db/                           # SQLAlchemy engine, Alembic migrations, schema
-│   ├── routers/                      # FastAPI route handlers
-│   └── requirements.txt
-│
-├── frontend/
-│   ├── src/
-│   │   ├── components/               # React components per dashboard screen
-│   │   ├── pages/                    # Route-level pages
-│   │   ├── store/                    # Redux slices
-│   │   ├── hooks/                    # useWebSocket, useRecoveryMetrics
-│   │   └── App.tsx
-│   └── package.json
-│
-├── docker-compose.yml                # Postgres + Redis + Kafka + all services
-└── README.md
-```
-
----
-
-## Dashboard Screens
-
-**Recovery Command Center** — Live WebSocket feed of every agent action. Running total of recovered revenue. 7 agent status cards. HITL approval queue.
-
-**Agent Thought Traces** — Expand any recovery event to see the full Gemini reasoning chain: what data was analyzed, what was considered, what was decided, and why. The AI is never a black box.
-
-**Batch Simulation Report** — Table of all test records with input → classified cause → action taken → outcome → amount recovered. Filter by module or cause. Export to CSV.
-
-**B2B Invoice Tracker** — Kanban board: Outstanding → PTP Active → Paid → Escalated. Click any invoice to see the full recovery timeline.
-
-**PTP Dashboard** — Calendar view of all pending payment promises. Color-coded by urgency. Broken promises surface in the HITL queue instantly.
-
-**Voice Replay Center** — Library of all VoiceIQ calls. Hit play to hear the Hinglish audio in the browser. Shows the AI reasoning for tone and script selection.
-
----
-
-## Compliance Engine
-
-Every agent action passes through a deterministic compliance gate before execution. The LLM recommends — the rules decide. No automated action bypasses this.
-
-**Hard stopping rules (non-negotiable):**
-1. Max 3 recovery attempts per failed payment event
-2. 24-hour cooling period between contacts per customer
-3. No contacts between 9 PM – 9 AM (TRAI DLT compliance)
-4. Fraud-flagged payments → immediate human escalation, zero auto-action
-5. Active dispute → freeze all recovery actions
-6. Customer opt-out → permanent removal from all automated flows
-7. Chargeback initiated → compliance hold, no contact
-
-"Recovered" is only counted after a real `payment.captured` webhook is observed — never on link creation or message delivery alone. This is enforced at code level.
-
----
-
-## Getting Started
+We have consolidated the entire architecture into a master orchestrator script. 
 
 ### Prerequisites
-- Docker and Docker Compose
-- Python 3.12+
-- Node.js 20+
-- Go 1.22+
-- A Razorpay test-mode account (free, no card)
-- A Supabase project (free)
-- Upstash account for Kafka + Redis (free)
-- Google AI Studio API key for Gemini (free, 1500 req/day)
+1. Fill out your `backend/.env` with your API keys (Razorpay, Twilio, OpenAI, Supabase).
+2. Install Python 3.12+ and Node.js.
 
-### Local Setup
-
-**1. Clone and configure environment**
-```bash
-git clone https://github.com/your-username/revault.git
-cd revault
-# Create backend/.env and fill in your API keys
-
-```
-
-**2. Start infrastructure with Docker Compose**
-```bash
-docker-compose up -d
-```
-This starts PostgreSQL, Redis, Kafka, and Zookeeper locally.
-
-**3. Set up the backend**
-```bash
+### 1. Start the Unified Backend
+Close any running terminals. Open a new terminal in the `ReVault` root directory:
+```powershell
 cd backend
-python -m venv venv
-source venv/bin/activate          # Windows: venv\Scripts\activate
-pip install -r requirements.txt
-alembic upgrade head              # Run database migrations
-uvicorn main:app --reload --port 8000
+python start.py
 ```
+> **What this does:** This single script automatically boots **Ngrok** (and updates your `.env`), starts the **Uvicorn/FastAPI** server, and automatically runs the **Batch Runner** simulation in the background, streaming all logs perfectly into this one terminal!
 
-**4. Set up the frontend**
-```bash
+### 2. Start the Frontend
+Open a second terminal:
+```powershell
 cd frontend
-npm install
 npm run dev
 ```
 
-Open `http://localhost:5173` for the dashboard and `http://localhost:8000/docs` for the FastAPI Swagger UI.
-
-### Environment Variables
-
-Create `backend/.env` from the example file. Key variables:
-
-```env
-# Razorpay (test mode — no real money)
-RAZORPAY_KEY_ID=rzp_test_...
-RAZORPAY_KEY_SECRET=...
-RAZORPAY_WEBHOOK_SECRET=...
-
-# Google Gemini
-GEMINI_API_KEY=...
-
-# Database (Supabase or local Docker Postgres)
-DATABASE_URL=postgresql+asyncpg://user:pass@localhost:5432/revault
-
-# Redis (Upstash or local Docker Redis)
-REDIS_URL=redis://localhost:6379
-
-# Kafka (Upstash or local Docker Kafka)
-KAFKA_BOOTSTRAP_SERVERS=localhost:9092
-
-# WhatsApp Business Cloud API
-WHATSAPP_ACCESS_TOKEN=...
-WHATSAPP_PHONE_NUMBER_ID=...
-
-# SendGrid
-SENDGRID_API_KEY=...
-
-# ElevenLabs (optional — gTTS is the free fallback)
-ELEVENLABS_API_KEY=...
-```
+Open `http://localhost:5173` to view the live dashboard!
 
 ---
 
-## Running the Simulation
+## 🛡️ The Compliance Engine
 
-ReVault ships with a synthetic dataset of 355 records covering every failure type — insufficient funds, bank infrastructure down, expired cards, UPI limit exceeded, abandoned checkouts, halted subscriptions, and overdue B2B invoices.
-
-Terminal 1: (Backend)
-cd e:\ReVault\backend
-venv\Scripts\uvicorn.exe main:app --reload --port 8000
-
-Terminal 2: (API Gateway)
-cd e:\ReVault\services\api-gateway
-go run main.go
-
-Terminal 3: (Frontend)
-cd e:\ReVault\frontend
-npm run dev
-
-Terminal 4: (Batch Simulation)
-cd e:\ReVault\backend
-venv\Scripts\python.exe batch\batch_runner.py
-
-The batch report shows recovered revenue per module, classifier accuracy, false positive rate, compliance violations (should be zero), and correct escalations.
+Every agent action passes through a deterministic compliance gate. No automated action bypasses this.
+1. Max 3 recovery attempts per failed payment.
+2. 24-hour cooling period between contacts.
+3. No contacts between 9 PM – 9 AM IST (TRAI DLT compliance).
+4. Fraud-flagged payments → immediate freeze.
+5. Customer opt-out → permanent removal.
 
 ---
-
-## External APIs Used
-
-| API | Modules | Free Tier |
-|---|---|---|
-| Razorpay Test Mode | All | Unlimited |
-| Meta WhatsApp Business | 2, 3, 4, 6 | 1,000 conversations/month |
-| SendGrid | All email | 100 emails/day |
-| ElevenLabs | Module 6 | 10,000 chars/month |
-| Google AI Studio (Gemini) | All AI | 1,500 requests/day |
-
----
-
-## A Note on Razorpay's Existing Products
-
-Razorpay already ships **UPI Autopay with Intelligent Revenue-Protect**, which improves mandate success rates and recovers failed debits. Two of ReVault's modules (Subscription Rescue and Mandate Retry Sequencer) work in a related space.
-
-The distinction is intentional and worth stating clearly: Razorpay's Revenue-Protect operates at the mandate level. ReVault adds a **cross-channel, root-cause-aware layer on top** — Hinglish voice recovery, Promise-to-Pay tracking, B2B receivables pursuit, and a full reasoning trail attached to every decision — which Revenue-Protect does not address.
-
----
-
-## Contributing
-
-This project was built for a 48-hour hackathon. If you're picking it up after the event, the code follows production-oriented engineering principles throughout — clean separation of concerns, explicit error handling, idempotent event processing, atomic financial state transitions, and a full audit trail.
-
-Start with `backend/services/compliance_engine.py` to understand the safety model, then `backend/agents/graph.py` to understand how the LangGraph state machine is wired.
-
----
-
-## License
-
-MIT
-
----
-
 *ReVault — Every rupee tracked. Every decision explained. Every action auditable.*

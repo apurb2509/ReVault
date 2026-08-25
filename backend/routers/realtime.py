@@ -30,9 +30,25 @@ async def process_realtime_event(req: TriggerEventRequest, db: AsyncSession):
         elif req.failure_cause == "HIGH_VALUE_DEFAULT":
             # Direct to Voice Agent
             from agents.voice_agent import VoiceAgent
+            import os
             agent = VoiceAgent()
             script_data = await agent.generate_script(req.customer_name, req.amount, "High value payment failure")
+            
+            audio_path = f"voice_temp_{req.phone_number}.mp3"
+            await agent.synthesize_audio(script_data["script"], audio_path)
+            
+            await agent.save_voice_call_record(
+                customer_id=req.phone_number,
+                event_id="",
+                module="VOICEIQ_AGENT",
+                script_data=script_data,
+                audio_path=audio_path
+            )
+            
             await agent.initiate_call(req.customer_name, req.phone_number, script_data["script"])
+            if os.path.exists(audio_path):
+                os.remove(audio_path)
+                
             logger.info("Live Outbound Call triggered for High Value Default.")
             
 @router.post("/trigger")
