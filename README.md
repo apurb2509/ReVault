@@ -24,38 +24,7 @@ ReVault is an autonomous, multi-agent revenue recovery platform. It doesn't just
 
 Below is the real-time data flow sequence chart mapping how an event flows from Razorpay through ReVault's AI agents.
 
-```mermaid
-sequenceDiagram
-    autonumber
-    participant RZP as Razorpay
-    participant GO as API Gateway (Go)
-    participant K as Apache Kafka
-    participant W as FastApi Orchestrator
-    participant AI as LangGraph Agents
-    participant C as Compliance Engine
-    participant DB as Supabase
-    participant UI as React Dashboard
-
-    RZP->>GO: Webhook (e.g. payment.failed)
-    GO->>GO: Verify Signature & Idempotency
-    GO->>K: Publish Normalized Event
-    K->>W: Consume Event
-    W->>AI: Trigger Agent Graph State Machine
-    AI->>AI: LLM Root Cause Analysis
-    AI->>C: Propose Recovery Action (e.g. WhatsApp)
-    C->>DB: Check hard rules (Time limits, opt-outs)
-    
-    alt Action Allowed by Rules
-        C-->>AI: Approved
-        AI->>RZP: Execute Recovery (e.g. Send Payment Link)
-        AI->>DB: Log Action & AI Reasoning
-        DB-->>UI: Real-Time UI Update
-    else Action Blocked
-        C-->>AI: Denied (e.g. After 9 PM TRAI Rule)
-        AI->>DB: Log Compliance Block
-        DB-->>UI: Alert Dashboard
-    end
-```
+![Architecture & Data Flow](frontend/architecture_diagram/architecture.gif)
 
 The ingestion layer is high-throughput and idempotent. All agent actions must pass through a deterministic **Compliance Engine** before execution — *the LLM recommends, but the hard-coded rules decide.*
 
