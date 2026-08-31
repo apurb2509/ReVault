@@ -5,10 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   build: {
-    // Recharts needs react-is at runtime; rolldown treats it as missing unless declared
-    rolldownOptions: {
-      external: ['react-is'],
-    },
+    // Removed external: ['react-is'] because it causes browser ESM crash
     chunkSizeWarningLimit: 1000,
   },
   optimizeDeps: {
