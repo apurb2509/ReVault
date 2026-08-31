@@ -228,15 +228,15 @@ def create_gif():
     
     for i in range(len(steps)):
         frame = create_base_frame(i)
-        # Hold each frame slightly
-        for _ in range(4):  # 4 * 100ms = 400ms per step
+        # Hold each frame longer to allow reading
+        for _ in range(12):  # 12 * 150ms = 1800ms per step
             frames.append(frame)
             
     # Hold last frame longer
     for _ in range(30):
         frames.append(frames[-1])
 
-    frames[0].save('architecture.gif', save_all=True, append_images=frames[1:], optimize=False, duration=100, loop=0)
+    frames[0].save('architecture.gif', save_all=True, append_images=frames[1:], optimize=False, duration=150, loop=0)
     print("GIF created successfully at architecture.gif")
 
 if __name__ == "__main__":
