@@ -1,0 +1,47 @@
+FROM golang:1.22-alpine AS go-builder
+WORKDIR /app
+
+# Copy the go services directory
+COPY services/ ./services/
+WORKDIR /app/services
+
+# Download dependencies
+RUN go mod download
+
+# Build Go microservices
+RUN go build -o /api-gateway ./api-gateway/main.go
+RUN go build -o /audit-svc ./audit-svc/main.go
+RUN go build -o /payment-link-svc ./payment-link-svc/main.go
+
+# --- Stage 2: Final Image ---
+FROM python:3.12-slim
+WORKDIR /app
+
+# System dependencies (same as original backend Dockerfile + bash)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc \
+    libpq-dev \
+    ffmpeg \
+    bash \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy backend requirements and install
+COPY backend/requirements.txt ./backend/
+RUN pip install --no-cache-dir -r backend/requirements.txt
+
+# Copy Python source code
+COPY backend/ ./backend/
+
+# Copy Go binaries from builder stage
+COPY --from=go-builder /api-gateway /usr/local/bin/api-gateway
+COPY --from=go-builder /audit-svc /usr/local/bin/audit-svc
+COPY --from=go-builder /payment-link-svc /usr/local/bin/payment-link-svc
+
+# Copy the startup script
+COPY deployments/start_all.sh ./
+RUN chmod +x start_all.sh
+
+# The cloud provider usually injects the PORT env var, but we expose 8080 as a hint
+EXPOSE 8080
+
+CMD ["./start_all.sh"]
