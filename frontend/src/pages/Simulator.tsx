@@ -126,7 +126,7 @@ export const Simulator: React.FC = () => {
       // On the action step, call the real backend
       if (step.id === 'action') {
         try {
-          const res = await fetch(${import.meta.env.VITE_API_URL || 'http://localhost:8000'}/api/realtime/trigger', {
+          const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8000'}/api/realtime/trigger`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

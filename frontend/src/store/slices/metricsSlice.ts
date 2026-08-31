@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, type PayloadAction } from '@reduxjs/toolkit';
 
 export const fetchMetrics = createAsyncThunk('metrics/fetchMetrics', async () => {
-  const response = await fetch(${import.meta.env.VITE_API_URL || 'http://localhost:8000'}/api/metrics');
+  const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8000'}/api/metrics`);
   if (!response.ok) throw new Error('Failed to fetch metrics');
   return response.json();
 });
