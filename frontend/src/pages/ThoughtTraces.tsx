@@ -10,11 +10,17 @@ export const ThoughtTraces: React.FC = () => {
 
   useEffect(() => {
     const fetchTraces = async () => {
-      const { data } = await supabase.from('audit_trail').select('*').order('timestamp', { ascending: false }).limit(50);
-      if (data) setTraces(data);
+      try {
+        const response = await fetch('http://127.0.0.1:8000/api/audit-trail');
+        const data = await response.json();
+        if (data) setTraces(data);
+      } catch (err) {
+        console.error('Failed to fetch traces:', err);
+      }
     };
     fetchTraces();
 
+    // Still use Supabase for realtime notifications to refresh the list
     const sub = supabase.channel('thought-traces')
       .on('postgres_changes', { event: '*', schema: 'public', table: 'audit_trail' }, fetchTraces)
       .subscribe();

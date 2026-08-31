@@ -70,9 +70,35 @@ export const useSupabaseRealtime = () => {
       )
       .subscribe();
 
+    // Subscribe to ptp_records
+    const ptpRecordsSub = supabase
+      .channel('ptp_records_changes')
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'ptp_records' },
+        () => {
+          dispatch(fetchMetrics());
+        }
+      )
+      .subscribe();
+
+    // Subscribe to b2b_invoices
+    const b2bInvoicesSub = supabase
+      .channel('b2b_invoices_changes')
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'b2b_invoices' },
+        () => {
+          dispatch(fetchMetrics());
+        }
+      )
+      .subscribe();
+
     return () => {
       supabase?.removeChannel(paymentEventsSub);
       supabase?.removeChannel(recoveryActionsSub);
+      supabase?.removeChannel(ptpRecordsSub);
+      supabase?.removeChannel(b2bInvoicesSub);
     };
   }, [dispatch]);
 };

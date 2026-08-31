@@ -4,7 +4,7 @@ import { MetricsGrid } from '../components/dashboard/MetricsGrid';
 import { AgentStatusPanel } from '../components/dashboard/AgentStatusPanel';
 import { LiveEventFeed } from '../components/dashboard/LiveEventFeed';
 import { HumanInTheLoopQueue } from '../components/dashboard/HumanInTheLoopQueue';
-import { RecoveryTimelineChart, ModuleBreakdownChart } from '../components/Analytics/RecoveryChart';
+import { RecoveryTimelineChart, ModuleBreakdownChart, FailureBreakdownChart } from '../components/Analytics/RecoveryChart';
 import { BatchReport } from '../components/BatchReport/BatchReport';
 import { VoicePlayer } from '../components/VoicePlayer/VoicePlayer';
 import { B2BKanban } from '../components/dashboard/B2BKanban';
@@ -66,9 +66,10 @@ export const Dashboard: React.FC = () => {
       </div>
 
       {/* Charts row */}
-      <div className="grid-2">
+      <div className="grid-3" style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr 1fr', gap: '24px', marginBottom: '24px' }}>
         <RecoveryTimelineChart />
         <ModuleBreakdownChart />
+        <FailureBreakdownChart />
       </div>
 
       {/* B2B Receivables Kanban */}

@@ -37,6 +37,8 @@ def main():
     print("  Starting ReVault Unified Backend...     ")
     print("==========================================")
     
+    # No Docker needed; relies on managed Supabase/Redis configured in .env
+    
     # 1. Start Ngrok
     print("[SYSTEM] Launching Ngrok on port 8000...")
     ngrok_proc = subprocess.Popen(
@@ -83,8 +85,19 @@ def main():
     # Wait for Uvicorn to boot before starting batch runner
     time.sleep(3)
     
-    # 4. Start Batch Runner
-    print("[SYSTEM] Launching Batch Runner...")
+    # 4. Start Redis Worker Daemon
+    print("[SYSTEM] Launching Redis Worker Daemon...")
+    worker_proc = subprocess.Popen(
+        [venv_python, "services/redis_worker.py"],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT
+    )
+    
+    # Wait for the worker to connect to Redis
+    time.sleep(3)
+    
+    # 5. Automatically trigger the Batch Producer (simulate the 400 events)
+    print("[SYSTEM] Launching Batch Producer to inject 400 events...")
     batch_proc = subprocess.Popen(
         [venv_python, "batch/batch_runner.py"],
         stdout=subprocess.PIPE,
@@ -94,6 +107,7 @@ def main():
     # Stream logs
     threading.Thread(target=prefix_output, args=(ngrok_proc, "NGROK"), daemon=True).start()
     threading.Thread(target=prefix_output, args=(uvicorn_proc, "API  "), daemon=True).start()
+    threading.Thread(target=prefix_output, args=(worker_proc, "WORKER"), daemon=True).start()
     threading.Thread(target=prefix_output, args=(batch_proc, "BATCH"), daemon=True).start()
     
     try:
@@ -101,7 +115,11 @@ def main():
     except KeyboardInterrupt:
         print("\n[SYSTEM] Shutting down all processes...")
         uvicorn_proc.terminate()
-        batch_proc.terminate()
+        worker_proc.terminate()
+        try:
+            batch_proc.terminate()
+        except:
+            pass
         ngrok_proc.terminate()
 
 if __name__ == "__main__":

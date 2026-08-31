@@ -64,3 +64,44 @@ async def trigger_batch(background_tasks: BackgroundTasks) -> dict[str, str]:
 
     background_tasks.add_task(_run_batch)
     return {"status": "triggered", "message": "Batch run started. Poll /api/batch/history for results."}
+
+@router.get("/export-full")
+async def export_full_database(db: AsyncSession = Depends(get_db)):
+    import io
+    import csv
+    from fastapi.responses import StreamingResponse
+
+    query = """
+        SELECT 
+            p.id as event_id,
+            p.event_type,
+            p.amount,
+            p.failure_cause,
+            p.received_at,
+            r.module,
+            r.action_type,
+            r.outcome
+        FROM payment_events p
+        LEFT JOIN recovery_actions r ON p.id = r.event_id
+        ORDER BY p.received_at DESC
+        LIMIT 10000
+    """
+
+    result = await db.execute(text(query))
+    
+    output = io.StringIO()
+    writer = csv.writer(output)
+    writer.writerow([
+        "Event ID", "Event Type", "Amount", "Failure Cause", 
+        "Received At", "Recovery Module", "Action Type", "Outcome"
+    ])
+    
+    for row in result:
+        writer.writerow(row)
+        
+    output.seek(0)
+    return StreamingResponse(
+        iter([output.getvalue()]),
+        media_type="text/csv",
+        headers={"Content-Disposition": "attachment; filename=revault_full_database.csv"}
+    )
