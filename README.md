@@ -30,31 +30,31 @@ The ingestion layer is high-throughput and idempotent. All agent actions must pa
 
 ---
 
-## 💻 Tech Stack & Why We Chose It
+## 💻 Tech Stack & Why I Preferred It
 
 ### Backend & Orchestration
-| Technology | Role | Why We Chose It |
+| Technology | Role | Why I Preferred It |
 |---|---|---|
 | **Python 3.12 + FastAPI** | Agent Orchestration Server | Python is the undisputed king of AI integration, and FastAPI provides unmatched async performance for heavy API loads. |
 | **LangGraph** | Multi-agent state machine | Standard LangChain chains are too linear. LangGraph allows cyclical, stateful, multi-step agent reasoning workflows. |
 | **Go (Golang)** | API Gateway / Ingress | Go handles raw concurrent webhook ingress. It currently forwards directly to the Python FastAPI backend via HTTP. |
 
 ### AI / NLP Models
-| Technology | Role | Why We Chose It |
+| Technology | Role | Why I Preferred It |
 |---|---|---|
 | **Google Gemini 1.5 Flash** | Core Reasoning Engine | Lightning fast for root-cause analysis, script generation, and decision making with high accuracy. |
 | **OpenAI (gpt-4o-mini)** | PTP Tracker NLP | Specifically chosen for the PTP tracker because OpenAI's JSON Structured Outputs are flawless for strict date extraction. |
 | **ElevenLabs / gTTS** | Voice Synthesis | ElevenLabs provides ultra-realistic Hinglish accents. gTTS acts as a reliable, free fallback. |
 
 ### Data & Infrastructure
-| Technology | Role | Why We Chose It |
+| Technology | Role | Why I Preferred It |
 |---|---|---|
 | **Redis Queue Worker** | Event Bus & Background Worker | Instead of Kafka, the app uses Redis queues (`aioredis`) to decouple webhook ingestion from slow AI processing, processed by a background worker daemon. |
 | **PostgreSQL (Supabase)** | Transactional DB | Supabase provides Realtime WebSockets out-of-the-box, allowing the frontend to react to DB writes instantly. |
 | **Redis** | Dedup & Caching | Lightning fast idempotency locks, pre-seeded opt-out checks, and event queuing before hitting the DB. |
 
 ### Frontend
-| Technology | Role | Why We Chose It |
+| Technology | Role | Why I Preferred It |
 |---|---|---|
 | **React 19 + Vite** | Dashboard UI | Vite provides instantaneous HMR, and React offers the best ecosystem for complex admin dashboards. |
 | **Redux Toolkit** | State Management | Standard Redux Toolkit slices (`configureStore`) are used to manage feed, metrics, agents, and simulation state. |
@@ -63,7 +63,7 @@ The ingestion layer is high-throughput and idempotent. All agent actions must pa
 
 ## ⚙️ Getting Started (Simplified)
 
-We have consolidated the entire architecture into a master orchestrator script. 
+I have consolidated the entire architecture into a master orchestrator script. 
 
 ### Prerequisites
 1. Fill out your `backend/.env` with your API keys (Razorpay, Twilio, OpenAI, Supabase).
