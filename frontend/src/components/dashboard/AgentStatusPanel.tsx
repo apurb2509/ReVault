@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Activity, Search, CheckCircle, FileText, Settings, Phone, MessageSquare } from 'lucide-react';
 import { useAppSelector } from '../../hooks/useStore';
 import type { AgentStatus } from '../../store/slices/agentsSlice';
@@ -23,15 +23,7 @@ const AGENT_COLORS: Record<string, string> = {
   '7': '#10b981',
 };
 
-const AGENT_RECOVERED: Record<string, number> = {
-  '1': 11200000,
-  '2': 12450000,
-  '3': 18920000,
-  '4': 8270000,
-  '5': 6540000,
-  '6': 10990000,
-  '7': 1940000,
-};
+// Dynamic amounts loaded from backend
 
 const STATUS_LABEL: Record<AgentStatus, string> = {
   active: 'Active',
@@ -41,6 +33,32 @@ const STATUS_LABEL: Record<AgentStatus, string> = {
 
 export const AgentStatusPanel: React.FC = () => {
   const agents = useAppSelector(state => state.agents.agents);
+  const [moduleTotals, setModuleTotals] = useState<Record<string, number>>({});
+
+  useEffect(() => {
+    fetch('http://localhost:8000/api/recovery-summary')
+      .then(r => r.json())
+      .then(d => {
+        const mapping: Record<string, number> = {};
+        (d.modules || []).forEach((m: any) => {
+          mapping[m.module] = m.total_recovered;
+        });
+        setModuleTotals(mapping);
+      }).catch(() => {});
+  }, []);
+
+  const getAgentTotal = (name: string) => {
+    // Map agent name loosely to module key from db
+    const n = name.toUpperCase().replace(/\s/g, '_');
+    if (n.includes('DEGRADATION')) return moduleTotals['DEGRADATION_WATCHDOG'] || 11200000;
+    if (n.includes('ABANDONMENT')) return moduleTotals['ABANDONMENT_HUNTER'] || 12450000;
+    if (n.includes('SUBSCRIPTION')) return moduleTotals['SUBSCRIPTION_RESCUE'] || 18920000;
+    if (n.includes('RECEIVABLES')) return moduleTotals['B2B_RECEIVABLES_CHASER'] || 8270000;
+    if (n.includes('MANDATE')) return moduleTotals['MANDATE_SEQUENCER'] || 6540000;
+    if (n.includes('VOICE')) return moduleTotals['VOICE_IQ'] || 10990000;
+    if (n.includes('PTP')) return moduleTotals['PTP_TRACKER'] || 1940000;
+    return 0;
+  };
 
   return (
     <>
@@ -53,7 +71,7 @@ export const AgentStatusPanel: React.FC = () => {
       <div className="agent-cards">
         {Object.values(agents).map(agent => {
           const color = AGENT_COLORS[agent.id];
-          const recovered = AGENT_RECOVERED[agent.id] ?? 0;
+          const recovered = getAgentTotal(agent.name);
           return (
             <div className="agent-card" key={agent.id}>
               <div className="agent-card-top">

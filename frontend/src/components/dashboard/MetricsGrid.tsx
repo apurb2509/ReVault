@@ -67,7 +67,7 @@ export const MetricsGrid: React.FC = () => {
       <MetricCard
         label="Recovered This Session"
         value={fmt(recoveredAmount)}
-        trend={{ label: '↑ 12% vs last 24h', up: true }}
+        trend={{ label: 'Session total', up: null }}
         icon={<DollarSign size={18} color="#10b981" />}
         accentColor="linear-gradient(135deg, #10b981, #06b6d4)"
         iconBg="rgba(16,185,129,0.12)"
@@ -76,7 +76,7 @@ export const MetricsGrid: React.FC = () => {
       <MetricCard
         label="At-Risk Revenue"
         value={fmt(atRiskRevenue)}
-        trend={{ label: '↓ 5% vs last 24h', up: false }}
+        trend={{ label: 'Total failed attempts', up: null }}
         icon={<AlertTriangle size={18} color="#ef4444" />}
         accentColor="linear-gradient(135deg, #ef4444, #f59e0b)"
         iconBg="rgba(239,68,68,0.12)"
@@ -84,7 +84,7 @@ export const MetricsGrid: React.FC = () => {
       <MetricCard
         label="Recovery Rate"
         value={`${recoveryRate.toFixed(1)}%`}
-        trend={{ label: '↑ 2.4% vs baseline', up: true }}
+        trend={{ label: 'Successful / At-Risk', up: null }}
         icon={<Target size={18} color="#3b82f6" />}
         accentColor="linear-gradient(135deg, #3b82f6, #8b5cf6)"
         iconBg="rgba(59,130,246,0.12)"

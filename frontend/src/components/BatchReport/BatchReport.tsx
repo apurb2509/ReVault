@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Activity, ShieldCheck, AlertCircle, FileText } from 'lucide-react';
+import { Activity } from 'lucide-react';
 
 export const BatchReport: React.FC = () => {
   const [runs, setRuns] = useState<any[]>([]);
@@ -17,6 +17,11 @@ export const BatchReport: React.FC = () => {
   if (loading) return <div style={{ padding: 20 }}>Loading batch history...</div>;
 
   const latest = runs[0];
+
+  const downloadCSV = (run: any) => {
+    // Export the entire database for analysis as requested
+    window.location.href = `http://localhost:8000/api/batch/export-full`;
+  };
 
   return (
     <div className="panel" style={{ marginTop: '24px' }}>
@@ -78,7 +83,10 @@ export const BatchReport: React.FC = () => {
                     {run.escalations_total > 0 ? ((run.escalations_correct / run.escalations_total) * 100).toFixed(0) : '0'}%
                   </td>
                   <td style={{ padding: '8px' }}>
-                    <button style={{ background: 'transparent', border: '1px solid var(--accent)', color: 'var(--accent)', padding: '4px 8px', borderRadius: '4px', cursor: 'pointer', fontSize: '11px' }}>
+                    <button 
+                      onClick={() => downloadCSV(run)}
+                      style={{ background: 'transparent', border: '1px solid var(--accent)', color: 'var(--accent)', padding: '4px 8px', borderRadius: '4px', cursor: 'pointer', fontSize: '11px' }}
+                    >
                       Export CSV
                     </button>
                   </td>

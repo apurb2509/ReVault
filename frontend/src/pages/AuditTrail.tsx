@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Shield, Lock, Search } from 'lucide-react';
+import { Lock, Search } from 'lucide-react';
 import { Header } from '../components/layout/Header';
 import { supabase } from '../lib/supabaseClient';
 
@@ -18,15 +18,19 @@ export const AuditTrail: React.FC = () => {
 
   useEffect(() => {
     const fetchAudit = async () => {
-      const { data } = await supabase.from('audit_trail').select('*').order('timestamp', { ascending: false }).limit(100);
-      if (data) setAudit(data);
+      try {
+        const response = await fetch('http://127.0.0.1:8000/api/audit-trail');
+        const data = await response.json();
+        if (data) setAudit(data);
+      } catch (err) {
+        console.error('Failed to fetch audit trail:', err);
+      }
     };
     fetchAudit();
 
+    // Keep supabase channel for realtime updates
     const sub = supabase.channel('audit-trail-page')
-      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'audit_trail' }, payload => {
-        setAudit(prev => [payload.new, ...prev].slice(0, 100));
-      })
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'audit_trail' }, fetchAudit)
       .subscribe();
       
     return () => { supabase.removeChannel(sub); };
@@ -37,7 +41,15 @@ export const AuditTrail: React.FC = () => {
   );
 
   const toggle = (id: string) => {
-    setExpanded(prev => { const n = new Set(prev); n.has(id) ? n.delete(id) : n.add(id); return n; });
+    setExpanded(prev => {
+      const n = new Set(prev);
+      if (n.has(id)) {
+        n.delete(id);
+      } else {
+        n.add(id);
+      }
+      return n;
+    });
   };
 
   return (

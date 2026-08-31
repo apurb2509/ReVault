@@ -12,6 +12,10 @@ import { PTPTracker } from './pages/PTPTracker';
 import { VoiceReplay } from './pages/VoiceReplay';
 import { AuditTrail } from './pages/AuditTrail';
 import { ConfigPanel } from './pages/ConfigPanel';
+import { Simulator } from './pages/Simulator';
+import { Campaigns } from './pages/Campaigns';
+import { RecoveryPortal } from './pages/RecoveryPortal';
+import { PitchGuide } from './pages/PitchGuide';
 import { useSupabaseRealtime } from './hooks/useSupabaseRealtime';
 
 /**
@@ -93,15 +97,18 @@ const Shell: React.FC = () => {
         {/* Main page content */}
         <main className="main-content" onClick={closeSidebarOnMobile}>
           <Routes>
-            <Route path="/"         element={<FirstVisitRedirect />} />
-            <Route path="/about"    element={<AboutReVault />} />
-            <Route path="/traces"   element={<ThoughtTraces />} />
-            <Route path="/batch"    element={<BatchReport />} />
-            <Route path="/invoices" element={<Invoices />} />
-            <Route path="/ptp"      element={<PTPTracker />} />
-            <Route path="/voice"    element={<VoiceReplay />} />
-            <Route path="/audit"    element={<AuditTrail />} />
-            <Route path="/settings" element={<ConfigPanel />} />
+            <Route path="/"          element={<FirstVisitRedirect />} />
+            <Route path="/about"     element={<AboutReVault />} />
+            <Route path="/traces"    element={<ThoughtTraces />} />
+            <Route path="/batch"     element={<BatchReport />} />
+            <Route path="/invoices"  element={<Invoices />} />
+            <Route path="/ptp"       element={<PTPTracker />} />
+            <Route path="/voice"     element={<VoiceReplay />} />
+            <Route path="/audit"     element={<AuditTrail />} />
+            <Route path="/settings"  element={<ConfigPanel />} />
+            <Route path="/simulator" element={<Simulator />} />
+            <Route path="/campaigns" element={<Campaigns />} />
+            <Route path="/pitch"     element={<PitchGuide />} />
             <Route path="*" element={
               <div style={{ padding: '48px 24px', textAlign: 'center', color: 'var(--text-muted)' }}>
                 Page not found — use the sidebar to navigate.
@@ -119,11 +126,19 @@ const App: React.FC = () => {
   useSupabaseRealtime();
   const location = useLocation();
 
-  // Landing is full-screen, no sidebar shell
+  // Landing & Recovery Portal are full-screen, no sidebar shell
   if (location.pathname === '/landing') {
     return (
       <Routes>
         <Route path="/landing" element={<Landing />} />
+      </Routes>
+    );
+  }
+
+  if (location.pathname === '/recovery') {
+    return (
+      <Routes>
+        <Route path="/recovery" element={<RecoveryPortal />} />
       </Routes>
     );
   }

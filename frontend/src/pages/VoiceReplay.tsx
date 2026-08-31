@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Play, Pause, Mic, PhoneCall, PhoneMissed, Voicemail } from 'lucide-react';
+import { Play, Pause, Mic } from 'lucide-react';
 import { Header } from '../components/layout/Header';
-import { supabase } from '../lib/supabaseClient';
 
 export const VoiceReplay: React.FC = () => {
   const [calls, setCalls] = useState<any[]>([]);
@@ -10,16 +9,18 @@ export const VoiceReplay: React.FC = () => {
   
   useEffect(() => {
     const fetchCalls = async () => {
-      const { data } = await supabase.from('voice_calls').select('*').order('created_at', { ascending: false });
-      if (data) setCalls(data);
+      try {
+        const response = await fetch('http://127.0.0.1:8000/api/voice-calls');
+        const data = await response.json();
+        if (data) setCalls(data);
+      } catch (err) {
+        console.error('Failed to fetch voice calls:', err);
+      }
     };
     fetchCalls();
 
-    const sub = supabase.channel('voice-replay')
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'voice_calls' }, fetchCalls)
-      .subscribe();
-      
-    return () => { supabase.removeChannel(sub); };
+    // Since voice_calls table doesn't exist, realtime updates are disabled for this view
+    // Or we could listen to recovery_actions
   }, []);
 
   const togglePlay = (id: string, url: string) => {

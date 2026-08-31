@@ -3,20 +3,45 @@ import { NavLink } from 'react-router-dom';
 import {
   Zap, Info, LayoutDashboard, Brain, BarChart3,
   FileText, CalendarCheck, Mic, Settings, ChevronLeft,
+  FlaskConical, Megaphone, Link2, Presentation, ShieldCheck,
 } from 'lucide-react';
 import { useAppSelector } from '../../hooks/useStore';
 
-const NAV_ITEMS = [
-  { to: '/about',    icon: Info,           label: 'About ReVault',    badge: null },
-  { to: '/',         icon: LayoutDashboard, label: 'Command Center',   badge: null },
-  { to: '/traces',   icon: Brain,           label: 'Agent Traces',     badge: null },
-  { to: '/batch',    icon: BarChart3,       label: 'Batch Report',     badge: null },
-  { to: '/invoices', icon: FileText,        label: 'B2B Invoices',     badge: 3    },
-  { to: '/ptp',      icon: CalendarCheck,   label: 'PTP Tracker',      badge: 2    },
-  { to: '/voice',    icon: Mic,             label: 'Voice Replay',     badge: null },
-  { to: '/audit',    icon: FileText,        label: 'Audit Trail',      badge: null },
-  { to: '/settings', icon: Settings,        label: 'Configuration',    badge: null },
-] as const;
+const NAV_SECTIONS_STATIC = [
+  {
+    label: 'Platform',
+    items: [
+      { id: 'about',     to: '/about',    icon: Info,            label: 'About ReVault' },
+      { id: 'dashboard', to: '/',         icon: LayoutDashboard, label: 'Command Center' },
+    ],
+  },
+  {
+    label: 'AI Agents',
+    items: [
+      { id: 'traces',    to: '/traces',   icon: Brain,           label: 'Agent Traces' },
+      { id: 'invoices',  to: '/invoices', icon: FileText,        label: 'B2B Invoices' },
+      { id: 'ptp',       to: '/ptp',      icon: CalendarCheck,   label: 'PTP Tracker' },
+      { id: 'voice',     to: '/voice',    icon: Mic,             label: 'Voice Replay' },
+    ],
+  },
+  {
+    label: 'Recovery Tools',
+    items: [
+      { id: 'simulator', to: '/simulator',  icon: FlaskConical,  label: 'Webhook Sandbox' },
+      { id: 'campaigns', to: '/campaigns',  icon: Megaphone,     label: 'Campaigns' },
+      { id: 'recovery',  to: '/recovery',   icon: Link2,         label: 'Recovery Portal' },
+    ],
+  },
+  {
+    label: 'Admin',
+    items: [
+      { id: 'batch',     to: '/batch',    icon: BarChart3,       label: 'Batch Report' },
+      { id: 'audit',     to: '/audit',    icon: ShieldCheck,     label: 'Audit Trail' },
+      { id: 'pitch',     to: '/pitch',    icon: Presentation,    label: 'Pitch Guide' },
+      { id: 'settings',  to: '/settings', icon: Settings,        label: 'Configuration' },
+    ],
+  },
+];
 
 interface SidebarProps {
   collapsed: boolean;
@@ -25,6 +50,19 @@ interface SidebarProps {
 
 export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
   const recovered = useAppSelector(state => state.metrics.recoveredAmount);
+  const ptpActive = useAppSelector(state => state.metrics.ptpActive);
+  const b2bActive = useAppSelector(state => state.metrics.b2bActive);
+
+  // Map dynamic counts to sections
+  const sectionsWithBadges = NAV_SECTIONS_STATIC.map(section => ({
+    ...section,
+    items: section.items.map(item => {
+      let badge: number | null = null;
+      if (item.id === 'invoices' && b2bActive > 0) badge = b2bActive;
+      if (item.id === 'ptp' && ptpActive > 0) badge = ptpActive;
+      return { ...item, badge };
+    }),
+  }));
 
   return (
     <>
@@ -43,24 +81,28 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
         </div>
 
         <nav className="sidebar-nav">
-          <div className="nav-section-label">Navigation</div>
-          {NAV_ITEMS.map(({ to, icon: Icon, label, badge }) => (
-            <NavLink
-              key={to}
-              to={to}
-              end={to === '/'}
-              className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}
-            >
-              <Icon size={15} className="nav-icon" />
-              {label}
-              {badge !== null && <span className="nav-badge">{badge}</span>}
-            </NavLink>
+          {sectionsWithBadges.map(section => (
+            <div key={section.label}>
+              <div className="nav-section-label">{section.label}</div>
+              {section.items.map(({ id, to, icon: Icon, label, badge }) => (
+                <NavLink
+                  key={id}
+                  to={to}
+                  end={to === '/'}
+                  className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}
+                >
+                  <Icon size={15} className="nav-icon" />
+                  {label}
+                  {badge !== null && <span className="nav-badge">{badge}</span>}
+                </NavLink>
+              ))}
+            </div>
           ))}
         </nav>
 
         <div className="sidebar-footer">
           <div className="recovery-ticker">
-            <div className="recovery-ticker-label">↑ Recovered</div>
+            <div className="recovery-ticker-label">⚡ Session Recovered</div>
             <div className="recovery-ticker-value">
               ₹{(recovered / 100).toLocaleString('en-IN')}
             </div>

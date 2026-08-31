@@ -30,18 +30,18 @@ async def trigger_live_test_startup():
     logger.info("Executing automated Startup Live Test for WhatsApp...")
     
     from routers.realtime import TriggerEventRequest, process_realtime_event
-    from db.database import async_session_maker
+    from db.database import async_session
     
     req = TriggerEventRequest(
         event_type="payment.failed",
         customer_name="Apurb",
-        phone_number="WILL_USE_ENV_VAR",
+        phone_number=settings.your_personal_phone_number,
         amount=250000,
         failure_cause="INSUFFICIENT_FUNDS"
     )
     
     try:
-        async with async_session_maker() as db:
+        async with async_session() as db:
             await process_realtime_event(req, db)
     except Exception as e:
         logger.error(f"Startup live test failed: {e}")
@@ -92,3 +92,4 @@ app.include_router(realtime.router)
 @app.get("/health")
 async def health_check() -> dict[str, str]:
     return {"status": "ok", "environment": settings.app_env}
+

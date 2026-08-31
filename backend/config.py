@@ -10,9 +10,10 @@ class Settings(BaseSettings):
     razorpay_key_secret: str
     razorpay_webhook_secret: str
 
-    # Gemini & OpenAI
+    # LLM Providers
     gemini_api_key: str
     openai_api_key: str = ""
+    groq_api_key: str = ""
 
     # Database
     database_url: str
@@ -22,6 +23,8 @@ class Settings(BaseSettings):
 
     # Kafka
     kafka_bootstrap_servers: str = "localhost:9092"
+    kafka_sasl_username: str = ""
+    kafka_sasl_password: str = ""
     kafka_topic_payment_events: str = "payment-events"
     kafka_topic_recovery_actions: str = "recovery-actions"
 
