@@ -37,7 +37,7 @@ The ingestion layer is high-throughput and idempotent. All agent actions must pa
 |---|---|---|
 | **Python 3.12 + FastAPI** | Agent Orchestration Server | Python is the undisputed king of AI integration, and FastAPI provides unmatched async performance for heavy API loads. |
 | **LangGraph** | Multi-agent state machine | Standard LangChain chains are too linear. LangGraph allows cyclical, stateful, multi-step agent reasoning workflows. |
-| **Go (Golang)** | API Gateway / Ingress | Go handles raw concurrent webhook ingress far more efficiently than Python, ensuring we never drop an event. |
+| **Go (Golang)** | API Gateway / Ingress | Go handles raw concurrent webhook ingress. It currently forwards directly to the Python FastAPI backend via HTTP. |
 
 ### AI / NLP Models
 | Technology | Role | Why We Chose It |
@@ -49,15 +49,15 @@ The ingestion layer is high-throughput and idempotent. All agent actions must pa
 ### Data & Infrastructure
 | Technology | Role | Why We Chose It |
 |---|---|---|
-| **Apache Kafka (Upstash)** | Event Bus | Decouples webhook ingestion from slow AI processing, ensuring durability under massive traffic spikes. |
+| **Redis Queue Worker** | Event Bus & Background Worker | Instead of Kafka, the app uses Redis queues (`aioredis`) to decouple webhook ingestion from slow AI processing, processed by a background worker daemon. |
 | **PostgreSQL (Supabase)** | Transactional DB | Supabase provides Realtime WebSockets out-of-the-box, allowing the frontend to react to DB writes instantly. |
-| **Redis (Upstash)** | Dedup & Caching | Lightning fast idempotency locks and pre-seeded opt-out checks before hitting the DB. |
+| **Redis** | Dedup & Caching | Lightning fast idempotency locks, pre-seeded opt-out checks, and event queuing before hitting the DB. |
 
 ### Frontend
 | Technology | Role | Why We Chose It |
 |---|---|---|
-| **React 18 + Vite** | Dashboard UI | Vite provides instantaneous HMR, and React offers the best ecosystem for complex admin dashboards. |
-| **Redux Toolkit** | State Management | RTK Query effortlessly caches and syncs the massive amounts of batch reporting data. |
+| **React 19 + Vite** | Dashboard UI | Vite provides instantaneous HMR, and React offers the best ecosystem for complex admin dashboards. |
+| **Redux Toolkit** | State Management | Standard Redux Toolkit slices (`configureStore`) are used to manage feed, metrics, agents, and simulation state. |
 
 ---
 
@@ -75,7 +75,7 @@ Close any running terminals. Open a new terminal in the `ReVault` root directory
 cd backend
 python start.py
 ```
-> **What this does:** This single script automatically boots **Ngrok** (and updates your `.env`), starts the **Uvicorn/FastAPI** server, and automatically runs the **Batch Runner** simulation in the background, streaming all logs perfectly into this one terminal!
+> **What this does:** This single script automatically boots **Ngrok** (and updates your `.env`), starts the **Uvicorn/FastAPI** server, boots a **Redis Worker Daemon**, and automatically runs the **Batch Runner** simulation in the background, streaming all logs perfectly into this one terminal!
 
 ### 2. Start the Frontend
 Open a second terminal:
