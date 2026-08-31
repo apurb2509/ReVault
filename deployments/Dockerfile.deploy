@@ -1,4 +1,4 @@
-FROM golang:1.22-alpine AS go-builder
+FROM golang:alpine AS go-builder
 WORKDIR /app
 
 # Copy the go services directory
