@@ -64,7 +64,7 @@ export const Campaigns: React.FC = () => {
   const [filter, setFilter] = useState('ALL');
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/campaigns')
+    fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8000'}/api/campaigns`)
       .then(res => res.json())
       .then((data: Campaign[]) => {
         setCampaigns(Array.isArray(data) ? data : []);

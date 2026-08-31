@@ -6,7 +6,7 @@ export const BatchReport: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/batch/history')
+    fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8000'}/api/batch/history`)
       .then(res => res.json())
       .then(data => {
         setRuns(data);
@@ -18,9 +18,9 @@ export const BatchReport: React.FC = () => {
 
   const latest = runs[0];
 
-  const downloadCSV = (run: any) => {
+  const downloadCSV = () => {
     // Export the entire database for analysis as requested
-    window.location.href = `http://localhost:8000/api/batch/export-full`;
+    window.location.href = `${import.meta.env.VITE_API_URL || 'http://localhost:8000'}/api/batch/export-full`;
   };
 
   return (
@@ -84,7 +84,7 @@ export const BatchReport: React.FC = () => {
                   </td>
                   <td style={{ padding: '8px' }}>
                     <button 
-                      onClick={() => downloadCSV(run)}
+                      onClick={() => downloadCSV()}
                       style={{ background: 'transparent', border: '1px solid var(--accent)', color: 'var(--accent)', padding: '4px 8px', borderRadius: '4px', cursor: 'pointer', fontSize: '11px' }}
                     >
                       Export CSV

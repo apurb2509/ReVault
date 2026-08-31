@@ -49,7 +49,7 @@ export const RecoveryPortal: React.FC = () => {
   useEffect(() => {
     const load = async () => {
       try {
-        const res = await fetch(`http://localhost:8000/api/recovery-portal/${token}`);
+        const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8000'}/api/recovery-portal/${token}`);
         if (res.ok) {
           const data = await res.json();
           setDetails(data);
@@ -84,7 +84,7 @@ export const RecoveryPortal: React.FC = () => {
 
     setScreen('processing');
     try {
-      await fetch(`http://localhost:8000/api/recovery-portal/${token}/pay`, {
+      await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8000'}/api/recovery-portal/${token}/pay`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ method, upi_app: selectedUPI, bank: selectedBank }),
