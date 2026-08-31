@@ -5,7 +5,7 @@ export const BatchReport: React.FC = () => {
   const [runs, setRuns] = useState<any[]>([]);
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/batch/history')
+    fetch(${import.meta.env.VITE_API_URL || 'http://localhost:8000'}/api/batch/history')
       .then(res => res.json())
       .then(data => {
         setRuns(data);
@@ -13,7 +13,7 @@ export const BatchReport: React.FC = () => {
   }, []);
 
   const triggerBatch = async () => {
-    await fetch('http://localhost:8000/api/batch/trigger', { method: 'POST' });
+    await fetch(${import.meta.env.VITE_API_URL || 'http://localhost:8000'}/api/batch/trigger', { method: 'POST' });
     alert("Batch triggered. The backend is running it asynchronously. Refresh in a few seconds.");
   }
 

@@ -86,7 +86,7 @@ export const ModuleBreakdownChart: React.FC = () => {
   const [data, setData] = useState<any[]>([]);
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/recovery-summary')
+    fetch(${import.meta.env.VITE_API_URL || 'http://localhost:8000'}/api/recovery-summary')
       .then(r => r.json())
       .then(d => {
         const formatted = (d.modules || []).map((m: any) => ({
@@ -130,7 +130,7 @@ export const FailureBreakdownChart: React.FC = () => {
   const [data, setData] = useState<any[]>([]);
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/failure-breakdown')
+    fetch(${import.meta.env.VITE_API_URL || 'http://localhost:8000'}/api/failure-breakdown')
       .then(r => r.json())
       .then(d => setData(d))
       .catch(() => {});

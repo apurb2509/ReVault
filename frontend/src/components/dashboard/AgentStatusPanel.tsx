@@ -36,7 +36,7 @@ export const AgentStatusPanel: React.FC = () => {
   const [moduleTotals, setModuleTotals] = useState<Record<string, number>>({});
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/recovery-summary')
+    fetch(${import.meta.env.VITE_API_URL || 'http://localhost:8000'}/api/recovery-summary')
       .then(r => r.json())
       .then(d => {
         const mapping: Record<string, number> = {};

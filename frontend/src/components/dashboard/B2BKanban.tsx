@@ -47,7 +47,7 @@ export const B2BKanban: React.FC = () => {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/b2b-invoices')
+    fetch(${import.meta.env.VITE_API_URL || 'http://localhost:8000'}/api/b2b-invoices')
       .then(res => res.json())
       .then(data => {
         setInvoices(Array.isArray(data) ? data : []);

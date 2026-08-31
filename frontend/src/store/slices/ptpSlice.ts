@@ -11,7 +11,7 @@ export interface PTPRecord {
 }
 
 export const fetchPtpRecords = createAsyncThunk('ptp/fetchPtpRecords', async () => {
-  const response = await fetch('http://localhost:8000/api/ptp-records');
+  const response = await fetch(${import.meta.env.VITE_API_URL || 'http://localhost:8000'}/api/ptp-records');
   if (!response.ok) throw new Error('Failed to fetch PTP records');
   return response.json() as Promise<PTPRecord[]>;
 });
