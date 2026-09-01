@@ -19,7 +19,7 @@ export const AuditTrail: React.FC = () => {
   useEffect(() => {
     const fetchAudit = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:8000/api/audit-trail');
+        const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8000'}/api/audit-trail`);
         const data = await response.json();
         if (data) setAudit(data);
       } catch (err) {

@@ -11,7 +11,7 @@ export const ThoughtTraces: React.FC = () => {
   useEffect(() => {
     const fetchTraces = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:8000/api/audit-trail');
+        const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8000'}/api/audit-trail`);
         const data = await response.json();
         if (data) setTraces(data);
       } catch (err) {
