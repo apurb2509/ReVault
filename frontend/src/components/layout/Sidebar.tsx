@@ -69,9 +69,13 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
       {/* Sidebar panel */}
       <aside className={`sidebar${collapsed ? ' collapsed' : ''}`}>
         <div className="sidebar-logo">
-          <div className="logo-mark">
+          <div 
+            className="logo-mark" 
+            onClick={() => window.location.href = '/landing'} 
+            style={{ cursor: 'pointer' }}
+          >
             <div className="logo-icon">
-              <Zap size={16} color="white" />
+              <img src="/src/assets/ReVault_logo.png" alt="ReVault" style={{ width: '24px', height: 'auto' }} />
             </div>
             <div>
               <div className="logo-text">Re<span>Vault</span></div>
