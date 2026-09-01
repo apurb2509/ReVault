@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import {
-  Zap, Info, LayoutDashboard, Brain, BarChart3,
+  Info, LayoutDashboard, Brain, BarChart3,
   FileText, CalendarCheck, Mic, Settings, ChevronLeft,
   FlaskConical, Megaphone, Link2, Presentation, ShieldCheck,
 } from 'lucide-react';
