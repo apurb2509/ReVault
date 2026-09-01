@@ -58,5 +58,5 @@ func main() {
 	})
 
 	log.Printf("Payment Link Service listening on :%s", port)
-	log.Fatal(http.ListenAndServe(":"+port, nil))
+	log.Fatal(http.ListenAndServe("127.0.0.1:"+port, nil))
 }

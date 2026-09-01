@@ -49,5 +49,5 @@ func main() {
 	})
 
 	log.Printf("Audit Service listening on :%s", port)
-	log.Fatal(http.ListenAndServe(":"+port, nil))
+	log.Fatal(http.ListenAndServe("127.0.0.1:"+port, nil))
 }
