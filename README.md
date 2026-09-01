@@ -66,8 +66,47 @@ The ingestion layer is high-throughput and idempotent. All agent actions must pa
 I have consolidated the entire architecture into a master orchestrator script. 
 
 ### Prerequisites
-1. Fill out your `backend/.env` with your API keys (Razorpay, Twilio, OpenAI, Supabase).
-2. Install Python 3.12+ and Node.js.
+1. Install Python 3.12+ and Node.js.
+2. Ensure you have access to a PostgreSQL database (like Supabase) and a Redis server.
+
+### 🔑 Required Environment Variables
+You must create `.env` files in both the frontend and backend directories before running the app.
+
+**`backend/.env`:**
+```env
+# Database & Queues
+DATABASE_URL=postgresql://postgres:[password]@db.supabase.co:5432/postgres
+REDIS_URL=redis://localhost:6379
+SUPABASE_URL=https://[YOUR-ID].supabase.co
+SUPABASE_KEY=[YOUR-SERVICE-ROLE-KEY]
+
+# Payments (Razorpay)
+RAZORPAY_KEY_ID=[your_key_id]
+RAZORPAY_KEY_SECRET=[your_key_secret]
+RAZORPAY_WEBHOOK_SECRET=[your_webhook_secret]
+
+# AI Providers
+GEMINI_API_KEY=[your_gemini_key]
+OPENAI_API_KEY=[your_openai_key]       # For PTP NLP Tracker
+ELEVENLABS_API_KEY=[optional_for_voice]
+
+# Comms (Twilio)
+TWILIO_ACCOUNT_SID=[your_sid]
+TWILIO_AUTH_TOKEN=[your_token]
+TWILIO_WHATSAPP_NUMBER=whatsapp:+[number]
+TWILIO_VOICE_NUMBER=+[number]
+```
+
+**`frontend/.env`:**
+```env
+# Supabase Realtime (Required for local dev)
+VITE_SUPABASE_URL=https://[YOUR-ID].supabase.co
+VITE_SUPABASE_ANON_KEY=[YOUR-ANON-KEY]
+
+# Live Production Overrides (Not needed for localhost)
+# VITE_API_URL=https://revault-backend.onrender.com
+# VITE_WS_URL=wss://revault-backend.onrender.com/ws
+```
 
 ### 1. Start the Unified Backend
 Close any running terminals. Open a new terminal in the `ReVault` root directory:
