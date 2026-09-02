@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Headphones, PlayCircle } from 'lucide-react';
-import { supabase } from '../../lib/supabaseClient';
 
 export const VoicePlayer: React.FC = () => {
   const [calls, setCalls] = useState<any[]>([]);
