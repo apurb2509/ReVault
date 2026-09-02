@@ -75,13 +75,13 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
             style={{ cursor: 'pointer' }}
           >
             <div className="logo-icon">
-              <img src="/src/assets/ReVault_logo.png" alt="ReVault" style={{ width: '24px', height: 'auto' }} />
+              <img src="/ReVault_logo.png" alt="ReVault" style={{ width: '24px', height: 'auto' }} />
             </div>
             <div>
               <div className="logo-text">Re<span>Vault</span></div>
             </div>
           </div>
-          <div className="logo-tagline">AI Revenue Recovery · Powered by Gemini</div>
+          <div className="logo-tagline">AI Revenue Recovery</div>
         </div>
 
         <nav className="sidebar-nav">

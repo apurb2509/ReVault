@@ -4,6 +4,7 @@ All endpoints feeding the merchant dashboard and recovery tools.
 """
 
 import uuid
+import urllib.parse
 from typing import Any
 
 from fastapi import APIRouter, Depends
@@ -301,6 +302,44 @@ async def get_ptp_records(db: AsyncSession = Depends(get_db)) -> list[dict[str, 
 # B2B Invoices — Receivables Chaser
 # Covers: "B2B receivables chaser"
 # ─────────────────────────────────────────────────────────────────
+@router.get("/seed-b2b")
+async def seed_b2b_invoices(db: AsyncSession = Depends(get_db)):
+    """Utility endpoint to seed 100 B2B invoices using the existing connection pool."""
+    from datetime import datetime, timedelta
+    import random
+    
+    invoices = []
+    for i in range(100):
+        inv = f"INV-2026-{str(i).zfill(3)}"
+        company = random.choice(["Acme Corp", "Globex Inc", "Initech", "Stark Ind", "Wayne Ent", "Soylent Corp", "Cyberdyne", "Umbrella Corp"])
+        contact = random.choice(["John Doe", "Jane Smith", "Peter Gibbons", "Tony S", "Bruce W"])
+        phone = f"+91{random.randint(6000000000, 9999999999)}"
+        amt = random.randint(100000, 10000000) * 100
+        days_offset = random.randint(-40, 40)
+        due = datetime.now() + timedelta(days=days_offset)
+        
+        if days_offset < -20:
+            tier = "RED"
+            status = random.choice(["OVERDUE", "ESCALATED"])
+        elif days_offset < -10:
+            tier = "ORANGE"
+            status = "OVERDUE"
+        elif days_offset < 0:
+            tier = "YELLOW"
+            status = "OVERDUE"
+        else:
+            tier = "GREEN"
+            status = "OUTSTANDING"
+            
+        invoices.append(f"('{inv}', '{company}', '{contact}', '{phone}', {amt}, '{due.strftime('%Y-%m-%d')}', '{tier}', '{status}')")
+        
+    query = text(f"INSERT INTO b2b_invoices (invoice_number, customer_company, customer_contact, customer_phone, amount, due_date, risk_tier, status) VALUES {','.join(invoices)}")
+    await db.execute(text("DELETE FROM b2b_invoices"))
+    await db.execute(query)
+    await db.commit()
+    return {"status": "success", "message": "Seeded 100 B2B invoices"}
+
+
 @router.get("/b2b-invoices")
 async def get_invoices(db: AsyncSession = Depends(get_db)) -> list[dict[str, Any]]:
     """All B2B invoices with dynamic risk tier based on days overdue."""
@@ -373,7 +412,9 @@ async def get_voice_calls(db: AsyncSession = Depends(get_db)) -> list[dict[str, 
                pe.amount, pe.failure_cause
         FROM recovery_actions ra
         LEFT JOIN payment_events pe ON ra.event_id = pe.id
-        WHERE ra.module IN ('VOICE_AGENT', 'VOICE_IQ')
+        WHERE ra.module IN ('VOICE_AGENT', 'VOICE_IQ') 
+           OR ra.action_type = 'VOICE_CALL_TRIGGERED'
+           OR ra.channel = 'VOICE'
         ORDER BY ra.executed_at DESC
     """))
     rows = result.fetchall()
@@ -386,8 +427,7 @@ async def get_voice_calls(db: AsyncSession = Depends(get_db)) -> list[dict[str, 
             "created_at": str(row.executed_at),
             "amount": row.amount,
             "failure_cause": row.failure_cause,
-            # audio_url populated when ElevenLabs/gTTS stores the file path in agent_reasoning
-            "audio_url": "",
+            "audio_url": f"/api/voice/synthesize?script={urllib.parse.quote(row.agent_reasoning or 'Namaste, your payment failed')}&customer_name={urllib.parse.quote('Customer-'+str(row.event_id)[:8])}",
             "reasoning": row.agent_reasoning or "Synthesized Hinglish voice call successfully generated.",
         }
         for row in rows
@@ -402,11 +442,11 @@ class VoiceSynthesisRequest(BaseModel):
     customer_name: str
 
 
-@router.post("/voice/synthesize")
-async def synthesize_voice_endpoint(req: VoiceSynthesisRequest) -> FileResponse:
+@router.get("/voice/synthesize")
+async def synthesize_voice_endpoint(script: str, customer_name: str) -> FileResponse:
     """Synthesizes a Hinglish recovery call script to MP3 via ElevenLabs/gTTS."""
     from tools.voice_synthesizer import synthesize_hinglish
-    result = await synthesize_hinglish(req.script, req.customer_name)
+    result = await synthesize_hinglish(script, customer_name)
     return FileResponse(
         path=result.file_path,
         media_type="audio/mpeg",

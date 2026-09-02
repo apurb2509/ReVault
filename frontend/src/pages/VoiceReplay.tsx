@@ -32,10 +32,14 @@ export const VoiceReplay: React.FC = () => {
     if (audioRef.current) audioRef.current.pause();
     
     if (url) {
-      const audio = new Audio(url);
+      const audioUrl = url.startsWith('http') ? url : `${import.meta.env.VITE_API_URL || 'http://localhost:8000'}${url}`;
+      const audio = new Audio(audioUrl);
       audio.onended = () => setPlaying(null);
       audioRef.current = audio;
-      audio.play();
+      audio.play().catch(e => {
+        console.error("Audio playback failed:", e);
+        setPlaying(null);
+      });
       setPlaying(id);
     }
   };

@@ -7,18 +7,19 @@ export const VoicePlayer: React.FC = () => {
 
   useEffect(() => {
     const fetchCalls = async () => {
-      const { data } = await supabase.from('voice_calls').select('*').order('created_at', { ascending: false }).limit(2);
-      if (data) {
-        setCalls(data);
+      try {
+        const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8000'}/api/voice-calls`);
+        const data = await response.json();
+        if (data && Array.isArray(data)) {
+          setCalls(data.slice(0, 2)); // limit to 2 for the dashboard
+        }
+      } catch (err) {
+        console.error('Failed to fetch voice calls:', err);
       }
     };
     fetchCalls();
 
-    const sub = supabase.channel('voice-player')
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'voice_calls' }, fetchCalls)
-      .subscribe();
-      
-    return () => { supabase.removeChannel(sub); };
+    // Since voice_calls table doesn't exist natively, we omit realtime subscribe here for demo
   }, []);
 
   return (
@@ -51,7 +52,8 @@ export const VoicePlayer: React.FC = () => {
 
             {call.audio_url ? (
               <button className="btn" style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }} onClick={() => {
-                new Audio(call.audio_url).play();
+                const audioUrl = call.audio_url.startsWith('http') ? call.audio_url : `${import.meta.env.VITE_API_URL || 'http://localhost:8000'}${call.audio_url}`;
+                new Audio(audioUrl).play().catch(e => console.error("Audio playback failed:", e));
               }}>
                 <PlayCircle size={16} /> Play Audio
               </button>

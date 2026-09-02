@@ -117,19 +117,22 @@ def main():
     out.append("INSERT INTO ptp_records (customer_id, event_id, promised_amount, promised_date, extraction_source, commitment_confidence, status) VALUES")
     out.append(",\n".join(ptps) + ";\n")
     
-    # --- Generate 50 B2B Invoices ---
-    for i in range(50):
+    # --- Generate 100 B2B Invoices ---
+    for i in range(100):
         inv = f"INV-2026-{str(i).zfill(3)}"
         company = random.choice(["Acme Corp", "Globex Inc", "Initech", "Stark Ind", "Wayne Ent", "Soylent Corp", "Cyberdyne", "Umbrella Corp"])
         contact = random.choice(["John Doe", "Jane Smith", "Peter Gibbons", "Tony S", "Bruce W"])
         phone = f"+91{random.randint(6000000000, 9999999999)}"
         amt = random.randint(100000, 10000000) * 100
-        days_offset = random.randint(-30, 30)
+        days_offset = random.randint(-40, 40)
         due = datetime.now() + timedelta(days=days_offset)
         
-        if days_offset < -10:
+        if days_offset < -20:
             tier = "RED"
             status = random.choice(["OVERDUE", "ESCALATED"])
+        elif days_offset < -10:
+            tier = "ORANGE"
+            status = "OVERDUE"
         elif days_offset < 0:
             tier = "YELLOW"
             status = "OVERDUE"

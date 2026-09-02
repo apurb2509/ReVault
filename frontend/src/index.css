@@ -560,6 +560,7 @@ a {
   align-items: center;
   justify-content: center;
   margin-bottom: 10px;
+  flex-shrink: 0;
 }
 
 .metric-label {
@@ -3057,7 +3058,7 @@ a {
    Full layout, all columns, maximum density             */
 @media (min-width: 1400px) {
   .metrics-grid {
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .agent-cards {

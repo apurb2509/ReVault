@@ -45,6 +45,7 @@ The ingestion layer is high-throughput and idempotent. All agent actions must pa
 | **Google Gemini 1.5 Flash** | Core Reasoning Engine | Lightning fast for root-cause analysis, script generation, and decision making with high accuracy. |
 | **OpenAI (gpt-4o-mini)** | PTP Tracker NLP | Specifically chosen for the PTP tracker because OpenAI's JSON Structured Outputs are flawless for strict date extraction. |
 | **ElevenLabs / gTTS** | Voice Synthesis | ElevenLabs provides ultra-realistic Hinglish accents. gTTS acts as a reliable, free fallback. |
+| **Twilio Sandbox** | Voice & WhatsApp | Used for executing real-time outbound calls and PTP (Promise-to-Pay) WhatsApp text message tracking. |
 
 ### Data & Infrastructure
 | Technology | Role | Why I Preferred It |

@@ -19,16 +19,18 @@ const EVAL_CHECKLIST = [
 ];
 
 const TECH_STACK = [
-  { layer: 'Agent Orchestration', tech: 'LangGraph (LangChain)',          purpose: 'Multi-agent state machine with conditional routing' },
-  { layer: 'AI/LLM',             tech: 'Gemini 1.5 Flash (Google AI)',    purpose: 'RCA classification, NLP PTP extraction, voice scripts' },
-  { layer: 'Backend',            tech: 'FastAPI + SQLAlchemy + Alembic',   purpose: 'Async REST API, database ORM, schema migrations' },
-  { layer: 'Database',           tech: 'PostgreSQL (Supabase)',            purpose: 'Transactional storage + real-time CDC streaming' },
-  { layer: 'Cache / Queue',      tech: 'Redis',                           purpose: 'Webhook idempotency, retry scheduling, rate limiting' },
-  { layer: 'Frontend',           tech: 'React 18 + Vite + Redux Toolkit', purpose: 'Merchant dashboard, real-time feed, agent controls' },
-  { layer: 'Messaging',         tech: 'WhatsApp Business Cloud API',      purpose: 'Recovery outreach with Razorpay payment links' },
-  { layer: 'Voice',             tech: 'ElevenLabs / gTTS + Twilio',       purpose: 'Hinglish AI voice synthesis and outbound calling' },
-  { layer: 'Payments',          tech: 'Razorpay Webhooks + Payment Links', purpose: 'Failure ingestion, recovery payment orchestration' },
-  { layer: 'Compliance',        tech: 'Custom Engine + TRAI DLT Rules',   purpose: 'Zero-violation contact-limit and opt-out enforcement' },
+  { role: 'Agent Orchestration Server', tech: 'Python 3.12 + FastAPI', why: 'Python is the undisputed king of AI integration, and FastAPI provides unmatched async performance for heavy API loads.' },
+  { role: 'Multi-agent state machine', tech: 'LangGraph', why: 'Standard LangChain chains are too linear. LangGraph allows cyclical, stateful, multi-step agent reasoning workflows.' },
+  { role: 'API Gateway / Ingress', tech: 'Go (Golang)', why: 'Go handles raw concurrent webhook ingress. It currently forwards directly to the Python FastAPI backend via HTTP.' },
+  { role: 'Core Reasoning Engine', tech: 'Google Gemini 1.5 Flash', why: 'Lightning fast for root-cause analysis, script generation, and decision making with high accuracy.' },
+  { role: 'PTP Tracker NLP', tech: 'OpenAI (gpt-4o-mini)', why: "Specifically chosen for the PTP tracker because OpenAI's JSON Structured Outputs are flawless for strict date extraction." },
+  { role: 'Voice Synthesis', tech: 'ElevenLabs / gTTS', why: 'ElevenLabs provides ultra-realistic Hinglish accents. gTTS acts as a reliable, free fallback.' },
+  { role: 'Voice & WhatsApp', tech: 'Twilio Sandbox', why: 'Used for executing real-time outbound calls and PTP (Promise-to-Pay) WhatsApp text message tracking.' },
+  { role: 'Event Bus & Background Worker', tech: 'Redis Queue Worker', why: 'Instead of Kafka, the app uses Redis queues (aioredis) to decouple webhook ingestion from slow AI processing, processed by a background worker daemon.' },
+  { role: 'Transactional DB', tech: 'PostgreSQL (Supabase)', why: 'Supabase provides Realtime WebSockets out-of-the-box, allowing the frontend to react to DB writes instantly.' },
+  { role: 'Dedup & Caching', tech: 'Redis', why: 'Lightning fast idempotency locks, pre-seeded opt-out checks, and event queuing before hitting the DB.' },
+  { role: 'Dashboard UI', tech: 'React 19 + Vite', why: 'Vite provides instantaneous HMR, and React offers the best ecosystem for complex admin dashboards.' },
+  { role: 'State Management', tech: 'Redux Toolkit', why: 'Standard Redux Toolkit slices (configureStore) are used to manage feed, metrics, agents, and simulation state.' },
 ];
 
 const AGENT_FLOW = [
@@ -176,17 +178,17 @@ export const PitchGuide: React.FC = () => {
           <table className="pitch-tech-table">
             <thead>
               <tr>
-                <th>Layer</th>
+                <th>Role</th>
                 <th>Technology</th>
-                <th>Purpose</th>
+                <th>Why I Preferred It</th>
               </tr>
             </thead>
             <tbody>
-              {TECH_STACK.map(row => (
-                <tr key={row.layer}>
-                  <td>{row.layer}</td>
+              {TECH_STACK.map((row, i) => (
+                <tr key={i}>
+                  <td>{row.role}</td>
                   <td style={{ color: 'var(--rzp-blue-bright)', fontWeight: 600 }}>{row.tech}</td>
-                  <td>{row.purpose}</td>
+                  <td>{row.why}</td>
                 </tr>
               ))}
             </tbody>
