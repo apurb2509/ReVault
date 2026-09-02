@@ -141,7 +141,7 @@ async def run_worker():
         logger.error(f"Failed to connect to Redis: {e}")
         return
         
-    batch_size = 10
+    batch_size = 3
     sleep_interval = 2.0
     
     try:
