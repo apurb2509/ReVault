@@ -108,10 +108,12 @@ class VoiceAgent:
             logger.exception("ElevenLabs synthesis failed — falling back to gTTS")
             return await self._use_gtts(script, output_path)
 
-    async def initiate_call(self, customer_name: str, phone: str, script: str) -> bool:
+    async def initiate_call(self, customer_name: str, phone: str, script: str, event_id: str = "") -> bool:
         """
         Initiates a real-time outbound call via Twilio.
-        If Twilio is not configured, it just logs it (mock behavior).
+        Passes event_id to the TwiML URL so the DTMF handler can look up
+        the payment event and send the correct payment link (IVR option 1).
+        If Twilio is not configured, logs a mock (no-op).
         """
         from config import get_settings
         settings = get_settings()
@@ -133,7 +135,12 @@ class VoiceAgent:
                 logger.error("NGROK URL missing. Twilio needs a public webhook URL to fetch TwiML.")
                 return False
                 
-            twiml_url = f"{ngrok_url}/api/twilio/twiml?script={quote(script)}&customer={quote(customer_name)}"
+            twiml_url = (
+                f"{ngrok_url}/api/twilio/twiml"
+                f"?script={quote(script)}"
+                f"&customer={quote(customer_name)}"
+                f"&event_id={quote(event_id)}"
+            )
             
             call = client.calls.create(
                 to=target,
@@ -141,7 +148,7 @@ class VoiceAgent:
                 url=twiml_url
             )
             
-            logger.info(f"Twilio Outbound Call initiated! SID: {call.sid}")
+            logger.info(f"Twilio Outbound Call initiated! SID: {call.sid}, event_id: {event_id}")
             return True
         except Exception as e:
             logger.error(f"Twilio Outbound Call failed: {e}")

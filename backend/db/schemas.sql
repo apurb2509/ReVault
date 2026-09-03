@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS ptp_records (
     promised_date           DATE NOT NULL,
     extraction_source       TEXT NOT NULL,
     commitment_confidence   TEXT NOT NULL,
-    status                  TEXT NOT NULL DEFAULT 'ACTIVE',
+    status                  TEXT NOT NULL DEFAULT 'ACTIVE',  -- ACTIVE | BROKEN | FULFILLED
     created_at              TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     resolved_at             TIMESTAMPTZ
 );

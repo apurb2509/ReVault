@@ -3,8 +3,9 @@ Module 3: Subscription Rescue Agent
 Classifies subscription failure cause before the native T+1 retry fires.
 Selects a cause-specific recovery strategy and initiates the win-back sequence.
 """
+import json
 import logging
-from datetime import date
+from datetime import date, datetime, timezone, timedelta
 
 from models.payment_event import FailureCause
 from services.salary_predictor import next_salary_date
@@ -114,8 +115,32 @@ async def _select_recovery_action(
                 return {"module": "SUBSCRIPTION_RESCUE", "action": "ALTERNATIVE_LINK_SENT", "link": link.short_url, "cause": cause}
 
         case _:
-            # Halted subscription — activate full win-back sequence
+            # Halted subscription — activate full win-back sequence starting Day 0.
+            # Write a Redis tracking key so the SequenceScheduler fires Day 2/5/7/10 steps.
             logger.info("Subscription %s: activating win-back sequence", subscription_id)
+
+            try:
+                from config import get_settings
+                import redis.asyncio as aioredis
+                redis_client = aioredis.from_url(get_settings().redis_url, ssl_cert_reqs="none")
+                winback_state = {
+                    "subscription_id": subscription_id,
+                    "amount": amount,
+                    "customer_phone": phone,
+                    "customer_name": name,
+                    "step_index": 0,   # 0 = Day 2 (first deferred step after Day 0)
+                    "next_fire_at": (datetime.now(timezone.utc) + timedelta(days=2)).isoformat(),
+                }
+                await redis_client.set(
+                    f"revault:winback_seq:{subscription_id}",
+                    json.dumps(winback_state),
+                    ex=86_400 * 15,  # TTL 15 days — covers Day 0–10 + buffer
+                )
+                await redis_client.aclose()
+                logger.info("Win-back sequence tracking key written for sub %s", subscription_id)
+            except Exception as seq_exc:
+                logger.warning("Failed to write win-back sequence key (non-fatal): %s", seq_exc)
+
             return {"module": "SUBSCRIPTION_RESCUE", "action": "WIN_BACK_INITIATED", "cause": cause}
 
     return None

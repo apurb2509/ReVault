@@ -12,9 +12,9 @@ settings = get_settings()
 
 genai.configure(api_key=settings.gemini_api_key)
 
-# Flash for speed-sensitive tasks; Pro for complex reasoning
-_FLASH = genai.GenerativeModel("gemini-3.6-flash")
-_PRO = genai.GenerativeModel("gemini-3.6-flash")  # Use Flash for both — Pro is deprecated in v0.8
+# gemini-2.0-flash: fast, capable, and available — used for all structured JSON tasks
+_FLASH = genai.GenerativeModel("gemini-2.0-flash")
+_PRO = genai.GenerativeModel("gemini-2.0-flash")  # Alias kept for call sites that pass use_pro=True
 
 _JSON_CONFIG = genai.GenerationConfig(
     response_mime_type="application/json",

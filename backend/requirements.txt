@@ -27,7 +27,7 @@ razorpay==2.0.1
 httpx==0.28.1
 
 # Scheduling
-apscheduler==3.10.4
+apscheduler==3.11.3
 
 # Voice synthesis
 gTTS==2.5.3

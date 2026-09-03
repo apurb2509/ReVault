@@ -119,7 +119,62 @@ async def process_event_graph(event: PaymentEvent, db: AsyncSession) -> None:
         # Run the LangGraph state machine
         final_state = await compiled_graph.ainvoke(initial_state)
 
-        # Log final recovery actions and execute them (mocked for demo if needed)
+        # ── payment.captured: close all open recovery actions for this order ───────
+        # When a real Razorpay payment.captured event arrives, we look up any PENDING
+        # recovery actions tied to the same order_id and mark them PAYMENT_MADE.
+        # This is the production counterpart of the batch simulation in redis_worker.
+        if event.event_type == EventType.PAYMENT_CAPTURED and event.order_id:
+            try:
+                from sqlalchemy import text as sqla_text
+                rows = await db.execute(
+                    sqla_text("""
+                        UPDATE recovery_actions
+                        SET outcome = 'PAYMENT_MADE',
+                            amount_recovered = :amount,
+                            outcome_recorded_at = NOW()
+                        WHERE outcome = 'PENDING'
+                          AND event_id IN (
+                              SELECT id FROM payment_events
+                              WHERE order_id = :order_id
+                                AND event_type != 'payment.captured'
+                          )
+                        RETURNING id
+                    """),
+                    {"amount": event.amount or 0, "order_id": event.order_id},
+                )
+                resolved_ids = rows.fetchall()
+                await db.commit()
+                if resolved_ids:
+                    logger.info(
+                        "payment.captured webhook closed %d recovery action(s) for order %s — amount: \u20b9%.2f",
+                        len(resolved_ids),
+                        event.order_id,
+                        (event.amount or 0) / 100,
+                    )
+                    # Write audit entry for the resolution
+                    try:
+                        supabase_audit_entry = {
+                            "module": "WEBHOOK_HANDLER",
+                            "actor": "RAZORPAY",
+                            "event_id": str(event.id),
+                            "decision_log": json.dumps({
+                                "action": "RECOVERY_LOOP_CLOSED",
+                                "order_id": event.order_id,
+                                "resolved_action_count": len(resolved_ids),
+                                "amount_recovered": event.amount or 0,
+                            }),
+                            "compliance_log": json.dumps({"allowed": True, "reason": "Real payment.captured event closed recovery loop."}),
+                        }
+                        from db.supabase_client import supabase
+                        if supabase:
+                            supabase.table("audit_trail").insert(supabase_audit_entry).execute()
+                    except Exception as audit_exc:
+                        logger.warning("Failed to write capture-resolution audit entry: %s", audit_exc)
+            except Exception as cap_exc:
+                logger.error("Failed to resolve recovery actions on capture for order %s: %s", event.order_id, cap_exc)
+        # ──────────────────────────────────────────────────────────────────────────
+
+        # Log final recovery actions and execute them
         for action_dict in final_state.get("recovery_actions_taken", []):
             module = action_dict.get("module", "UNKNOWN")
             action_type = action_dict.get("action", "UNKNOWN")
@@ -157,6 +212,7 @@ async def process_event_graph(event: PaymentEvent, db: AsyncSession) -> None:
 
     except Exception:
         logger.exception("Failed to process event %s through graph", event.id)
+
 
 from pydantic import BaseModel
 
