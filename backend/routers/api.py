@@ -6,6 +6,7 @@ All endpoints feeding the merchant dashboard and recovery tools.
 import uuid
 import urllib.parse
 from typing import Any
+from tools.hinglish_numbers import to_hinglish
 
 from fastapi import APIRouter, Depends
 from fastapi.responses import FileResponse
@@ -425,7 +426,8 @@ async def get_voice_calls(db: AsyncSession = Depends(get_db)) -> list[dict[str, 
         # Try to extract the Hinglish script from the payload (Gemini script or B2B draft)
         script = payload.get("script") or payload.get("draft")
         if not script:
-            script = f"Namaste Valued Customer! 🙏 aapka ₹{(row.amount or 0) / 100:,.0f} ka payment fail ho gaya hai. Kripya ek baar retry karein — hum aapki help karne ke liye yahaan hain. Payment link whatsapp par paanein ke liye 1 click karein, service se opt out karne ke liye 2 dabayein, whatsapp par support ya doubt puchne ke liye 3 dabayein. Koi samasya ho toh humein batayein. — ReVault Recovery Team. Dhanyawaad."
+            amount_words = to_hinglish(int((row.amount or 0) / 100))
+            script = f"Namaste Valued Customer! 🙏 aapka {amount_words} rupay ka payment fail ho gaya hai. Kripya ek baar retry karein — hum aapki help karne ke liye yahaan hain. Payment link whatsapp par paanein ke liye 1 click karein, service se opt out karne ke liye 2 dabayein, whatsapp par support ya doubt puchne ke liye 3 dabayein. Koi samasya ho toh humein batayein. — ReVault Recovery Team. Dhanyawaad."
             
         customer_name = f"Customer-{str(row.event_id)[:8]}"
         audio_url = f"/api/voice/synthesize?script={urllib.parse.quote(script)}&customer_name={urllib.parse.quote(customer_name)}"
