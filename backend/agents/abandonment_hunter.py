@@ -2,7 +2,9 @@
 Module 2: Abandonment Hunter Agent
 Watches for orders that were created but never paid, runs tiered recovery.
 """
+import json
 import logging
+from datetime import datetime, timezone, timedelta
 
 from tools.payment_links import create_recovery_link
 from tools.whatsapp_sender import send_whatsapp_template
@@ -67,6 +69,33 @@ async def run(state: AgentState) -> AgentState:
         })
 
         logger.info("Abandonment Hunter: Tier 1 recovery sent for order %s", order_id)
+
+        # ── Write tracking key for SequenceScheduler to fire Tier 2/3 ──────────
+        # Tier 2 fires in 120 minutes, Tier 3 in 120+1440=1560 minutes from now.
+        # The scheduler reads this key and fires the next tiers automatically.
+        try:
+            from config import get_settings
+            import redis.asyncio as aioredis
+            redis_client = aioredis.from_url(get_settings().redis_url, ssl_cert_reqs="none")
+            tracking_state = {
+                "order_id": order_id,
+                "amount": amount,
+                "customer_phone": customer["contact"],
+                "customer_name": customer.get("name", "Customer"),
+                "customer_email": customer.get("email", ""),
+                "tier_index": 0,   # 0 = next to fire is Tier 2 (index 0 in _ABANDONMENT_TIERS)
+                "next_fire_at": (datetime.now(timezone.utc) + timedelta(minutes=120)).isoformat(),
+            }
+            await redis_client.set(
+                f"revault:abandon_seq:{order_id}",
+                json.dumps(tracking_state),
+                ex=86_400 * 3,  # TTL 3 days — covers the full tier-3 window
+            )
+            await redis_client.aclose()
+            logger.info("Abandonment sequence tracking key written for order %s", order_id)
+        except Exception as seq_exc:
+            logger.warning("Failed to write abandonment sequence key (non-fatal): %s", seq_exc)
+        # ────────────────────────────────────────────────────────────────────────
 
     except Exception:
         logger.exception("Abandonment Hunter failed for event %s", event.id)

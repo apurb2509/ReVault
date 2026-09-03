@@ -83,7 +83,7 @@ CREATE TABLE ptp_records (
     promised_date DATE,
     extraction_source TEXT,
     commitment_confidence FLOAT,
-    status TEXT DEFAULT 'PROMISED',
+    status TEXT DEFAULT 'ACTIVE',   -- ACTIVE | BROKEN | FULFILLED
     created_at TIMESTAMPTZ DEFAULT NOW(),
     resolved_at TIMESTAMPTZ
 );
