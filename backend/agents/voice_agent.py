@@ -46,8 +46,11 @@ class VoiceAgent:
             return {
                 "script": (
                     f"Namaste {name}, aapka ₹{amount / 100:,.0f} ka payment pending hai "
-                    f"due to {reason}. Aapke WhatsApp pe payment link bhej diya hai. "
-                    "Agar aap callback nahi chahte toh hume batayein."
+                    f"due to {reason}. Kripya ek baar retry karein — hum aapki help karne ke liye yahaan hain. "
+                    "Payment link whatsapp par paanein ke liye 1 click karein, "
+                    "service se opt out karne ke liye 2 dabayein, "
+                    "whatsapp par support ya doubt puchne ke liye 3 dabayein. "
+                    "Koi samasya ho toh humein batayein. — ReVault Recovery Team. Dhanyawaad."
                 ),
                 "language_mix": "Hinglish",
                 "tone": "warm",

@@ -26,7 +26,8 @@ const TECH_STACK = [
   { role: 'PTP Tracker NLP', tech: 'OpenAI (gpt-4o-mini)', why: "Specifically chosen for the PTP tracker because OpenAI's JSON Structured Outputs are flawless for strict date extraction." },
   { role: 'Voice Synthesis', tech: 'ElevenLabs / gTTS', why: 'ElevenLabs provides ultra-realistic Hinglish accents. gTTS acts as a reliable, free fallback.' },
   { role: 'Voice & WhatsApp', tech: 'Twilio Sandbox', why: 'Used for executing real-time outbound calls and PTP (Promise-to-Pay) WhatsApp text message tracking.' },
-  { role: 'Event Bus & Background Worker', tech: 'Redis Queue Worker', why: 'Instead of Kafka, the app uses Redis queues (aioredis) to decouple webhook ingestion from slow AI processing, processed by a background worker daemon.' },
+  { role: 'Event Bus & Background Worker', tech: 'Redis Queue Worker', why: 'The app uses Redis queues (aioredis) to decouple webhook ingestion from slow AI processing, processed by a background worker daemon.' },
+  { role: 'Payment Gateway API', tech: 'Razorpay Test API', why: 'Core payment processing, subscriptions, and webhook events generation.' },
   { role: 'Transactional DB', tech: 'PostgreSQL (Supabase)', why: 'Supabase provides Realtime WebSockets out-of-the-box, allowing the frontend to react to DB writes instantly.' },
   { role: 'Dedup & Caching', tech: 'Redis', why: 'Lightning fast idempotency locks, pre-seeded opt-out checks, and event queuing before hitting the DB.' },
   { role: 'Dashboard UI', tech: 'React 19 + Vite', why: 'Vite provides instantaneous HMR, and React offers the best ecosystem for complex admin dashboards.' },
@@ -172,7 +173,6 @@ export const PitchGuide: React.FC = () => {
       <div className="panel">
         <div className="panel-header">
           <div className="panel-title">Technology Stack</div>
-          <span className="badge badge-purple">Razorpay-Grade Engineering</span>
         </div>
         <div style={{ overflowX: 'auto', padding: '0 4px 4px' }}>
           <table className="pitch-tech-table">

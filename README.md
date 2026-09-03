@@ -53,6 +53,7 @@ The ingestion layer is high-throughput and idempotent. All agent actions must pa
 | **Redis Queue Worker** | Event Bus & Background Worker | Instead of Kafka, the app uses Redis queues (`aioredis`) to decouple webhook ingestion from slow AI processing, processed by a background worker daemon. |
 | **PostgreSQL (Supabase)** | Transactional DB | Supabase provides Realtime WebSockets out-of-the-box, allowing the frontend to react to DB writes instantly. |
 | **Redis** | Dedup & Caching | Lightning fast idempotency locks, pre-seeded opt-out checks, and event queuing before hitting the DB. |
+| **Razorpay Test API** | Payments & Links | Used to generate dynamic recovery links, mock checkout sessions, and ingest webhook failure events. |
 
 ### Frontend
 | Technology | Role | Why I Preferred It |

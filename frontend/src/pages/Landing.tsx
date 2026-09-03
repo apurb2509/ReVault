@@ -11,6 +11,7 @@ export const Landing: React.FC = () => {
   const [tiltStyle, setTiltStyle] = useState({});
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [preloaderVisible, setPreloaderVisible] = useState(true);
+  const [showNotification, setShowNotification] = useState(false);
 
   useEffect(() => {
     let startTime: number | null = null;
@@ -25,12 +26,24 @@ export const Landing: React.FC = () => {
       if (progress < duration) {
         requestAnimationFrame(animateProgress);
       } else {
-        setTimeout(() => setPreloaderVisible(false), 800);
+        setTimeout(() => {
+          setPreloaderVisible(false);
+          setTimeout(() => setShowNotification(true), 2000);
+        }, 800);
       }
     };
 
     requestAnimationFrame(animateProgress);
   }, []);
+
+  useEffect(() => {
+    if (showNotification) {
+      document.body.classList.add('notification-open');
+    } else {
+      document.body.classList.remove('notification-open');
+    }
+    return () => document.body.classList.remove('notification-open');
+  }, [showNotification]);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!heroRef.current) return;
@@ -60,6 +73,14 @@ export const Landing: React.FC = () => {
 
   return (
     <div className="landing">
+      {showNotification && (
+        <div className="landing-notification-overlay">
+          <div className="landing-notification-modal">
+            <p>ReVault is syncing with APIs, real time database and webhooks, so it may take some seconds to load and process data.</p>
+            <button onClick={() => setShowNotification(false)}>Close</button>
+          </div>
+        </div>
+      )}
       {preloaderVisible && (
         <div className={`landing-preloader ${loadingProgress >= 100 ? 'slide-up-out' : ''}`}>
           <div className="preloader-circle-container">

@@ -104,9 +104,7 @@ export const AboutReVault: React.FC = () => {
       {/* Hero card */}
       <div className="about-hero">
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
-          <div style={{ width: 40, height: 40, borderRadius: '10px', background: 'linear-gradient(135deg, var(--rzp-blue), #1A8FFF)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Zap size={20} color="white" />
-          </div>
+          <img src="/ReVault_logo.png" alt="ReVault Logo" style={{ width: 40, height: 40 }} />
           <div>
             <div style={{ fontFamily: 'var(--font-display)', fontSize: '20px', fontWeight: 800 }}>ReVault</div>
             <div style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>AI-Powered Revenue Recovery Operating System</div>

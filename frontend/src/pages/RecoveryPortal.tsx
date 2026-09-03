@@ -113,9 +113,7 @@ export const RecoveryPortal: React.FC = () => {
         <div className="recovery-card">
           {/* Razorpay-style header */}
           <div className="recovery-rzp-header">
-            <div className="recovery-rzp-logo">
-              <Zap size={20} color="white" />
-            </div>
+            <img src="/ReVault_logo.png" alt="ReVault Logo" style={{ width: 40, height: 40 }} />
             <div>
               <div style={{ fontWeight: 700, fontSize: '15px', color: 'var(--text-primary)' }}>{details.merchant_name}</div>
               <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Secured by Razorpay · ReVault Recovery</div>

@@ -408,7 +408,7 @@ async def get_audit_trail(db: AsyncSession = Depends(get_db)) -> list[dict[str, 
 async def get_voice_calls(db: AsyncSession = Depends(get_db)) -> list[dict[str, Any]]:
     """Voice recovery calls logged as recovery_actions with module VOICE_AGENT."""
     result = await db.execute(text("""
-        SELECT ra.id, ra.event_id, ra.outcome, ra.executed_at, ra.agent_reasoning,
+        SELECT ra.id, ra.event_id, ra.outcome, ra.executed_at, ra.agent_reasoning, ra.payload,
                pe.amount, pe.failure_cause
         FROM recovery_actions ra
         LEFT JOIN payment_events pe ON ra.event_id = pe.id
@@ -418,20 +418,30 @@ async def get_voice_calls(db: AsyncSession = Depends(get_db)) -> list[dict[str, 
         ORDER BY ra.executed_at DESC
     """))
     rows = result.fetchall()
-    return [
-        {
+    
+    response = []
+    for row in rows:
+        payload = row.payload or {}
+        # Try to extract the Hinglish script from the payload (Gemini script or B2B draft)
+        script = payload.get("script") or payload.get("draft")
+        if not script:
+            script = f"Namaste Valued Customer! 🙏 aapka ₹{(row.amount or 0) / 100:,.0f} ka payment fail ho gaya hai. Kripya ek baar retry karein — hum aapki help karne ke liye yahaan hain. Payment link whatsapp par paanein ke liye 1 click karein, service se opt out karne ke liye 2 dabayein, whatsapp par support ya doubt puchne ke liye 3 dabayein. Koi samasya ho toh humein batayein. — ReVault Recovery Team. Dhanyawaad."
+            
+        customer_name = f"Customer-{str(row.event_id)[:8]}"
+        audio_url = f"/api/voice/synthesize?script={urllib.parse.quote(script)}&customer_name={urllib.parse.quote(customer_name)}"
+        
+        response.append({
             "id": str(row.id),
-            "customer_name": f"Customer-{str(row.event_id)[:8]}",
+            "customer_name": customer_name,
             "outcome": row.outcome,
             "event_id": str(row.event_id),
             "created_at": str(row.executed_at),
             "amount": row.amount,
             "failure_cause": row.failure_cause,
-            "audio_url": f"/api/voice/synthesize?script={urllib.parse.quote(row.agent_reasoning or 'Namaste, your payment failed')}&customer_name={urllib.parse.quote('Customer-'+str(row.event_id)[:8])}",
+            "audio_url": audio_url,
             "reasoning": row.agent_reasoning or "Synthesized Hinglish voice call successfully generated.",
-        }
-        for row in rows
-    ]
+        })
+    return response
 
 
 # ─────────────────────────────────────────────────────────────────
@@ -450,7 +460,7 @@ async def synthesize_voice_endpoint(script: str, customer_name: str) -> FileResp
     return FileResponse(
         path=result.file_path,
         media_type="audio/mpeg",
-        filename=f"{req.customer_name.replace(' ', '_')}_recovery.mp3",
+        filename=f"{customer_name.replace(' ', '_')}_recovery.mp3",
     )
 
 
@@ -532,6 +542,27 @@ async def get_recovery_portal(token: str, db: AsyncSession = Depends(get_db)) ->
                 "merchant_logo_letter": "R",
                 "event_id": str(row.id),
             }
+            
+        # Fallback to check b2b_invoices for invoice tracker links
+        b2b_result = await db.execute(
+            text("""
+                SELECT id, amount, company_name
+                FROM b2b_invoices
+                WHERE id::text LIKE :prefix
+                LIMIT 1
+            """),
+            {"prefix": f"{token}%"}
+        )
+        b2b_row = b2b_result.fetchone()
+        if b2b_row:
+             return {
+                "amount": b2b_row.amount or 99900,
+                "failure_reason": "B2B_INVOICE_OVERDUE",
+                "merchant_name": b2b_row.company_name or "ReVault Merchant",
+                "merchant_logo_letter": "R",
+                "event_id": str(b2b_row.id),
+            }
+            
     except Exception:
         pass
     # Graceful fallback with demo data for evaluators using /recovery?token=demo
