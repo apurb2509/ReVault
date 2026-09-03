@@ -153,7 +153,7 @@ Analyze and return a JSON object:
 """
 
 VOICE_SCRIPT_PROMPT = """
-Generate a 30-second Hinglish voice recovery script.
+Generate a 30-second Hinglish voice recovery script with IVR instructions.
 
 Customer: {name}
 Amount: ₹{amount_rupees}
@@ -162,12 +162,12 @@ Previous contacts: {contact_history}
 Tone: Warm, empathetic, helpful. NOT aggressive. NOT robotic.
 
 Rules:
-- Maximum 60 words
+- Maximum 80 words
 - Natural Hinglish blend (not pure Hindi, not pure English)
 - Personalize with the customer's name
 - Mention the specific amount
-- End with: "Aapke WhatsApp pe payment link bhej diya hai"
-- Must include opt-out: "Agar aap callback nahi chahte toh hume batayein"
+- MUST end the script with these IVR options in Hinglish: "Payment link whatsapp par paanein ke liye 1 click karein, service se opt out karne ke liye 2 dabayein, whatsapp par support ya doubt puchne ke liye 3 dabayein. Koi samasya ho toh humein batayein. — ReVault Recovery Team. Dhanyawaad."
+- DO NOT say "Aapke WhatsApp pe payment link bhej diya hai".
 
 Return a JSON object:
 {{

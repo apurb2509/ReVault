@@ -71,6 +71,15 @@ export const Invoices: React.FC = () => {
     return () => { supabase.removeChannel(sub); };
   }, []);
 
+  useEffect(() => {
+    if (selected) {
+      document.body.classList.add('notification-open');
+    } else {
+      document.body.classList.remove('notification-open');
+    }
+    return () => document.body.classList.remove('notification-open');
+  }, [selected]);
+
   const handleAddInvoice = async (e: React.FormEvent) => {
     e.preventDefault();
     await supabase.from('b2b_invoices').insert([{
@@ -167,42 +176,62 @@ export const Invoices: React.FC = () => {
           })}
         </div>
 
-        {/* Timeline panel */}
+        {/* Timeline Modal */}
         {selected && (
-          <div className="panel" style={{ width: '300px', flexShrink: 0 }}>
-            <div style={{ marginBottom: '16px' }}>
-              <div style={{ fontWeight: 700, fontSize: '16px', marginBottom: '4px' }}>{selected.company}</div>
-              <div style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>{selected.id.slice(0,8)} · {selected.contact}</div>
-            </div>
-            <div style={{ fontFamily: 'var(--font-display)', fontSize: '22px', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '8px' }}>
-              ₹{(selected.amount / 100).toLocaleString('en-IN')}
-            </div>
-            <div style={{ marginBottom: '16px', display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-              <span className={`badge ${RISK_CONFIG[selected.risk_tier]?.cssClass || 'badge-muted'}`}>{selected.risk_tier}</span>
-              <span className="badge badge-muted">{selected.days_outstanding} days overdue</span>
-            </div>
+          <div style={{
+            position: 'fixed',
+            inset: 0,
+            background: 'rgba(0,0,0,0.5)',
+            backdropFilter: 'blur(4px)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 9999,
+            padding: '20px'
+          }}>
+            <div className="panel" style={{ width: '100%', maxWidth: '360px', position: 'relative' }}>
+              <button 
+                onClick={() => setSelected(null)}
+                style={{ position: 'absolute', top: '16px', right: '16px', background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer' }}
+              >
+                <X size={18} />
+              </button>
+              
+              <div style={{ marginBottom: '16px', paddingRight: '24px' }}>
+                <div style={{ fontWeight: 700, fontSize: '18px', marginBottom: '4px' }}>{selected.company}</div>
+                <div style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>{selected.id.slice(0,8)} · {selected.contact}</div>
+              </div>
+              <div style={{ fontFamily: 'var(--font-display)', fontSize: '28px', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '12px' }}>
+                ₹{(selected.amount / 100).toLocaleString('en-IN')}
+              </div>
+              <div style={{ marginBottom: '20px', display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                <span className={`badge ${RISK_CONFIG[selected.risk_tier]?.cssClass || 'badge-muted'}`}>{selected.risk_tier}</span>
+                <span className="badge badge-muted">{selected.days_outstanding} days overdue</span>
+              </div>
 
-            <div className="divider" />
-            <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '12px' }}>Recovery Timeline</div>
+              <div className="divider" />
+              <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '16px' }}>Recovery Timeline</div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-              {selected.timeline.length === 0 && <div style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>No timeline events yet.</div>}
-              {selected.timeline.map((item, i) => (
-                <div key={i} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
-                  <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--accent)', marginTop: '6px', flexShrink: 0 }} />
-                  <div style={{ fontSize: '12px', color: 'var(--text-secondary)', lineHeight: 1.5 }}>{item}</div>
-                </div>
-              ))}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', maxHeight: '30vh', overflowY: 'auto' }}>
+                {selected.timeline.length === 0 && <div style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>No timeline events yet.</div>}
+                {selected.timeline.map((item, i) => (
+                  <div key={i} style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+                    <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--accent)', marginTop: '4px', flexShrink: 0 }} />
+                    <div style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: 1.5 }}>{item}</div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="divider" style={{ marginTop: '20px' }} />
+              <button
+                id={`create-link-${selected.id}`}
+                className="btn btn-primary btn-sm"
+                style={{ width: '100%', justifyContent: 'center', padding: '10px' }}
+                onClick={() => window.open(`/recovery?token=${selected.id}`, '_blank')}
+              >
+                <ExternalLink size={14} /> Create Razorpay Payment Link
+              </button>
             </div>
-
-            <div className="divider" />
-            <button
-              id={`create-link-${selected.id}`}
-              className="btn btn-primary btn-sm"
-              style={{ width: '100%', justifyContent: 'center' }}
-            >
-              <ExternalLink size={12} /> Create Razorpay Payment Link
-            </button>
           </div>
         )}
       </div>
