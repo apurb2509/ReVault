@@ -10,6 +10,7 @@ from typing import Any
 from gtts import gTTS
 
 from tools.gemini_client import VOICE_SCRIPT_PROMPT, call_gemini, get_gemini_client
+from tools.hinglish_numbers import to_hinglish
 
 logger = logging.getLogger(__name__)
 
@@ -31,9 +32,10 @@ class VoiceAgent:
         Returns the full structured JSON response from Gemini.
         Fallback dict is returned if Gemini fails.
         """
+        amount_words = to_hinglish(int(amount / 100))
         prompt = VOICE_SCRIPT_PROMPT.format(
             name=name,
-            amount_rupees=amount / 100,
+            amount_words=amount_words,
             cause=reason,
             contact_history=contact_history,
         )
@@ -43,9 +45,10 @@ class VoiceAgent:
             return result
         except Exception:
             logger.exception("Voice script generation failed — using fallback")
+            amount_words = to_hinglish(int(amount / 100))
             return {
                 "script": (
-                    f"Namaste {name}, aapka ₹{amount / 100:,.0f} ka payment pending hai "
+                    f"Namaste {name}, aapka {amount_words} rupay ka payment pending hai "
                     f"due to {reason}. Kripya ek baar retry karein — hum aapki help karne ke liye yahaan hain. "
                     "Payment link whatsapp par paanein ke liye 1 click karein, "
                     "service se opt out karne ke liye 2 dabayein, "

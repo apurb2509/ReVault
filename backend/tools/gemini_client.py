@@ -156,7 +156,7 @@ VOICE_SCRIPT_PROMPT = """
 Generate a 30-second Hinglish voice recovery script with IVR instructions.
 
 Customer: {name}
-Amount: ₹{amount_rupees}
+Amount: {amount_words} rupay
 Failure reason: {cause}
 Previous contacts: {contact_history}
 Tone: Warm, empathetic, helpful. NOT aggressive. NOT robotic.
@@ -165,7 +165,7 @@ Rules:
 - Maximum 80 words
 - Natural Hinglish blend (not pure Hindi, not pure English)
 - Personalize with the customer's name
-- Mention the specific amount
+- Mention the specific amount clearly in Hinglish words (e.g. use "pachaas hazaar rupay" instead of numbers like "50000")
 - MUST end the script with these IVR options in Hinglish: "Payment link whatsapp par paanein ke liye 1 click karein, service se opt out karne ke liye 2 dabayein, whatsapp par support ya doubt puchne ke liye 3 dabayein. Koi samasya ho toh humein batayein. — ReVault Recovery Team. Dhanyawaad."
 - DO NOT say "Aapke WhatsApp pe payment link bhej diya hai".
 
