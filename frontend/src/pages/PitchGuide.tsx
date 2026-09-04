@@ -23,7 +23,7 @@ const TECH_STACK = [
   { role: 'Multi-agent state machine', tech: 'LangGraph', why: 'Standard LangChain chains are too linear. LangGraph allows cyclical, stateful, multi-step agent reasoning workflows.' },
   { role: 'API Gateway / Ingress', tech: 'Go (Golang)', why: 'Go handles raw concurrent webhook ingress. It currently forwards directly to the Python FastAPI backend via HTTP.' },
   { role: 'Core Reasoning Engine', tech: 'Google Gemini 1.5 Flash', why: 'Lightning fast for root-cause analysis, script generation, and decision making with high accuracy.' },
-  { role: 'PTP Tracker NLP', tech: 'OpenAI (gpt-4o-mini)', why: "Specifically chosen for the PTP tracker because OpenAI's JSON Structured Outputs are flawless for strict date extraction." },
+  { role: 'PTP Tracker NLP', tech: 'Groq AI', why: "Specifically chosen for the PTP tracker because Groq AI's inference speed is incredibly fast for strict date extraction." },
   { role: 'Voice Synthesis', tech: 'ElevenLabs / gTTS', why: 'ElevenLabs provides ultra-realistic Hinglish accents. gTTS acts as a reliable, free fallback.' },
   { role: 'Voice & WhatsApp', tech: 'Twilio Sandbox', why: 'Used for executing real-time outbound calls and PTP (Promise-to-Pay) WhatsApp text message tracking.' },
   { role: 'Event Bus & Background Worker', tech: 'Redis Queue Worker', why: 'The app uses Redis queues (aioredis) to decouple webhook ingestion from slow AI processing, processed by a background worker daemon.' },

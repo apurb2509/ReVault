@@ -16,7 +16,7 @@ ReVault is an autonomous, multi-agent revenue recovery platform. It doesn't just
 | **4. Overdue B2B Invoices:** Following up on unpaid B2B invoices is highly manual, awkward, and prone to human delay. | **B2B Receivables Pursuit Agent:** Ages outstanding invoices, scores risk, and runs a multi-touch autonomous recovery sequence (email → WhatsApp → voice → human escalation). |
 | **5. Rigid Mandate Rails:** Failed UPI mandates keep retrying on UPI, even if the user's UPI app is temporarily blocked. | **Intelligent Mandate Retry Sequencer:** Dynamically re-classifies the failure cause on every retry and switches rails (e.g., failing on UPI? Send a card payment link). |
 | **6. Generic SMS Reminders:** Text messages are ignored. Personal touch is lost at scale. | **VoiceIQ Recovery Agent:** Generates highly personalized, context-aware Hinglish voice scripts via LLMs, synthesizes them to human voice, and places the call. |
-| **7. Broken Payment Promises:** A user replies "I'll pay on Friday", but nobody tracks it to hold them accountable. | **Promise-to-Pay (PTP) Engine:** Uses OpenAI NLP to extract exact dates from natural customer replies, monitors the promise, and escalates immediately if broken. |
+| **7. Broken Payment Promises:** A user replies "I'll pay on Friday", but nobody tracks it to hold them accountable. | **Promise-to-Pay (PTP) Engine:** Uses Groq AI NLP to extract exact dates from natural customer replies, monitors the promise, and escalates immediately if broken. |
 
 ---
 
@@ -43,7 +43,7 @@ The ingestion layer is high-throughput and idempotent. All agent actions must pa
 | Technology | Role | Why I Preferred It |
 |---|---|---|
 | **Google Gemini 1.5 Flash** | Core Reasoning Engine | Lightning fast for root-cause analysis, script generation, and decision making with high accuracy. |
-| **OpenAI (gpt-4o-mini)** | PTP Tracker NLP | Specifically chosen for the PTP tracker because OpenAI's JSON Structured Outputs are flawless for strict date extraction. |
+| **Groq AI** | PTP Tracker NLP | Specifically chosen for the PTP tracker because Groq AI's inference speed is incredibly fast for strict date extraction. |
 | **ElevenLabs / gTTS** | Voice Synthesis | ElevenLabs provides ultra-realistic Hinglish accents. gTTS acts as a reliable, free fallback. |
 | **Twilio Sandbox** | Voice & WhatsApp | Used for executing real-time outbound calls and PTP (Promise-to-Pay) WhatsApp text message tracking. |
 
@@ -89,7 +89,7 @@ RAZORPAY_WEBHOOK_SECRET=[your_webhook_secret]
 
 # AI Providers
 GEMINI_API_KEY=[your_gemini_key]
-OPENAI_API_KEY=[your_openai_key]       # For PTP NLP Tracker
+GROQ_API_KEY=[your_groq_key]           # For PTP NLP Tracker
 ELEVENLABS_API_KEY=[optional_for_voice]
 
 # Comms (Twilio)

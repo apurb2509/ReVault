@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   FlaskConical, Zap, AlertTriangle, CreditCard, RefreshCw,
-  CheckCircle, Clock, MessageSquare, Send,
+  CheckCircle, Clock, MessageSquare, Send, Phone, PhoneCall,
 } from 'lucide-react';
 import { Header } from '../components/layout/Header';
 import { supabase } from '../lib/supabaseClient';
@@ -67,11 +67,11 @@ const TRIGGER_SCENARIOS = [
 ];
 
 const PIPELINE_STEPS = [
-  { id: 'webhook',    label: 'Webhook Received',        icon: Zap },
-  { id: 'diagnose',   label: 'Failure Diagnosed',       icon: AlertTriangle },
-  { id: 'compliance', label: 'Compliance Checked',      icon: CheckCircle },
-  { id: 'action',     label: 'Action Dispatched',       icon: Send },
-  { id: 'outcome',    label: 'Outcome Monitored',       icon: Clock },
+  { id: 'webhook', label: 'Webhook Received', icon: Zap },
+  { id: 'diagnose', label: 'Failure Diagnosed', icon: AlertTriangle },
+  { id: 'compliance', label: 'Compliance Checked', icon: CheckCircle },
+  { id: 'action', label: 'Action Dispatched', icon: Send },
+  { id: 'outcome', label: 'Outcome Monitored', icon: Clock },
 ];
 
 export const Simulator: React.FC = () => {
@@ -85,6 +85,9 @@ export const Simulator: React.FC = () => {
   );
   const [resultEvents, setResultEvents] = useState<any[]>([]);
   const [actionMessage, setActionMessage] = useState<string | null>(null);
+  const [voiceStatus, setVoiceStatus] = useState<'idle' | 'calling' | 'done' | 'error'>('idle');
+  const [voiceCustomer, setVoiceCustomer] = useState('Apurb Susobhit Baba');
+  const [voiceAmount, setVoiceAmount] = useState('2500');
 
   // Subscribe to Supabase Realtime for live results
   useEffect(() => {
@@ -150,12 +153,121 @@ export const Simulator: React.FC = () => {
     setPipelineStatus('done');
   };
 
+  const triggerVoiceIQ = async () => {
+    if (voiceStatus === 'calling') return;
+    setVoiceStatus('calling');
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8000'}/api/realtime/trigger-voice`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          customer_name: voiceCustomer,
+          amount: Math.round(parseFloat(voiceAmount) * 100),
+          failure_cause: 'INSUFFICIENT_FUNDS',
+        }),
+      });
+      const data = await res.json();
+      if (data.status === 'call_initiated') {
+        setVoiceStatus('done');
+      } else {
+        setVoiceStatus('error');
+        console.error('VoiceIQ call_failed:', data.message);
+      }
+    } catch (err) {
+      console.error('VoiceIQ fetch error:', err);
+      setVoiceStatus('error');
+    }
+  };
+
   return (
     <>
       <Header
         title="Webhook Simulator Sandbox"
         subtitle="Judge & Evaluator tool — fire real payment failure webhooks and watch the AI pipeline execute live"
       />
+
+      {/* ── VoiceIQ Live Call Trigger ─────────────────────────── */}
+      <div style={{
+        padding: '20px 24px',
+        background: 'linear-gradient(135deg, rgba(155,109,255,0.12), rgba(45,104,248,0.08))',
+        border: '1px solid rgba(155,109,255,0.35)',
+        borderRadius: 'var(--radius-lg)',
+        marginBottom: '24px',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '20px',
+        flexWrap: 'wrap',
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flex: 1 }}>
+          <div style={{
+            width: 44, height: 44, borderRadius: '12px',
+            background: 'rgba(155,109,255,0.18)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            flexShrink: 0,
+          }}>
+            <PhoneCall size={22} color="var(--purple)" />
+          </div>
+          <div>
+            <div style={{ fontSize: '14px', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '2px' }}>
+              🎙️ VoiceIQ Recovery — Live Hinglish Call
+            </div>
+            <div style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>
+              Triggers a <strong>real Twilio outbound call</strong> to <code style={{ color: 'var(--purple)', background: 'rgba(155,109,255,0.1)', padding: '1px 5px', borderRadius: 4 }}>+918984296233</code>.
+              Gemini generates a Hinglish script → ElevenLabs/gTTS synthesizes audio → IVR plays live.
+              Press <strong>1</strong> for payment link · <strong>3</strong> for WhatsApp support.
+            </div>
+          </div>
+        </div>
+        <div style={{ display: 'flex', gap: '10px', alignItems: 'center', flexWrap: 'wrap' }}>
+          <input
+            className="trigger-input"
+            type="text"
+            placeholder="Customer name"
+            value={voiceCustomer}
+            onChange={e => setVoiceCustomer(e.target.value)}
+            style={{ width: 140 }}
+          />
+          <input
+            className="trigger-input"
+            type="number"
+            placeholder="Amount (₹)"
+            value={voiceAmount}
+            onChange={e => setVoiceAmount(e.target.value)}
+            style={{ width: 110 }}
+          />
+          <button
+            id="trigger-voiceiq"
+            className="btn btn-primary"
+            style={{
+              background: 'linear-gradient(135deg, var(--purple), var(--rzp-blue))',
+              minWidth: 200,
+              justifyContent: 'center',
+              position: 'relative',
+              opacity: voiceStatus === 'calling' ? 0.7 : 1,
+            }}
+            onClick={triggerVoiceIQ}
+            disabled={voiceStatus === 'calling'}
+          >
+            <Phone size={14} />
+            {voiceStatus === 'calling' ? '📞 Calling +918984296233...' :
+              voiceStatus === 'done' ? '✅ Call Placed! Check Phone' :
+                voiceStatus === 'error' ? '❌ Failed — Check Logs' :
+                  'Trigger VoiceIQ Recovery Call'}
+          </button>
+        </div>
+        {voiceStatus === 'done' && (
+          <div style={{ width: '100%', padding: '10px 14px', background: 'rgba(0,207,112,0.08)', border: '1px solid rgba(0,207,112,0.2)', borderRadius: 'var(--radius-md)', fontSize: '12px', color: 'var(--success)' }}>
+            ✅ Twilio outbound call initiated. Your phone should ring within 5–10 seconds.
+            After the Hinglish message plays: press <strong>1</strong> → payment link on WhatsApp · press <strong>3</strong> → support message on WhatsApp.
+            Then reply to the WhatsApp to test the <strong>PTP Tracker</strong>.
+          </div>
+        )}
+        {voiceStatus === 'error' && (
+          <div style={{ width: '100%', padding: '10px 14px', background: 'rgba(240,72,62,0.08)', border: '1px solid rgba(240,72,62,0.2)', borderRadius: 'var(--radius-md)', fontSize: '12px', color: 'var(--danger)' }}>
+            ❌ Call trigger failed. Ensure backend is running and Ngrok is active. Check backend logs.
+          </div>
+        )}
+      </div>
 
       {/* Pitch context banner */}
       <div style={{ padding: '14px 20px', background: 'rgba(45,104,248,0.07)', border: '1px solid rgba(45,104,248,0.2)', borderRadius: 'var(--radius-lg)', marginBottom: '24px', display: 'flex', alignItems: 'center', gap: '12px' }}>

@@ -14,7 +14,7 @@ client = AsyncOpenAI(
     base_url="https://api.groq.com/openai/v1"
 )
 
-async def call_groq_json(prompt: str, model: str = "llama-3.1-70b-versatile") -> dict[str, Any]:
+async def call_groq_json(prompt: str, model: str = "llama3-70b-8192") -> dict[str, Any]:
     """
     Calls Groq with structured JSON output mode using JSON mode.
     """

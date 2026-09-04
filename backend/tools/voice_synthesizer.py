@@ -35,11 +35,17 @@ async def synthesize_hinglish(script: str, customer_name: str) -> SynthesizedAud
 
 async def _synthesize_gtts(script: str) -> SynthesizedAudio:
     from gtts import gTTS
+    import asyncio
 
-    tts = gTTS(text=script, lang="hi", slow=False)
-    tmp = tempfile.NamedTemporaryFile(suffix=".mp3", delete=False)
-    tts.save(tmp.name)
-    return SynthesizedAudio(file_path=tmp.name, script=script, engine_used="gtts")
+    def _sync_gtts():
+        tts = gTTS(text=script, lang="hi", slow=False)
+        tmp = tempfile.NamedTemporaryFile(suffix=".mp3", delete=False)
+        tmp.close()  # Ensure the file is not locked
+        tts.save(tmp.name)
+        return tmp.name
+
+    file_path = await asyncio.to_thread(_sync_gtts)
+    return SynthesizedAudio(file_path=file_path, script=script, engine_used="gtts")
 
 
 async def _synthesize_elevenlabs(script: str) -> SynthesizedAudio:
@@ -59,7 +65,7 @@ async def _synthesize_elevenlabs(script: str) -> SynthesizedAudio:
         "voice_settings": {"stability": 0.5, "similarity_boost": 0.75},
     }
 
-    async with httpx.AsyncClient(timeout=30.0) as client:
+    async with httpx.AsyncClient(timeout=3.0) as client:
         response = await client.post(url, json=payload, headers=headers)
         response.raise_for_status()
 

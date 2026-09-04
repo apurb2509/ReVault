@@ -95,3 +95,107 @@ async def trigger_live_event(req: TriggerEventRequest, db: AsyncSession = Depend
     """
     await process_realtime_event(req, db)
     return {"status": "Event received and processing initiated"}
+
+
+class VoiceTriggerRequest(BaseModel):
+    customer_name: str
+    amount: int  # in paise
+    failure_cause: str = "INSUFFICIENT_FUNDS"
+
+
+@router.post("/trigger-voice")
+async def trigger_voice_call(req: VoiceTriggerRequest, db: AsyncSession = Depends(get_db)):
+    """
+    Places a REAL Twilio outbound Hinglish voice call.
+    1. Generates a personalized Hinglish script via Gemini VoiceAgent.
+    2. Synthesizes audio via ElevenLabs / gTTS.
+    3. Initiates a live Twilio outbound call to YOUR_PERSONAL_PHONE_NUMBER.
+    """
+    from agents.voice_agent import VoiceAgent
+    from config import get_settings
+    settings = get_settings()
+
+    agent = VoiceAgent()
+    event_id = str(uuid.uuid4())
+
+    logger.info(
+        "VoiceIQ trigger: customer=%s, amount=%s paise, cause=%s",
+        req.customer_name, req.amount, req.failure_cause,
+    )
+
+    # Step 1 — Generate Hinglish script
+    script_data = await agent.generate_script(
+        name=req.customer_name,
+        amount=req.amount,
+        reason=req.failure_cause,
+        contact_history="First contact — demo trigger",
+    )
+    script = script_data.get("script", "")
+    logger.info("VoiceIQ script generated: %s", script[:80])
+
+    # Step 2 — Place the real Twilio call
+    called = await agent.initiate_call(
+        customer_name=req.customer_name,
+        phone=settings.your_personal_phone_number,
+        script=script,
+        event_id=event_id,
+    )
+
+    # Step 3 — Log to DB so the Live Feed updates in the dashboard
+    action_id = str(uuid.uuid4())
+    executed_at = datetime.utcnow()
+    payload_str = json.dumps({"event": "payment.failed", "customer": req.customer_name})
+    try:
+        await db.execute(
+            text("""
+                INSERT INTO payment_events
+                (id, razorpay_event_id, event_type, payment_id, order_id, amount, failure_cause, raw_payload)
+                VALUES (:id, :rzp_id, :event_type, :pay_id, :order_id, :amount, :failure_cause, :payload)
+            """),
+            {
+                "id": event_id,
+                "rzp_id": f"evt_voice_{event_id[:8]}",
+                "event_type": "payment.failed",
+                "pay_id": f"pay_{event_id[:8]}",
+                "order_id": f"order_{event_id[:8]}",
+                "amount": req.amount,
+                "failure_cause": req.failure_cause,
+                "payload": payload_str,
+            },
+        )
+        await db.execute(
+            text("""
+                INSERT INTO recovery_actions
+                (id, event_id, module, action_type, channel, payload, agent_reasoning, outcome, executed_at)
+                VALUES (:id, :event_id, 'VOICE_AGENT', 'VOICE_CALL_TRIGGERED', 'VOICE',
+                        :script_payload, :reasoning, 'PENDING', :executed_at)
+            """),
+            {
+                "id": action_id,
+                "event_id": event_id,
+                "script_payload": json.dumps({"script": script, "tone": script_data.get("tone", "warm")}),
+                "reasoning": json.dumps({
+                    "customer": req.customer_name,
+                    "twilio_call_placed": called,
+                    "script_preview": script[:100],
+                }),
+                "executed_at": executed_at,
+            },
+        )
+        await db.commit()
+    except Exception as e:
+        logger.error("Failed to log voice call to DB: %s", e)
+
+    if called:
+        return {
+            "status": "call_initiated",
+            "message": f"Twilio outbound call placed to {settings.your_personal_phone_number}. Phone should ring in 5-10 seconds.",
+            "script_preview": script[:120],
+        }
+    else:
+        return {
+            "status": "call_failed",
+            "message": "Twilio call could not be placed. Check TWILIO credentials and NGROK_PUBLIC_URL in .env.",
+            "script_preview": script[:120],
+        }
+
