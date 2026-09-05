@@ -212,7 +212,7 @@ export const Simulator: React.FC = () => {
               🎙️ VoiceIQ Recovery — Live Hinglish Call
             </div>
             <div style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>
-              Triggers a <strong>real Twilio outbound call</strong> to <code style={{ color: 'var(--purple)', background: 'rgba(155,109,255,0.1)', padding: '1px 5px', borderRadius: 4 }}>+918984296233</code>.
+              Triggers a <strong>real Twilio outbound call</strong> to <code style={{ color: 'var(--purple)', background: 'rgba(155,109,255,0.1)', padding: '1px 5px', borderRadius: 4 }}>+918249814944</code>.
               Gemini generates a Hinglish script → ElevenLabs/gTTS synthesizes audio → IVR plays live.
               Press <strong>1</strong> for payment link · <strong>3</strong> for WhatsApp support.
             </div>
@@ -249,7 +249,7 @@ export const Simulator: React.FC = () => {
             disabled={voiceStatus === 'calling'}
           >
             <Phone size={14} />
-            {voiceStatus === 'calling' ? '📞 Calling +918984296233...' :
+            {voiceStatus === 'calling' ? '📞 Calling +918249814944...' :
               voiceStatus === 'done' ? '✅ Call Placed! Check Phone' :
                 voiceStatus === 'error' ? '❌ Failed — Check Logs' :
                   'Trigger VoiceIQ Recovery Call'}
